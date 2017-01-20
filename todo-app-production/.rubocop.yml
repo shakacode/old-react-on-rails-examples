@@ -1,0 +1,7 @@
+AllCops:
+  Exclude:
+    - 'vendor/**/*'
+    - 'tmp/**/*'
+
+Metrics/LineLength:
+  Max: 100
