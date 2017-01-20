@@ -3,5 +3,9 @@ AllCops:
     - 'vendor/**/*'
     - 'tmp/**/*'
 
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/rails_helper.rb'
+
 Metrics/LineLength:
   Max: 100
