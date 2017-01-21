@@ -1,0 +1,15 @@
+AllCops:
+  Exclude:
+    - 'vendor/**/*'
+    - 'bin/**/*'
+    - 'tmp/**/*'
+
+Lint/AssignmentInCondition:
+  Exclude:
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/rails_helper.rb'
+
+Metrics/LineLength:
+  Max: 100
