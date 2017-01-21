@@ -1,7 +1,11 @@
 AllCops:
   Exclude:
     - 'vendor/**/*'
+    - 'bin/**/*'
     - 'tmp/**/*'
+
+Lint/AssignmentInCondition:
+  Exclude:
 
 Metrics/BlockLength:
   Exclude:

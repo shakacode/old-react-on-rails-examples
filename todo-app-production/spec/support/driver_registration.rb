@@ -1,3 +1,4 @@
+#:nodoc:
 module DriverRegistration
   def self.register_selenium_chrome
     return if @selenium_chrome_registered
