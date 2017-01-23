@@ -1,2 +1,4 @@
-web: rails s -p 3000
-client: sh -c 'rm app/assets/webpack/* || true && cd client && npm run build:development'
+# https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server
+puma: REACT_ON_RAILS_ENV=HOT PORT=3000 bundle exec puma -C config/puma.rb
+webpack-hmr: rm app/assets/webpack/* || true && cd client && HOT_RAILS_PORT=3500 yarn start
+webpack-server-bundle: cd client && yarn run build:server-bundle:dev:watch

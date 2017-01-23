@@ -1,0 +1,5 @@
+$md-screen-width: 768px;
+$lg-screen-width: 1024px;
+
+$sm-screen: "only screen and (max-width: #{$md-screen-width - 1})";
+$md-screen: "only screen and (max-width: #{$lg-screen-width - 1})";

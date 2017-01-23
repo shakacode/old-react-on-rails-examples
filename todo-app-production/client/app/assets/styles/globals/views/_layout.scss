@@ -1,0 +1,114 @@
+$footer-height: 140px;
+$color-link: #2a9990;
+$color-navbar: #131313;
+
+$color-table-header: #ebebeb;
+$color-table-separator: #d4d4d4;
+
+:global {
+  html,
+  body {
+    font-size: $font-size-base;
+  }
+
+  html {
+    position: relative;
+    min-height: 100%;
+  }
+
+  body {
+    margin: 0 0 $footer-height;
+
+    footer {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: $color-navbar;
+      width: 100%;
+      height: $footer-height;
+    }
+  }
+
+  .wrapper {
+    min-height: 100%;
+  }
+
+  .regular-page {
+    padding-top: 80px;
+    padding-bottom: 60px;
+
+    a:link,
+    a:visited,
+    a:hover,
+    a:active {
+      color: $color-link;
+    }
+
+    h1 {
+      margin-bottom: 40px;
+      text-align: center;
+      font-size: 39px;
+    }
+
+    h2 {
+      margin-top: 25px;
+      margin-bottom: 15px;
+      line-height: 1.5;
+      font-size: 25px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      line-height: 24px;
+      font-size: 16px;
+    }
+
+    li {
+      margin-bottom: 13px;
+      font-size: 16px;
+
+      // solve issue in .docx -> .md conversion: it includes a <p> inside of every <li>
+      p {
+        margin-bottom: 13px;
+      }
+    }
+
+    table {
+      margin-bottom: 40px;
+      line-height: 24px;
+      font-size: 16px;
+
+      tr:first-child {
+        background-color: $color-table-header;
+
+        td {
+          border-bottom: 0;
+          font-weight: bold;
+        }
+      }
+
+      tr:last-child {
+        td {
+          border-bottom: 0;
+        }
+      }
+
+      tr {
+        td:first-child {
+          background-color: $color-table-header;
+        }
+      }
+
+      td {
+        border-bottom: 1px solid $color-table-separator;
+        padding: 10px 7px;
+        text-align: center;
+      }
+    }
+  }
+
+  .admin-dashboard {
+    margin-top: 20px;
+  }
+}

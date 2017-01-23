@@ -1,0 +1,6 @@
+#!/bin/sh
+
+NODE_ENV=production \
+$(yarn bin)/webpack \
+  --env.serverBundleProd \
+  --config webpack.config.babel.js

@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
+import css from './HelloWorld.scss';
 
 const HelloWorld = ({ name, updateName }) => (
   <div>
-    <h3>
+    <h3 className={css.blue}>
       Hello, {name}!
     </h3>
     <hr />

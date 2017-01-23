@@ -1,0 +1,33 @@
+$border-color: #d0d0d0;
+
+:global {
+
+  .faq-question {
+    border-bottom: 1px solid $border-color;
+  }
+
+  .faq-question__label {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    line-height: 1.5;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .faq-question__input {
+    display: none;
+  } /* Hide input element */
+
+  .faq-question__content {
+    margin-bottom: 1.5em;
+  }
+
+  .faq-question__input:not(checked) ~ .faq-question__content {
+    display: none;
+  }
+
+  .faq-question__input:checked ~ .faq-question__content {
+    display: block;
+  }
+}

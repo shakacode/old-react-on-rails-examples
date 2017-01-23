@@ -1,0 +1,185 @@
+$state-color-deviation: 15%;
+
+// TODO: Move to Button component and get rid of bootstrap classes
+@mixin btn-common(
+  $color,
+  $background-color,
+  $hover-background-color,
+  $hover-color: #fff,
+  $border-color: $brand-primary,
+  $hover-border-color: $hover-background-color
+) {
+  display: inline-flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  transition-property: border-color, background-color, color, box-shadow, fill;
+  transition-duration: $transition-duration;
+  transition-timing-function: $transition-timing-function;
+  background-color: $background-color;
+  border-radius: 4px;
+  border-color: $border-color;
+  color: $color;
+  cursor: pointer;
+
+  svg {
+    margin-right: 8px;
+  }
+
+  g,
+  path,
+  polygon,
+  rect {
+    fill: $gray-lighter;
+  }
+
+  &:hover,
+  &:focus {
+    border-color: $hover-border-color;
+    background-color: $hover-background-color;
+    color: $hover-color;
+
+    & span {
+      color: $hover-color;
+    }
+
+    g,
+    path,
+    polygon,
+    rect {
+      fill: $hover-color;
+    }
+  }
+
+  &[disabled],
+  &:hover[disabled],
+  &:focus[disabled] {
+    @include btn-disabled($color, $background-color, $border-color);
+
+    svg {
+      pointer-events: none;
+    }
+
+    g,
+    path,
+    polygon,
+    rect {
+      fill: $gray-lighter;
+    }
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+@mixin btn-disabled(
+  $color,
+  $background-color,
+  $border-color
+) {
+  border-color: lighten($border-color, $state-color-deviation);
+  background-color: lighten($background-color, $state-color-deviation);
+  color: $color;
+}
+
+@mixin btn-default() {
+  @include btn-common(
+    $color: $gray-dark,
+    $border-color: $gray-dark,
+    $background-color: transparent,
+    $hover-background-color: $brand-primary
+  );
+}
+
+@mixin btn-ghost-primary() {
+  @include btn-common(
+    $color: $gray-dark,
+    $border-color: $brand-primary,
+    $background-color: transparent,
+    $hover-background-color: $brand-primary
+  );
+}
+
+@mixin btn-ghost-success() {
+  @include btn-common(
+    $color: $gray-dark,
+    $border-color: $brand-success,
+    $background-color: transparent,
+    $hover-background-color: $brand-success
+  );
+}
+
+@mixin btn-ghost-warning() {
+  @include btn-common(
+    $color: $gray-dark,
+    $border-color: $brand-warning,
+    $background-color: transparent,
+    $hover-background-color: $brand-warning
+  );
+}
+
+@mixin btn-ghost-danger() {
+  @include btn-common(
+    $color: $gray-dark,
+    $border-color: $brand-danger,
+    $background-color: transparent,
+    $hover-background-color: $brand-danger
+  );
+}
+
+@mixin btn-primary() {
+  @include btn-common(
+    $color: #fff,
+    $background-color: $brand-primary,
+    $hover-background-color: darken($brand-primary, $state-color-deviation)
+  );
+}
+
+@mixin btn-success() {
+  @include btn-common(
+    $color: #fff,
+    $background-color: $brand-success,
+    $hover-background-color: darken($brand-success, $state-color-deviation),
+    $border-color: $brand-success
+  );
+}
+
+@mixin btn-warning() {
+  @include btn-common(
+    $color: #fff,
+    $background-color: $brand-warning,
+    $hover-background-color: darken($brand-warning, $state-color-deviation),
+    $border-color: $brand-warning
+  );
+}
+
+@mixin btn-danger() {
+  @include btn-common(
+    $color: #fff,
+    $background-color: $brand-danger,
+    $hover-background-color: darken($brand-danger, $state-color-deviation),
+    $border-color: $brand-danger
+  );
+}
+
+@mixin btn-inverted() {
+  @include btn-common(
+    $color: #fff,
+    $background-color: transparent,
+    $hover-background-color: #fff,
+    $hover-color: $brand-primary,
+    $border-color: #fff
+  );
+}
+
+@mixin btn-faded() {
+  @include btn-common(
+    $color: $gray-lighter,
+    $background-color: transparent,
+    $hover-background-color: transparent,
+    $hover-color: $gray-light,
+    $border-color: $gray-lighter,
+    $hover-border-color: $gray-light
+  );
+}
