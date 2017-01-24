@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  root "lists#index"
+  root 'lists#index'
+
+  resources :to_dos
 end
