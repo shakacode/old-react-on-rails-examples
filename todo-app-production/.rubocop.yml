@@ -1,13 +1,13 @@
 AllCops:
   Exclude:
-    - 'vendor/**/*'
     - 'bin/**/*'
-    - 'tmp/**/*'
+    - 'client/**/*'
     - 'db/schema.rb'
-    - 'db/migrate/**/*'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
 
-Lint/AssignmentInCondition:
-  Exclude:
+Bundler/OrderedGems:
+  Enabled: false
 
 Metrics/BlockLength:
   Exclude:
@@ -15,5 +15,7 @@ Metrics/BlockLength:
 
 Metrics/LineLength:
   Max: 100
-Bundler/OrderedGems:
-  Enabled: false
+
+Style/Documentation:
+  Exclude:
+    - 'db/migrate/**/*'
