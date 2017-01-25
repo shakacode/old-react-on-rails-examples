@@ -1,0 +1,8 @@
+/*
+ * This file contains values, that bootstrap calculates under the hood.
+ * So they can't be simply reused or redefined.
+ * If such value is required for layout — it can be hardcoded here.
+ *
+ */
+
+$bs-grid-md-paddings: 15px;

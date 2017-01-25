@@ -1,0 +1,14 @@
+$layout-footer-height-lg: 140px;
+$layout-footer-height-sm: 170px;
+
+// Transition defaults
+$transition-duration: .1s;
+$transition-timing-function: ease-in;
+
+// Section navbar
+$section-navbar-height: 50px; // KEEP IN SYNC:
+                              //   - ../bootstrap/pre-customizations.scss
+                              //   - bundles/listings-show/components/withWidgetsState.jsx
+
+$border-gray: #cbcbcb; // TODO: Give it more specific name
+$listings-search-box-height: 62px;

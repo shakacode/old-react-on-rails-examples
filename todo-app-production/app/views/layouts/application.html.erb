@@ -4,8 +4,25 @@
     <title>TodoAppProduction</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%
+      puts "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
+    puts "ENV['REACT_ON_RAILS_ENV'] = #{ENV['REACT_ON_RAILS_ENV']}"
+    puts "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
+
+    %>
+    <%= env_javascript_include_tag(hot: "http://lvh.me:3500/vendor-client-bundle.js") %>
+    <%= env_javascript_include_tag(hot: "http://lvh.me:3500/global-styles-client-bundle.js") %>
+    <%= env_stylesheet_link_tag(static: "application_static",
+                              media: "all",
+                              "data-turbolinks-track" => true) %>
+    <%= env_javascript_include_tag(static: "application_static",
+                                 hot: "application_hot",
+                                 "data-turbolinks-track" => true) %>
+
+    <%= env_javascript_include_tag(hot: "http://lvh.me:3500/hello-world-client-bundle.js",
+                                 "data-turbolinks-track" => false) %>
+
+
   </head>
 
   <body>

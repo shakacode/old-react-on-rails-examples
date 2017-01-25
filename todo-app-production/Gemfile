@@ -6,10 +6,13 @@ git_source(:github) do |repo_name|
 end
 
 gem 'jbuilder', '~> 2.5'
-gem 'mini_racer', platforms: :ruby
 gem 'puma', '~> 3.0'
 gem 'rails', '~> 5.0.1'
+
 gem 'react_on_rails', '~> 6.4'
+gem 'execjs'
+gem 'mini_racer', platforms: :ruby
+
 gem 'sqlite3'
 gem 'turbolinks', '~> 5'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

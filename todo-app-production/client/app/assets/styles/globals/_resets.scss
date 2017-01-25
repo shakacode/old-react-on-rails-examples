@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+
+  &:focus {
+    @include outline();
+  }
+}
+
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  font-weight: $font-weight-base;
+}
+
+input,
+textarea,
+keygen,
+select,
+button {
+  font-size: $font-size-base;
+}
+
+label {
+  cursor: pointer;
+  font-weight: $font-weight-base;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin: 0;
+}
+
+select {
+
+  option[default][disabled] {
+    color: $gray-lighter;
+  }
+
+  option {
+    color: #000;
+  }
+
+}

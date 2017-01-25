@@ -1,0 +1,78 @@
+%paginationActiveButton {
+  background: #fff !important;
+  color: $gray-dark !important;
+}
+
+.pagination {
+  margin-bottom: 0;
+  height: 36px;
+
+  li {
+    display: inline-block !important;
+    margin-right: 10px;
+
+    @media (max-width: $screen-xs-max) {
+      margin-right: 8px;
+    }
+
+    a {
+      border-radius: 3px !important;
+      border-color: $gray-light !important;
+      background-color: transparent !important;
+      width: 36px;
+      height: 36px;
+      text-align: center;
+      color: #000 !important;
+
+      &:hover {
+        @extend %paginationActiveButton;
+      }
+
+      &:focus {
+        box-shadow: none !important;
+      }
+    }
+
+    &[class*="active"] a {
+      @extend %paginationActiveButton;
+
+      &:hover {
+        border-color: $gray-light;
+      }
+    }
+
+    &[class*="disable"]:nth-last-child(2) a {
+      border: 0 !important;
+      background-color: transparent;
+      padding: 0;
+      line-height: 11px;
+      font-size: 36px;
+
+      span {
+        color: $gray-light;
+      }
+    }
+  }
+}
+
+.dropdown-toggle.btn-default {
+  border: 1px #cbcbcb solid;
+  border-radius: 3px;
+  height: 36px;
+  text-align: left;
+
+  .caret {
+    float: right;
+    margin-top: 9px;
+  }
+}
+
+.navbar .dropdown a:focus {
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.modal-footer {
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+}

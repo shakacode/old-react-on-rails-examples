@@ -1,0 +1,371 @@
+/* stylelint-disable at-rule-empty-line-before, block-opening-brace-space-before */
+
+@mixin clearfix() {
+  &::before,
+  &::after {
+    display: table;
+    content: " ";
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+@mixin uppercase() {
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  font-size: .85em;
+}
+
+@mixin outline($color: $brand-primary) {
+  outline: none !important;
+  outline-offset: 0 !important;
+  box-shadow: 0 0 7px $color;
+}
+
+@mixin icon($icon) {
+  background-image: url("app/assets/images/icons/#{$icon}.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: grayscale(100%) brightness(500%) brightness(60%); // TODO: ¯\_(ツ)_/¯
+  content: "";
+}
+
+@mixin bs-icon($icon) {
+  font-family: "Glyphicons Halflings";
+  @if $icon == "asterisk"                { content: "\002a"; }
+  @if $icon == "plus"                    { content: "\002b"; }
+  @if $icon == "eur"                     { content: "\20ac"; }
+  @if $icon == "minus"                   { content: "\2212"; }
+  @if $icon == "cloud"                   { content: "\2601"; }
+  @if $icon == "envelope"                { content: "\2709"; }
+  @if $icon == "pencil"                  { content: "\270f"; }
+  @if $icon == "glass"                   { content: "\e001"; }
+  @if $icon == "music"                   { content: "\e002"; }
+  @if $icon == "search"                  { content: "\e003"; }
+  @if $icon == "heart"                   { content: "\e005"; }
+  @if $icon == "star"                    { content: "\e006"; }
+  @if $icon == "star-empty"              { content: "\e007"; }
+  @if $icon == "user"                    { content: "\e008"; }
+  @if $icon == "film"                    { content: "\e009"; }
+  @if $icon == "th-large"                { content: "\e010"; }
+  @if $icon == "th"                      { content: "\e011"; }
+  @if $icon == "th-list"                 { content: "\e012"; }
+  @if $icon == "ok"                      { content: "\e013"; }
+  @if $icon == "remove"                  { content: "\e014"; }
+  @if $icon == "zoom-in"                 { content: "\e015"; }
+  @if $icon == "zoom-out"                { content: "\e016"; }
+  @if $icon == "off"                     { content: "\e017"; }
+  @if $icon == "signal"                  { content: "\e018"; }
+  @if $icon == "cog"                     { content: "\e019"; }
+  @if $icon == "trash"                   { content: "\e020"; }
+  @if $icon == "home"                    { content: "\e021"; }
+  @if $icon == "file"                    { content: "\e022"; }
+  @if $icon == "time"                    { content: "\e023"; }
+  @if $icon == "road"                    { content: "\e024"; }
+  @if $icon == "download-alt"            { content: "\e025"; }
+  @if $icon == "download"                { content: "\e026"; }
+  @if $icon == "upload"                  { content: "\e027"; }
+  @if $icon == "inbox"                   { content: "\e028"; }
+  @if $icon == "play-circle"             { content: "\e029"; }
+  @if $icon == "repeat"                  { content: "\e030"; }
+  @if $icon == "refresh"                 { content: "\e031"; }
+  @if $icon == "list-alt"                { content: "\e032"; }
+  @if $icon == "lock"                    { content: "\e033"; }
+  @if $icon == "flag"                    { content: "\e034"; }
+  @if $icon == "headphones"              { content: "\e035"; }
+  @if $icon == "volume-off"              { content: "\e036"; }
+  @if $icon == "volume-down"             { content: "\e037"; }
+  @if $icon == "volume-up"               { content: "\e038"; }
+  @if $icon == "qrcode"                  { content: "\e039"; }
+  @if $icon == "barcode"                 { content: "\e040"; }
+  @if $icon == "tag"                     { content: "\e041"; }
+  @if $icon == "tags"                    { content: "\e042"; }
+  @if $icon == "book"                    { content: "\e043"; }
+  @if $icon == "bookmark"                { content: "\e044"; }
+  @if $icon == "print"                   { content: "\e045"; }
+  @if $icon == "camera"                  { content: "\e046"; }
+  @if $icon == "font"                    { content: "\e047"; }
+  @if $icon == "bold"                    { content: "\e048"; }
+  @if $icon == "italic"                  { content: "\e049"; }
+  @if $icon == "text-height"             { content: "\e050"; }
+  @if $icon == "text-width"              { content: "\e051"; }
+  @if $icon == "align-left"              { content: "\e052"; }
+  @if $icon == "align-center"            { content: "\e053"; }
+  @if $icon == "align-right"             { content: "\e054"; }
+  @if $icon == "align-justify"           { content: "\e055"; }
+  @if $icon == "list"                    { content: "\e056"; }
+  @if $icon == "indent-left"             { content: "\e057"; }
+  @if $icon == "indent-right"            { content: "\e058"; }
+  @if $icon == "facetime-video"          { content: "\e059"; }
+  @if $icon == "picture"                 { content: "\e060"; }
+  @if $icon == "map-marker"              { content: "\e062"; }
+  @if $icon == "adjust"                  { content: "\e063"; }
+  @if $icon == "tint"                    { content: "\e064"; }
+  @if $icon == "edit"                    { content: "\e065"; }
+  @if $icon == "share"                   { content: "\e066"; }
+  @if $icon == "check"                   { content: "\e067"; }
+  @if $icon == "move"                    { content: "\e068"; }
+  @if $icon == "step-backward"           { content: "\e069"; }
+  @if $icon == "fast-backward"           { content: "\e070"; }
+  @if $icon == "backward"                { content: "\e071"; }
+  @if $icon == "play"                    { content: "\e072"; }
+  @if $icon == "pause"                   { content: "\e073"; }
+  @if $icon == "stop"                    { content: "\e074"; }
+  @if $icon == "forward"                 { content: "\e075"; }
+  @if $icon == "fast-forward"            { content: "\e076"; }
+  @if $icon == "step-forward"            { content: "\e077"; }
+  @if $icon == "eject"                   { content: "\e078"; }
+  @if $icon == "chevron-left"            { content: "\e079"; }
+  @if $icon == "chevron-right"           { content: "\e080"; }
+  @if $icon == "plus-sign"               { content: "\e081"; }
+  @if $icon == "minus-sign"              { content: "\e082"; }
+  @if $icon == "remove-sign"             { content: "\e083"; }
+  @if $icon == "ok-sign"                 { content: "\e084"; }
+  @if $icon == "question-sign"           { content: "\e085"; }
+  @if $icon == "info-sign"               { content: "\e086"; }
+  @if $icon == "screenshot"              { content: "\e087"; }
+  @if $icon == "remove-circle"           { content: "\e088"; }
+  @if $icon == "ok-circle"               { content: "\e089"; }
+  @if $icon == "ban-circle"              { content: "\e090"; }
+  @if $icon == "arrow-left"              { content: "\e091"; }
+  @if $icon == "arrow-right"             { content: "\e092"; }
+  @if $icon == "arrow-up"                { content: "\e093"; }
+  @if $icon == "arrow-down"              { content: "\e094"; }
+  @if $icon == "share-alt"               { content: "\e095"; }
+  @if $icon == "resize-full"             { content: "\e096"; }
+  @if $icon == "resize-small"            { content: "\e097"; }
+  @if $icon == "exclamation-sign"        { content: "\e101"; }
+  @if $icon == "gift"                    { content: "\e102"; }
+  @if $icon == "leaf"                    { content: "\e103"; }
+  @if $icon == "fire"                    { content: "\e104"; }
+  @if $icon == "eye-open"                { content: "\e105"; }
+  @if $icon == "eye-close"               { content: "\e106"; }
+  @if $icon == "warning-sign"            { content: "\e107"; }
+  @if $icon == "plane"                   { content: "\e108"; }
+  @if $icon == "calendar"                { content: "\e109"; }
+  @if $icon == "random"                  { content: "\e110"; }
+  @if $icon == "comment"                 { content: "\e111"; }
+  @if $icon == "magnet"                  { content: "\e112"; }
+  @if $icon == "chevron-up"              { content: "\e113"; }
+  @if $icon == "chevron-down"            { content: "\e114"; }
+  @if $icon == "retweet"                 { content: "\e115"; }
+  @if $icon == "shopping-cart"           { content: "\e116"; }
+  @if $icon == "folder-close"            { content: "\e117"; }
+  @if $icon == "folder-open"             { content: "\e118"; }
+  @if $icon == "resize-vertical"         { content: "\e119"; }
+  @if $icon == "resize-horizontal"       { content: "\e120"; }
+  @if $icon == "hdd"                     { content: "\e121"; }
+  @if $icon == "bullhorn"                { content: "\e122"; }
+  @if $icon == "bell"                    { content: "\e123"; }
+  @if $icon == "certificate"             { content: "\e124"; }
+  @if $icon == "thumbs-up"               { content: "\e125"; }
+  @if $icon == "thumbs-down"             { content: "\e126"; }
+  @if $icon == "hand-right"              { content: "\e127"; }
+  @if $icon == "hand-left"               { content: "\e128"; }
+  @if $icon == "hand-up"                 { content: "\e129"; }
+  @if $icon == "hand-down"               { content: "\e130"; }
+  @if $icon == "circle-arrow-right"      { content: "\e131"; }
+  @if $icon == "circle-arrow-left"       { content: "\e132"; }
+  @if $icon == "circle-arrow-up"         { content: "\e133"; }
+  @if $icon == "circle-arrow-down"       { content: "\e134"; }
+  @if $icon == "globe"                   { content: "\e135"; }
+  @if $icon == "wrench"                  { content: "\e136"; }
+  @if $icon == "tasks"                   { content: "\e137"; }
+  @if $icon == "filter"                  { content: "\e138"; }
+  @if $icon == "briefcase"               { content: "\e139"; }
+  @if $icon == "fullscreen"              { content: "\e140"; }
+  @if $icon == "dashboard"               { content: "\e141"; }
+  @if $icon == "paperclip"               { content: "\e142"; }
+  @if $icon == "heart-empty"             { content: "\e143"; }
+  @if $icon == "link"                    { content: "\e144"; }
+  @if $icon == "phone"                   { content: "\e145"; }
+  @if $icon == "pushpin"                 { content: "\e146"; }
+  @if $icon == "usd"                     { content: "\e148"; }
+  @if $icon == "gbp"                     { content: "\e149"; }
+  @if $icon == "sort"                    { content: "\e150"; }
+  @if $icon == "sort-by-alphabet"        { content: "\e151"; }
+  @if $icon == "sort-by-alphabet-alt"    { content: "\e152"; }
+  @if $icon == "sort-by-order"           { content: "\e153"; }
+  @if $icon == "sort-by-order-alt"       { content: "\e154"; }
+  @if $icon == "sort-by-attributes"      { content: "\e155"; }
+  @if $icon == "sort-by-attributes-alt"  { content: "\e156"; }
+  @if $icon == "unchecked"               { content: "\e157"; }
+  @if $icon == "expand"                  { content: "\e158"; }
+  @if $icon == "collapse-down"           { content: "\e159"; }
+  @if $icon == "collapse-up"             { content: "\e160"; }
+  @if $icon == "log-in"                  { content: "\e161"; }
+  @if $icon == "flash"                   { content: "\e162"; }
+  @if $icon == "log-out"                 { content: "\e163"; }
+  @if $icon == "new-window"              { content: "\e164"; }
+  @if $icon == "record"                  { content: "\e165"; }
+  @if $icon == "save"                    { content: "\e166"; }
+  @if $icon == "open"                    { content: "\e167"; }
+  @if $icon == "saved"                   { content: "\e168"; }
+  @if $icon == "import"                  { content: "\e169"; }
+  @if $icon == "export"                  { content: "\e170"; }
+  @if $icon == "send"                    { content: "\e171"; }
+  @if $icon == "floppy-disk"             { content: "\e172"; }
+  @if $icon == "floppy-saved"            { content: "\e173"; }
+  @if $icon == "floppy-remove"           { content: "\e174"; }
+  @if $icon == "floppy-save"             { content: "\e175"; }
+  @if $icon == "floppy-open"             { content: "\e176"; }
+  @if $icon == "credit-card"             { content: "\e177"; }
+  @if $icon == "transfer"                { content: "\e178"; }
+  @if $icon == "cutlery"                 { content: "\e179"; }
+  @if $icon == "header"                  { content: "\e180"; }
+  @if $icon == "compressed"              { content: "\e181"; }
+  @if $icon == "earphone"                { content: "\e182"; }
+  @if $icon == "phone-alt"               { content: "\e183"; }
+  @if $icon == "tower"                   { content: "\e184"; }
+  @if $icon == "stats"                   { content: "\e185"; }
+  @if $icon == "sd-video"                { content: "\e186"; }
+  @if $icon == "hd-video"                { content: "\e187"; }
+  @if $icon == "subtitles"               { content: "\e188"; }
+  @if $icon == "sound-stereo"            { content: "\e189"; }
+  @if $icon == "sound-dolby"             { content: "\e190"; }
+  @if $icon == "sound-5-1"               { content: "\e191"; }
+  @if $icon == "sound-6-1"               { content: "\e192"; }
+  @if $icon == "sound-7-1"               { content: "\e193"; }
+  @if $icon == "copyright-mark"          { content: "\e194"; }
+  @if $icon == "registration-mark"       { content: "\e195"; }
+  @if $icon == "cloud-download"          { content: "\e197"; }
+  @if $icon == "cloud-upload"            { content: "\e198"; }
+  @if $icon == "tree-conifer"            { content: "\e199"; }
+  @if $icon == "tree-deciduous"          { content: "\e200"; }
+  @if $icon == "cd"                      { content: "\e201"; }
+  @if $icon == "save-file"               { content: "\e202"; }
+  @if $icon == "open-file"               { content: "\e203"; }
+  @if $icon == "level-up"                { content: "\e204"; }
+  @if $icon == "copy"                    { content: "\e205"; }
+  @if $icon == "paste"                   { content: "\e206"; }
+  @if $icon == "alert"                   { content: "\e209"; }
+  @if $icon == "equalizer"               { content: "\e210"; }
+  @if $icon == "king"                    { content: "\e211"; }
+  @if $icon == "queen"                   { content: "\e212"; }
+  @if $icon == "pawn"                    { content: "\e213"; }
+  @if $icon == "bishop"                  { content: "\e214"; }
+  @if $icon == "knight"                  { content: "\e215"; }
+  @if $icon == "baby-formula"            { content: "\e216"; }
+  @if $icon == "tent"                    { content: "\26fa"; }
+  @if $icon == "blackboard"              { content: "\e218"; }
+  @if $icon == "bed"                     { content: "\e219"; }
+  @if $icon == "apple"                   { content: "\f8ff"; }
+  @if $icon == "erase"                   { content: "\e221"; }
+  @if $icon == "hourglass"               { content: "\231b"; }
+  @if $icon == "lamp"                    { content: "\e223"; }
+  @if $icon == "duplicate"               { content: "\e224"; }
+  @if $icon == "piggy-bank"              { content: "\e225"; }
+  @if $icon == "scissors"                { content: "\e226"; }
+  @if $icon == "bitcoin"                 { content: "\e227"; }
+  @if $icon == "btc"                     { content: "\e227"; }
+  @if $icon == "xbt"                     { content: "\e227"; }
+  @if $icon == "yen"                     { content: "\00a5"; }
+  @if $icon == "jpy"                     { content: "\00a5"; }
+  @if $icon == "ruble"                   { content: "\20bd"; }
+  @if $icon == "rub"                     { content: "\20bd"; }
+  @if $icon == "scale"                   { content: "\e230"; }
+  @if $icon == "ice-lolly"               { content: "\e231"; }
+  @if $icon == "ice-lolly-tasted"        { content: "\e232"; }
+  @if $icon == "education"               { content: "\e233"; }
+  @if $icon == "option-horizontal"       { content: "\e234"; }
+  @if $icon == "option-vertical"         { content: "\e235"; }
+  @if $icon == "menu-hamburger"          { content: "\e236"; }
+  @if $icon == "modal-window"            { content: "\e237"; }
+  @if $icon == "oil"                     { content: "\e238"; }
+  @if $icon == "grain"                   { content: "\e239"; }
+  @if $icon == "sunglasses"              { content: "\e240"; }
+  @if $icon == "text-size"               { content: "\e241"; }
+  @if $icon == "text-color"              { content: "\e242"; }
+  @if $icon == "text-background"         { content: "\e243"; }
+  @if $icon == "object-align-top"        { content: "\e244"; }
+  @if $icon == "object-align-bottom"     { content: "\e245"; }
+  @if $icon == "object-align-horizontal" { content: "\e246"; }
+  @if $icon == "object-align-left"       { content: "\e247"; }
+  @if $icon == "object-align-vertical"   { content: "\e248"; }
+  @if $icon == "object-align-right"      { content: "\e249"; }
+  @if $icon == "triangle-right"          { content: "\e250"; }
+  @if $icon == "triangle-left"           { content: "\e251"; }
+  @if $icon == "triangle-bottom"         { content: "\e252"; }
+  @if $icon == "triangle-top"            { content: "\e253"; }
+  @if $icon == "console"                 { content: "\e254"; }
+  @if $icon == "superscript"             { content: "\e255"; }
+  @if $icon == "subscript"               { content: "\e256"; }
+  @if $icon == "menu-left"               { content: "\e257"; }
+  @if $icon == "menu-right"              { content: "\e258"; }
+  @if $icon == "menu-down"               { content: "\e259"; }
+  @if $icon == "menu-up"                 { content: "\e260"; }
+}
+
+@mixin hide-sm {
+  @media (max-width: $screen-sm - 1) {
+    display: none;
+  }
+}
+
+@mixin arrow($size, $color) {
+  display: block;
+  position: absolute;
+  left: 50%;
+  bottom: -$size;
+  margin-left: -$size;
+  border-width: $size;
+  border-bottom-width: 0 !important;
+  border-style: solid;
+  border-color: transparent;
+  border-top-color: $color;
+  width: 0;
+  height: 0;
+}
+
+@mixin arrow-after($size, $color) {
+  display: block;
+  position: absolute;
+  bottom: 2px;
+  margin-left: -($size - 1);
+  border-width: $size - 1;
+  border-bottom-width: 0 !important;
+  border-style: solid;
+  border-color: transparent;
+  border-top-color: $color;
+  width: 0;
+  height: 0;
+  content: " ";
+}
+
+@mixin arrow-with-shadow($arrow-size, $border-color, $arrow-color) {
+  @include arrow($arrow-size, $border-color);
+
+  &::after {
+    @include arrow-after($arrow-size, $arrow-color);
+  }
+}
+
+@mixin listing-results-map-marker($border-color) {
+  position: absolute;
+  padding: 2px 4px;
+  box-shadow: 0 0 0 1px $border-color;
+  border-radius: 2px;
+}
+
+@mixin container-sized() {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+@mixin link-like-button() {
+  border: 0;
+  background: none;
+  color: $link-color;
+
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: $link-hover-decoration;
+    color: $link-hover-color;
+  }
+}
