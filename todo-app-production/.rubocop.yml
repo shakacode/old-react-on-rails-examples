@@ -1,15 +1,21 @@
 AllCops:
   Exclude:
-    - 'vendor/**/*'
     - 'bin/**/*'
+    - 'client/**/*'
+    - 'db/schema.rb'
     - 'tmp/**/*'
+    - 'vendor/**/*'
 
-Lint/AssignmentInCondition:
-  Exclude:
+Bundler/OrderedGems:
+  Enabled: false
 
 Metrics/BlockLength:
   Exclude:
-    - 'spec/rails_helper.rb'
+    - 'spec/**/*.rb'
 
 Metrics/LineLength:
   Max: 100
+
+Style/Documentation:
+  Exclude:
+    - 'db/migrate/**/*'

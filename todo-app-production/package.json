@@ -1,17 +1,14 @@
 {
-  "name": "react-webpack-rails-tutorial",
+  "name": "react-on-rails-pro",
   "version": "0.0.1",
   "private": true,
   "engines": {
-    "node": "6.9.0",
-    "npm": "4.1.1"
+    "node": "7.4.0",
+    "yarn": "0.19.1"
   },
   "scripts": {
-    "postinstall": "cd client && npm install",
+    "postinstall": "cd client && yarn install",
     "rails-server": "echo 'visit http://localhost:3000/hello_world' && foreman start -f Procfile.dev",
-    "test": "rspec"
-  },
-  "dependencies": {
-    "bootstrap-loader": "2.0.0.beta.20"
+    "test": "bundle exec rspec"
   }
 }
