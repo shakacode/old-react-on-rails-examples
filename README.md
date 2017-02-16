@@ -16,4 +16,4 @@ Access to this respository is limited to:
 1. Active ShakaCode consulting clients
 1. (Future) Paid subscribers to "React on Rails Pro"
 
-Please see [Terms and Conditions](./TERMS_AND_CONDITIONS.md).
+Please see [Terms and Conditions](./TERMS-AND-CONDITIONS.md).
