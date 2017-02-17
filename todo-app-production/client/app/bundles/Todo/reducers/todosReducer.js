@@ -1,39 +1,24 @@
-const todo = (state = {}, action) => {
-  switch (action.type) {
-    case 'ADD_TODO':
-      return {
-        id: action.id,
-        text: action.text,
-        completed: false
-      }
-    case 'TOGGLE_TODO':
-      if (state.id !== action.id) {
-        return state
-      }
+import { handleActions } from 'redux-actions';
+import { Map as $$Map } from 'immutable';
+import { MappedTodo } from '../types';
+import actionTypes from '../actions/actionTypes';
 
-      return Object.assign({}, state, {
-        completed: !state.completed
-      })
+// types
+export type State = $$Map<MappedTodo>;
 
-    default:
-      return state
-  }
-}
+const todoReducers = handleActions({
+ ADD_TODO: ($$state, { payload }) => $$state.merge(
+   payload.id,
+   $$Map({
+     description: payload.description,
+     completed: false
+   }),
+ REMOVE_TODO: (state, { payload }) => $$state.delete(payload),
+ TOGGLE_TODO: (state, { payload }) => {
+   const oldTodo = $$state.get(payload);
+   const newTodo = oldTodo.set('completed', !oldTodo.get('completed'));
+   return $$state.set(payload, newTodo);
+ },
+}, $$Map());
 
-const todos = (state = [], action) => {
-  switch (action.type) {
-    case 'ADD_TODO':
-      return [
-        ...state,
-        todo(undefined, action)
-      ]
-    case 'TOGGLE_TODO':
-      return state.map(t =>
-        todo(t, action)
-      )
-    default:
-      return state
-  }
-}
-
-export default todosReducer
+export default todos;
