@@ -2,6 +2,12 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { toggleTodo } from '../actions/actionCreators'
+import type { Todo } from '../types'
+
+type Props = {
+  todos: Array<Todo>,
+  onTodoClick: Function,
+}
 
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {
@@ -25,15 +31,6 @@ const TodoList = ({ todos, onTodoClick }) => (
     )}
   </ul>
 )
-
-TodoList.propTypes = {
-  todos: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    completed: PropTypes.bool.isRequired,
-    text: PropTypes.string.isRequired
-  }).isRequired).isRequired,
-  onTodoClick: PropTypes.func.isRequired
-}
 
 const mapStateToProps = (state) => {
   return {
