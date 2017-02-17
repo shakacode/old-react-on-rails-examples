@@ -13,7 +13,7 @@ import NavLinks from '../components/NavLinks'
 import TodoListContainer from '../containers/TodoListContainer'
 
 const App = (props, _railsContext) => (
-  <Provider store={store}>
+  <Provider store={store(props)}>
     <Router basename="/todos">
       <div>
         <Route exact path="" render={() => <Redirect push to='/pending'/>} />

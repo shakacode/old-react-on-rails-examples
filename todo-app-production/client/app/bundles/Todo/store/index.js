@@ -1,6 +1,7 @@
 // @flow
 import { applyMiddleware, compose, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
+import Immutable from 'immutable';
 
 import rootReducer from './reducers';
 import rootSaga from './sagas';
@@ -8,10 +9,12 @@ import rootSaga from './sagas';
 const sagaMiddleware = createSagaMiddleware();
 middlewares.push(sagaMiddleware);
 
-export default createStore(
-  rootReducer,
-  undefined,
+const store = props => createStore(
+  { $$store: rootReducer },
+  { $$store: Immutable.fromJS(props) },
   compose(applyMiddleware(sagaMiddleware)),
 );
+
+export default store;
 
 sagaMiddleware.run(rootSaga);

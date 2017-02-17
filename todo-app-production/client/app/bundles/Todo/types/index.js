@@ -4,3 +4,8 @@ export type Todo = {
   completed: boolean,
   description: string,
 };
+
+export type MappedTodo = {
+  completed: boolean,
+  description: string,
+};
