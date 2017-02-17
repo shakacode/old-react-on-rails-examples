@@ -1,6 +1,6 @@
 FactoryGirl.define do
-  factory :to_do do
-    desc 'ToDo'
+  factory :todo do
+    description 'Todo'
     completed false
   end
 end

@@ -1,18 +1,18 @@
 require 'rails_helper'
 
-RSpec.describe ToDosController, type: :controller do
+RSpec.describe TodosController, type: :controller do
   describe 'format: :json' do
     describe '#index' do
-      it 'renders an array of ToDo JSON objects' do
-        todo = create(:to_do)
+      it 'renders an array of Todo JSON objects' do
+        todo = create(:todo)
         get :index, format: :json
         expect(response.body).to eql([todo].to_json)
       end
     end
 
     describe '#show' do
-      it 'renders a ToDo JSON object' do
-        todo = create(:to_do)
+      it 'renders a Todo JSON object' do
+        todo = create(:todo)
         get :show, params: { id: todo.id }, format: :json
         expect(response.body).to eql(todo.to_json)
       end
@@ -27,26 +27,26 @@ RSpec.describe ToDosController, type: :controller do
     # end
 
     describe '#create' do
-      it 'renders a ToDo JSON object upon success' do
-        post :create, params: { to_do: { desc: 'ToDo' } }, format: :json
-        expect(response.body).to include('"desc":"ToDo","completed":false,')
+      it 'renders a Todo JSON object upon success' do
+        post :create, params: { todo: { description: 'Todo' } }, format: :json
+        expect(response.body).to include('"description":"Todo","completed":false,')
       end
 
-      it 'renders a ToDo JSON object upon failure' do
-        post :create, params: { to_do: { completed: 'yes' } }, format: :json
-        expect(response.body).to eql('{"desc":["is too short (minimum is 1 character)"]}')
+      it 'renders a Todo JSON object upon failure' do
+        post :create, params: { todo: { completed: 'yes' } }, format: :json
+        expect(response.body).to eql('{"description":["is too short (minimum is 1 character)"]}')
       end
     end
 
     describe '#update' do
-      it 'renders a ToDo JSON object upon success' do
-        todo = create(:to_do)
+      it 'renders a Todo JSON object upon success' do
+        todo = create(:todo)
         put :update, params: { id: todo.id,
-                               to_do: { desc: 'ToDo', completed: true } }, format: :json
-        expect(response.body).to include('"desc":"ToDo","completed":true,')
+                               todo: { description: 'Todo', completed: true } }, format: :json
+        expect(response.body).to include('"description":"Todo","completed":true,')
       end
 
-      it 'renders a ToDo JSON object upon failure' do
+      it 'renders a Todo JSON object upon failure' do
         pending 'testing execution upon save failure requires a test double'
         fail # rubocop:disable Style/SignalException
       end
@@ -54,7 +54,7 @@ RSpec.describe ToDosController, type: :controller do
 
     describe '#destroy' do
       it 'returns { head: no_content }' do
-        todo = create(:to_do)
+        todo = create(:todo)
         delete :destroy, params: { id: todo.id }, format: :json
         expect(response.body).to eql('')
       end
@@ -64,7 +64,7 @@ RSpec.describe ToDosController, type: :controller do
   describe 'format: :html' do
     describe '#index' do
       it 'renders lists/index' do
-        create(:to_do)
+        create(:todo)
         get :index
         expect(response).to render_template(:index)
       end
@@ -72,7 +72,7 @@ RSpec.describe ToDosController, type: :controller do
 
     describe '#show' do
       it 'renders lists/show' do
-        todo = create(:to_do)
+        todo = create(:todo)
         get :show, params: { id: todo.id }
         expect(response).to render_template(:show)
       end
@@ -87,7 +87,7 @@ RSpec.describe ToDosController, type: :controller do
 
     describe '#edit' do
       it 'renders lists/edit template' do
-        todo = create(:to_do)
+        todo = create(:todo)
         get :edit, params: { id: todo.id }
         expect(response).to render_template(:edit)
       end
@@ -95,23 +95,23 @@ RSpec.describe ToDosController, type: :controller do
 
     describe '#create' do
       it 'renders lists/create upon success' do
-        post :create, params: { to_do: { desc: 'ToDo' } }
-        expect(flash[:notice]).to eql('ToDo was successfully created.')
-        expect(response).to redirect_to assigns(:to_do)
+        post :create, params: { todo: { description: 'Todo' } }
+        expect(flash[:notice]).to eql('Todo was successfully created.')
+        expect(response).to redirect_to assigns(:todo)
       end
 
       it 'renders lists/new upon failure' do
-        post :create, params: { to_do: { completed: 'yes' } }
+        post :create, params: { todo: { completed: 'yes' } }
         expect(response).to render_template(:new)
       end
     end
 
     describe '#update' do
       it 'renders lists/update upon success' do
-        todo = create(:to_do)
-        put :update, params: { id: todo.id, to_do: { desc: 'ToDo', completed: true } }
-        expect(flash[:notice]).to eql('ToDo was successfully updated.')
-        expect(response).to redirect_to to_do_url
+        todo = create(:todo)
+        put :update, params: { id: todo.id, todo: { description: 'Todo', completed: true } }
+        expect(flash[:notice]).to eql('Todo was successfully updated.')
+        expect(response).to redirect_to todo_url
       end
 
       it 'renders lists/edit upon failure' do
@@ -121,11 +121,11 @@ RSpec.describe ToDosController, type: :controller do
     end
 
     describe '#destroy' do
-      it 'redirects to to_dos_url' do
-        todo = create(:to_do)
+      it 'redirects to todos_url' do
+        todo = create(:todo)
         delete :destroy, params: { id: todo.id }
-        expect(flash[:notice]).to eql('ToDo was successfully destroyed.')
-        expect(response).to redirect_to to_dos_url
+        expect(flash[:notice]).to eql('Todo was successfully destroyed.')
+        expect(response).to redirect_to todos_url
       end
     end
   end
