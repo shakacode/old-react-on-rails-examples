@@ -1,5 +1,13 @@
-/* eslint-disable import/prefer-default-export */
+// @flow
+import mirrorCreator from 'mirror-creator';
 
-export const addTodo = 'ADD_TODO';
-export const setVisibilityFilter = 'SET_VISIBILITY_FILTER';
-export const toggleTodo = 'TOGGLE_TODO';
+const actionTypes = mirrorCreator([
+  'ADD_TODO',
+  'REMOVE_TODO',
+  'TOGGLE_TODO',
+]);
+
+// actionTypes = {HELLO_WORLD_NAME_UPDATE: "HELLO_WORLD_NAME_UPDATE"}
+// Notice how we don't have to duplicate HELLO_WORLD_NAME_UPDATE twice
+// thanks to mirror-creator.
+export default actionTypes;

@@ -1,23 +1,10 @@
+// @flow
 /* eslint-disable import/prefer-default-export */
-import * as actionTypes from './actionTypes.js'
+import { createAction } from 'redux-actions';
+import actionTypes from './actionTypes.js'
 
-export const addTodo = (text) => {
-  return {
-    type: actionTypes.addTodo,
-    text
-  }
-}
+export const addTodo = createAction(actionTypes.ADD_TODO);
 
-export const setVisibilityFilter = (filter) => {
-  return {
-    type: actionTypes.setVisibilityFilter,
-    filter
-  }
-}
+export const removeTodo = createAction(actionTypes.REMOVE_TODO);
 
-export const toggleTodo = (id) => {
-  return {
-    type: actionTypes.toggleTodo,
-    id
-  }
-}
+export const toggleTodo = createAction(actionTypes.TOGGLE_TODO);
