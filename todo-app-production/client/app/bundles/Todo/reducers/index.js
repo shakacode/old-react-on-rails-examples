@@ -9,7 +9,7 @@ import type { State as addTodoFormState } from './addTodoFormReducer';
 
 export type State = {
   todos: todosState,
-  addTodoForm: addTodoFormState,
+  AddTodoForm: addTodoFormState,
 };
 
 export default combineReducers({ todos, addTodoForm });
