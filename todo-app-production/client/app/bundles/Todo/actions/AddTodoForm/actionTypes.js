@@ -2,8 +2,8 @@
 import mirrorCreator from 'mirror-creator';
 
 const actionTypes = mirrorCreator([
-  'HANDLE_CHANGE',
-  'HANDLE_SUBMIT',
+  'EDIT_ADDTODOFORM',
+  'SUBMIT_ADDTODOFORM',
 ]);
 
 export default actionTypes;
