@@ -1,8 +1,9 @@
 // @flow
-import React, { PropTypes } from 'react'
-import { connect } from 'react-redux'
-import { toggleTodo } from '../actions/actionCreators'
-import type { Todo } from '../types'
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { toggleTodo } from '../actions/TodoList';
+import { Todo } from '../components/Todo';
+import type { Todo } from '../types';
 
 type Props = {
   todos: Array<Todo>,
