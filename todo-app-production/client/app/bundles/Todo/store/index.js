@@ -10,8 +10,8 @@ const sagaMiddleware = createSagaMiddleware();
 middlewares.push(sagaMiddleware);
 
 const store = props => createStore(
-  { $$store: rootReducer },
-  { $$store: Immutable.fromJS(props) },
+  rootReducer,
+  Immutable.fromJS(props),
   compose(applyMiddleware(sagaMiddleware)),
 );
 

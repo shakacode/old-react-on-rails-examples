@@ -17,13 +17,13 @@ const App = (props, _railsContext) => (
     <Router basename="/todos">
       <div>
         <Route exact path="" render={() => <Redirect push to='/pending'/>} />
-        {['/pending', '/completed', '/all'].map(path =>
-          <Route path={path} render={props => (
-              <AddTodo />
-              <NavLinks />
-              <TodoListContainer path={path} {...props} />
-          )} />
-        }
+        <Route path='/:filter' render={({ match }) => (
+            <AddTodo />
+            <NavLinks />
+            <TodoListContainer
+              path={ match.parameters.filter }
+              {...props} />
+        )} />
       </div>
     </Router>
   </Provider>
