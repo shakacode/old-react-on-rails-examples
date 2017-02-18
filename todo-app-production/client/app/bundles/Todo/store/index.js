@@ -4,7 +4,7 @@ import createSagaMiddleware from 'redux-saga';
 import Immutable from 'immutable';
 
 import rootReducer from './reducers';
-import rootSaga from './sagas';
+import rootSaga from '../sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 middlewares.push(sagaMiddleware);
