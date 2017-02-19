@@ -1,41 +1,41 @@
-source 'https://rubygems.org'
-ruby '2.4.0'
+source "https://rubygems.org"
+ruby "2.4.0"
 
-gem 'jbuilder'
-gem 'puma'
-gem 'rails'
-gem 'foreman'
+gem "jbuilder"
+gem "puma"
+gem "rails"
+gem "foreman"
 
-gem 'react_on_rails'
-gem 'execjs'
-gem 'mini_racer', platforms: :ruby
+gem "react_on_rails"
+gem "execjs"
+gem "mini_racer", platforms: :ruby
 
-gem 'pg'
-gem 'turbolinks'
+gem "pg"
+gem "turbolinks"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :development, :test do
-  gem 'byebug', platform: :mri
-  gem 'factory_girl_rails'
-  gem 'listen'
-  gem 'spring'
-  gem 'spring-watcher-listen'
+  gem "byebug", platform: :mri
+  gem "factory_girl_rails"
+  gem "listen"
+  gem "spring"
+  gem "spring-watcher-listen"
 
   # Linters and Security
-  gem 'brakeman', require: false
-  gem 'bundler-audit', require: false
-  gem 'rubocop', require: false
-  gem 'scss_lint', require: false
+  gem "brakeman", require: false
+  gem "bundler-audit", require: false
+  gem "rubocop", require: false
+  gem "scss_lint", require: false
 end
 
 group :test do
-  gem 'capybara'
-  gem 'capybara-screenshot'
-  gem 'chromedriver-helper'
-  gem 'database_cleaner'
-  gem 'launchy' # call save_and_open_page to see what's on a page for debugging capybara tests
-  gem 'rails-controller-testing'
-  gem 'rspec-rails'
-  gem 'selenium-webdriver', '<3.0.0'
+  gem "capybara"
+  gem "capybara-screenshot"
+  gem "chromedriver-helper"
+  gem "database_cleaner"
+  gem "launchy" # call save_and_open_page to see what"s on a page for debugging capybara tests
+  gem "rails-controller-testing"
+  gem "rspec-rails"
+  gem "selenium-webdriver", "<3.0.0"
 end

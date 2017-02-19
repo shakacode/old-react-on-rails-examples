@@ -1,21 +1,105 @@
-AllCops:
-  Exclude:
-    - 'bin/**/*'
-    - 'client/**/*'
-    - 'db/schema.rb'
-    - 'tmp/**/*'
-    - 'vendor/**/*'
+# This is the configuration used to check the rubocop source code.
+# See https://github.com/bbatsov/rubocop/blob/master/config/default.yml for options
 
-Bundler/OrderedGems:
+AllCops:
+  TargetRubyVersion: 2.4
+  DisplayCopNames: true
+  Include:
+    # Keep in sync with circle.yml
+    - 'app/**/*.rb'
+    - 'config/**/*.rb'
+    - 'db/migrate/**/*.rb'
+    - 'db/seed_data/**/*.rb'
+    - 'db/seeders/**/*.rb'
+    - 'db/seeds.rb'
+    - 'lib/**/*.rb'
+    - 'lib/**/*.rake'
+    - 'spec/**/*.rb'
+    - 'config.ru'
+    - 'Gemfile'
+    - 'Rakefile'
+  Exclude:
+    - 'vendor/**/*'
+    - 'spec/fixtures/**/*'
+    - 'node_modules/**/*'
+    - 'db/schema.rb'
+    - 'client/node_modules/**/.*'
+    - 'client/node_modules/**/*'
+    - 'bin/**/*'
+
+Lint/UnusedBlockArgument:
+  Enabled: true
+
+Metrics/AbcSize:
+  Max: 35
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Max: 25
+
+Metrics/ModuleLength:
+  Max: 120
+  Exclude:
+    - 'spec/**/*_spec.rb'
+
+Rails:
+  Enabled: true
+
+Rails/Output:
   Enabled: false
+
+Rails/OutputSafety:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Exclude:
+    - 'spec/**/*_spec.rb'
+    - 'spec/factories/*.rb'
+
+Style/AlignHash:
+  EnforcedLastArgumentHashStyle: ignore_implicit
+
+Style/BlockDelimiters:
+  Exclude:
+    - 'spec/**/*_spec.rb'
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'app/controllers/api/**/*.rb'
+
+Style/Documentation:
+  Enabled: false
+
+Style/DotPosition:
+  EnforcedStyle: trailing
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/LambdaCall:
+  EnforcedStyle: call
+  Exclude:
+    - 'app/**/*.jbuilder'
+
+Style/PredicateName:
+  NamePrefixBlacklist:
+    - is_
+  Exclude:
+    - 'spec/**/*'
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
 
 Metrics/BlockLength:
   Exclude:
-    - 'spec/**/*.rb'
+    - 'app/rails_admin_models/*.rb'
+    - 'app/views/**/*'
+    - 'config/**/*.rb'
+    - 'db/**/*.rb'
+    - 'lib/**/*.rake'
+    - 'spec/**/*'
 
-Metrics/LineLength:
-  Max: 100
-
-Style/Documentation:
-  Exclude:
-    - 'db/migrate/**/*'
+Bundler/OrderedGems:
+  Enabled: false
