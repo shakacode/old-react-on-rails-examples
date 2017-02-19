@@ -1,0 +1,83 @@
+# See http://sass-guidelin.es/#zeros
+
+scss_files:
+  - 'app/assets/styles/**/*.scss'
+  - 'client/app/**/*.scss'
+
+exclude:
+  - 'client/app/assets/styles/vendor/**'
+  - 'app/assets/webpack/**'
+  - 'public/assets/**'
+  - 'client/node_modules/**'
+  - 'vendor/**'
+
+linters:
+  ColorVariable:
+    enabled: false
+
+  Comment:
+    enabled: false
+
+  HexLength:
+    enabled: true
+    style: short
+
+  HexNotation:
+    enabled: true
+    style: lowercase
+
+  ImportantRule:
+    enabled: false
+
+  LeadingZero:
+    enabled: true
+    style: exclude_zero
+
+  NestingDepth:
+    enabled: false
+
+  PropertySortOrder:
+    enabled: true
+    order: concentric
+    ignore_unspecified: true
+    min_properties: 2
+    separate_groups: false
+
+  PropertySpelling:
+    enabled: true
+    extra_properties:
+      - composes
+
+  PseudoElement:
+    enabled: true
+
+  QualifyingElement:
+    enabled: true
+    allow_element_with_attribute: true
+    allow_element_with_class: true
+    allow_element_with_id: false
+
+  SelectorDepth:
+    enabled: false
+
+  SelectorFormat:
+    enabled: true
+    convention: camel_case
+    exclude:
+      - client/app/assets/styles/bootstrap/pre-customizations.scss
+      - client/app/assets/styles/bootstrap/post-customizations.scss
+
+  SpaceBeforeBrace:
+    enabled: true
+    style: space
+    allow_single_line_padding: true
+
+  StringQuotes:
+    enabled: true
+    style: double_quotes
+
+  TrailingZero:
+    enabled: true
+
+  UnnecessaryParentReference:
+    enabled: false
