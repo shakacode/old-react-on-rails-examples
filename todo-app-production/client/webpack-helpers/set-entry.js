@@ -15,7 +15,6 @@ function setEntry(builderConfig, webpackConfig) {
 
   const entry = {
     'global-styles': entryLoc('./app/assets/styles/globals/base.js'),
-    'hello-world': entryLoc('./app/bundles/HelloWorld/startup/registration'),
     vendor: [
       'babel-polyfill',
       'classnames',
