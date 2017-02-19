@@ -1,6 +1,5 @@
 // @flow
 import React from 'react';
-import { Redirect } from 'react-router';
 import {
   BrowserRouter as Router,
   Route,
@@ -12,26 +11,20 @@ import store from '../store';
 import AddTodoFormContainer from '../containers/AddTodoFormContainer';
 import NavLinks from '../components/NavLinks';
 import TodoListContainer from '../containers/TodoListContainer';
-import type { MappedTodo } from '../types';
 
-const App = (props: MappedTodo, _railsContext) => (
-  <Provider store={store(props)}>
+const App = (railsProps: {}, _railsContext) => (
+  <Provider store={store(railsProps)}>
     <Router basename="/todos">
-      <div>
-        <Route exact path="" render={() => <Redirect push to="/pending" />} />
-        <Route
-          path="/:filter"
-          render={({ match }) => (
+      <Route path="/:filter">
+        {
+          (_matchProps) =>
             <div>
               <AddTodoFormContainer />
               <NavLinks />
-              <TodoListContainer
-                path={match.parameters.filter}
-                {...props}
-              />
-            </div>)}
-        />
-      </div>
+              <TodoListContainer />
+            </div>
+        }
+      </Route>
     </Router>
   </Provider>
 );

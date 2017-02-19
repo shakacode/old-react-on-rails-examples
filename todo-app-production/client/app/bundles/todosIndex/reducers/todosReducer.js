@@ -9,6 +9,8 @@ export type State = $$Map<number, $$Todo>;
 
 let tempID = 0;
 
+export const todosInitialState = new $$Map();
+
 const todos = handleActions({
   [actionTypes.ADD_TODO]: ($$state: State, { payload }: todoPayload) => $$state.mergeIn(
     // eslint-disable-next-line no-plusplus
@@ -28,6 +30,6 @@ const todos = handleActions({
     const $$newTodo: $$Todo = $$oldTodo.set('completed', !$$oldTodo.get('completed'));
     return $$state.set(payload, $$newTodo);
   },
-}, $$Map());
+}, todosInitialState);
 
 export default todos;
