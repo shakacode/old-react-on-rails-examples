@@ -77,9 +77,6 @@ GEM
       factory_girl (~> 4.8.0)
       railties (>= 3.0.0)
     ffi (1.9.17)
-    generator_spec (0.9.3)
-      activesupport (>= 3.0.0)
-      railties (>= 3.0.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -172,8 +169,6 @@ GEM
       rspec-expectations (~> 3.5.0)
       rspec-mocks (~> 3.5.0)
       rspec-support (~> 3.5.0)
-    rspec-retry (0.5.3)
-      rspec-core (> 3.3, < 3.6)
     rspec-support (3.5.0)
     rubocop (0.47.1)
       parser (>= 2.3.3.1, < 3.0)
@@ -181,9 +176,6 @@ GEM
       rainbow (>= 1.99.1, < 3.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
-    ruby-lint (2.3.1)
-      parser (~> 2.2)
-      slop (~> 3.4, >= 3.4.7)
     ruby-progressbar (1.8.1)
     rubyzip (1.2.0)
     sass (3.4.23)
@@ -194,7 +186,6 @@ GEM
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
-    slop (3.6.0)
     spring (2.0.1)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -235,25 +226,22 @@ DEPENDENCIES
   database_cleaner
   execjs
   factory_girl_rails
-  generator_spec
-  jbuilder (~> 2.5)
+  jbuilder
   launchy
-  listen (~> 3.0.5)
+  listen
   mini_racer
   pg
-  puma (~> 3.0)
-  rails (~> 5.0.1)
+  puma
+  rails
   rails-controller-testing
-  react_on_rails (~> 6.4)
-  rspec-rails (~> 3.5.0.beta3)
-  rspec-retry
+  react_on_rails
+  rspec-rails
   rubocop
-  ruby-lint
   scss_lint
   selenium-webdriver (< 3.0.0)
   spring
-  spring-watcher-listen (~> 2.0.0)
-  turbolinks (~> 5)
+  spring-watcher-listen
+  turbolinks
   tzinfo-data
 
 BUNDLED WITH
