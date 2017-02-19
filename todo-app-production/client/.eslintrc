@@ -1,0 +1,24 @@
+---
+parser: babel-eslint
+
+extends: eslint-config-shakacode
+
+plugins:
+  - react
+
+env:
+  browser: true
+  node: true
+  mocha: true
+
+settings:
+  import/resolver:
+    webpack:
+      config: "webpack.config.js"
+
+rules:
+  import/no-extraneous-dependencies:
+    - error
+    - devDependencies:
+        - "**/*.spec.js"
+      optionalDependencies: false

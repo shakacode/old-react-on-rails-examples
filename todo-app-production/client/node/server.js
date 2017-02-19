@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const net = require('net');
 const fs = require('fs');
 
