@@ -1,0 +1,7 @@
+--require ignore-styles
+--require babel-polyfill
+--require mocha-clean
+--compilers js:babel-register
+--recursive
+--reporter dot
+--growl
