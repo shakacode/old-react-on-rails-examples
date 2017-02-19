@@ -1,0 +1,24 @@
+[ignore]
+.*/bin/.*
+.*/node_modules/react-motion/.*
+
+[include]
+
+[libs]
+./flow-typed/
+./node_modules/fbjs/node_modules/promise
+./node_modules/fbjs/flow/lib
+./app/lib/interfaces/
+node_modules/iflow-immutable/index.js.flow
+node_modules/iflow-moment/index.js.flow
+node_modules/iflow-react-router/index.js.flow
+node_modules/iflow-react-redux-logger/index.js.flow
+node_modules/iflow-react-redux-thunk/index.js.flow
+
+[options]
+module.system=haste
+module.use_strict=true
+esproposal.class_static_fields=enable
+esproposal.class_instance_fields=enable
+
+module.name_mapper='.*\.s?css' -> 'CSSModule'
