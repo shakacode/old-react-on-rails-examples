@@ -10,8 +10,8 @@ ReactOnRails.configure do |config|
   config.webpack_generated_files = %w(
     global-styles-client-bundle.js
     global-styles-client-bundle.css
-    hello-world-client-bundle.js
-    hello-world-client-bundle.css
+    todos-index-client-bundle.js
+    todos-index-client-bundle.css
     vendor-client-bundle.js
     vendor-client-bundle.css
   )

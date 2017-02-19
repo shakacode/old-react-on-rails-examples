@@ -62,9 +62,9 @@ function setPlugins(builderConfig, webpackConfig) {
 
     ifChunk(new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      // CUSTOMIZE: Add the style files that should go into the vendor-client-bundle.js
       chunks: [
         'global-styles', // See ./set-entry.js
+        'listings-index',
       ],
       filename: 'vendor-client-bundle.js',
       minChunks: Infinity,

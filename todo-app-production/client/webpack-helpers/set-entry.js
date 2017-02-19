@@ -15,6 +15,7 @@ function setEntry(builderConfig, webpackConfig) {
 
   const entry = {
     'global-styles': entryLoc('./app/assets/styles/globals/base.js'),
+    'todos-index': entryLoc('./app/bundles/todosIndex/startup/App.jsx'),
     vendor: [
       'babel-polyfill',
       'classnames',
