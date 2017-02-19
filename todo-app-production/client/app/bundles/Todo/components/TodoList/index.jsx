@@ -1,5 +1,7 @@
 // @flow
 import React from 'react';
+import _ from 'lodash/fp';
+
 import Todo from '../Todo';
 import type { MappedTodo } from '../../types';
 
@@ -10,13 +12,7 @@ type Props = {
 
 const TodoList = ({ todos, onTodoClick }: Props) => (
   <ul>
-    {todos.keys().map(id =>
-      <Todo
-        key={id}
-        {...todos[id]}
-        onClick={() => onTodoClick(id)}
-      />,
-    )}
+    {_.map(todo => <Todo key={todo.id} {...todo} onClick={onTodoClick} />, todos)}
   </ul>
 );
 

@@ -3,14 +3,15 @@ import React from 'react';
 import css from './Todo.scss';
 
 type Props = {
-  onClick: Function,
+  id: number,
   completed: boolean,
   description: string,
+  onClick: Function,
 };
 
-const Todo = ({ onClick, completed, description }: Props) => (
+const Todo = ({ id, onClick, completed, description }: Props) => (
   <input
-    onClick={onClick}
+    onClick={() => onClick(id)}
     value={description}
     style={completed ? css.completed : css.pending}
   />

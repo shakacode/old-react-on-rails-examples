@@ -9,7 +9,7 @@ export type Todo = {
 };
 
 export type MappedTodo = {
-    [id: number]: Todo,
+  [id: number]: Todo,
 };
 
 export type stringPayload = {

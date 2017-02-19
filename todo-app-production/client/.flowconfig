@@ -8,7 +8,7 @@
 ./flow-typed/
 ./node_modules/fbjs/node_modules/promise
 ./node_modules/fbjs/flow/lib
-./app/libs/interfaces/
+./app/lib/interfaces/
 node_modules/iflow-immutable/index.js.flow
 node_modules/iflow-moment/index.js.flow
 node_modules/iflow-react-router/index.js.flow
@@ -20,3 +20,5 @@ module.system=haste
 module.use_strict=true
 esproposal.class_static_fields=enable
 esproposal.class_instance_fields=enable
+
+module.name_mapper='.*\.s?css' -> 'CSSModule'

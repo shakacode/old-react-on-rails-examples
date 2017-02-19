@@ -10,8 +10,8 @@ export type State = $$Map<number, $$Todo>;
 let tempID = 0;
 
 const todos = handleActions({
-  [actionTypes.ADD_TODO]: ($$state: State, { payload }: todoPayload) => $$state.merge(
-    tempID++, // initialize database PK at around 100 or so that tempIDs and ids won't conflict?
+  [actionTypes.ADD_TODO]: ($$state: State, { payload }: todoPayload) => $$state.mergeIn(
+    [tempID++], // initialize database PK at around 100 or so that tempIDs and ids won't conflict?
     $$Map({
       description: payload.description,
       completed: false,
