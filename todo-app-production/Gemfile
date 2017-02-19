@@ -38,4 +38,5 @@ group :test do
   gem "rails-controller-testing"
   gem "rspec-rails"
   gem "selenium-webdriver", "<3.0.0"
+  gem "rspec_junit_formatter" # See https://circleci.com/docs/test-metadata/#rspec
 end
