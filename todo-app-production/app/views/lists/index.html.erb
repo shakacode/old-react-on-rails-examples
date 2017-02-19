@@ -1,1 +1,11 @@
+<%=
+  provide(:head) do
+    env_javascript_include_tag(
+      hot: "http://lvh.me:3500/todos-index-client-bundle.js",
+      static: "todos-index-client-bundle.js",
+      "data-turbolinks-track" => false
+    )
+  end
+%>
+
 <%= react_component('App', props: @to_dos.to_json, id: "App-react-component-0") %>
