@@ -36,7 +36,7 @@ function setEntry(builderConfig, webpackConfig) {
       'react-redux',
       'recompose',
       'redux',
-      'reselect'
+      'reselect',
     ],
   };
 

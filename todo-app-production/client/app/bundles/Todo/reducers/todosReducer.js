@@ -1,28 +1,30 @@
+// @flow
 import { handleActions } from 'redux-actions';
 import { Map as $$Map } from 'immutable';
-import { MappedTodo } from '../types';
+import type { $$Todo, numberPayload, todoPayload } from '../types';
 import actionTypes from '../actions/todos/actionTypes';
 
 // types
-export type State = $$Map<MappedTodo>;
+export type State = $$Map<number, $$Todo>;
 
 let tempID = 0;
 
 const todos = handleActions({
-  actionTypes.ADD_TODO: ($$state, { payload }) => $$state.merge(
-    tempID++,
+  [actionTypes.ADD_TODO]: ($$state: State, { payload }: todoPayload) => $$state.merge(
+    tempID++, // initialize database PK at around 100 or so that tempIDs and ids won't conflict?
     $$Map({
       description: payload.description,
       completed: false,
       temp: true,
-    }),
-  actionTypes.ADD_TODO_SUCCESS: () => throw error('reducer helper not implemented yet'), // replace tempID, add created_at & updated_at keys
-  actionTypes.ADD_TODO_FAILURE: () => throw error('reducer helper not implemented yet'), // flash alert
-  actionTypes.REMOVE_TODO_SUCCESS: ($$state, { payload }) => $$state.delete(payload),
-  actionTypes.REMOVE_TODO_FAILURE: () => throw error('reducer helper not implemented yet'), // flash alert
-  actionTypes.TOGGLE_TODO: ($$state, { payload }) => {
-    const $$oldTodo = $$state.get(payload);
-    const $$newTodo = $$oldTodo.set('completed', !oldTodo.get('completed'));
+    })),
+  [actionTypes.ADD_TODO_SUCCESS]: () => { throw new Error('reducer helper not implemented yet'); },
+  [actionTypes.ADD_TODO_FAILURE]: () => { throw new Error('reducer helper not implemented yet'); },
+  [actionTypes.REMOVE_TODO_SUCCESS]: ($$state: State,
+                                      { payload }: numberPayload) => $$state.delete(payload),
+  [actionTypes.REMOVE_TODO_FAILURE]: () => { throw new Error('reducer helper not implemented yet'); },
+  [actionTypes.TOGGLE_TODO]: ($$state: State, { payload }: numberPayload) => {
+    const $$oldTodo: $$Todo = $$state.get(payload);
+    const $$newTodo: $$Todo = $$oldTodo.set('completed', !$$oldTodo.get('completed'));
     return $$state.set(payload, $$newTodo);
   },
 }, $$Map());

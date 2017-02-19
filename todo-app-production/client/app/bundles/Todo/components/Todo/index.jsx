@@ -1,21 +1,19 @@
 // @flow
-import React from 'react'
+import React from 'react';
+import css from './Todo.scss';
 
 type Props = {
   onClick: Function,
   completed: boolean,
   description: string,
-}
+};
 
-const Todo = ({ onClick, completed, description }) => (
-  <li
+const Todo = ({ onClick, completed, description }: Props) => (
+  <input
     onClick={onClick}
-    style={{
-      textDecoration: completed ? 'line-through' : 'none'
-    }}
-  >
-    {description}
-  </li>
-)
+    value={description}
+    style={completed ? css.completed : css.pending}
+  />
+);
 
-export default Todo
+export default Todo;

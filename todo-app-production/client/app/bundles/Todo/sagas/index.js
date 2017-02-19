@@ -1,26 +1,30 @@
-/* eslint-disable no-console */
+// @flow
 import { call, put, fork, takeEvery } from 'redux-saga/effects';
-import * as api from '../../../../api';
-import AddTodoFormActionTypes from '../constants/AddTodoForm/actionTypes';
-import todosActionTypes from '../constants/todos/actionTypes';
-import * as AddTodoFormActions from '../actions/AddTodoForm';
+import type { putEffect, IOEffect } from 'redux-saga/effects';
+import * as api from '../../../api';
+import AddTodoFormActionTypes from '../actions/AddTodoForm/actionTypes';
+import todosActionTypes from '../actions/todos/actionTypes';
 import * as todosActions from '../actions/todos';
+import type { stringPayload, numberPayload } from '../types';
 
-export function* addTodo({ payload }) {
+
+export function* addTodo({ payload }: stringPayload): Generator<any, putEffect, any> {
   yield put(todosActions.addTodo(payload));
   const { response, error } = yield call(api.addTodo, payload);
-  if(response)
+  if (response) {
     yield put(todosActions.addTodoSuccess(response.data));
-  else
+  } else {
     yield put(todosActions.addTodoFailure(error.message));
+  }
 }
 
-export function* removeTodo({ payload }) {
+export function* removeTodo({ payload }: numberPayload): Generator<any, putEffect, any> {
   const { response, error } = yield call(api.removeTodo, payload);
-  if(response)
+  if (response) {
     yield put(todosActions.removeTodoSuccess(response.data));
-  else
+  } else {
     yield put(todosActions.removeTodoFailure(error.message));
+  }
 }
 
 function* addTodoSaga() {
@@ -31,7 +35,7 @@ function* removeTodoSaga() {
   yield takeEvery(todosActionTypes.REMOVE_TODO, removeTodo);
 }
 
-export default function* root() {
+export default function* root(): Generator<IOEffect, any, any> {
   yield fork(addTodoSaga);
   yield fork(removeTodoSaga);
 }

@@ -1,21 +1,21 @@
 // @flow
 import React from 'react';
-import Todo from '../components/Todo';
-import type { Todo } from '../types';
+import Todo from '../Todo';
+import type { MappedTodo } from '../../types';
 
 type Props = {
-  todos: Array<Todo>,
+  todos: MappedTodo,
   onTodoClick: Function,
-}
+};
 
-const TodoList = (props: Props) => (
+const TodoList = ({ todos, onTodoClick }: Props) => (
   <ul>
-    {props.todos.map(todo =>
+    {todos.keys().map(id =>
       <Todo
-        key={todo.id}
-        {...todo}
-        onClick={() => props.onTodoClick(todo.id)}
-      />
+        key={id}
+        {...todos[id]}
+        onClick={() => onTodoClick(id)}
+      />,
     )}
   </ul>
 );

@@ -1,17 +1,17 @@
 // @flow
 import { applyMiddleware, compose, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import Immutable from 'immutable';
+import { fromJS } from 'immutable';
 
-import rootReducer from './reducers';
+import rootReducer from '../reducers';
 import rootSaga from '../sagas';
+import type { MappedTodo } from '../types';
 
 const sagaMiddleware = createSagaMiddleware();
-middlewares.push(sagaMiddleware);
 
-const store = props => createStore(
+const store = (props: MappedTodo) => createStore(
   rootReducer,
-  Immutable.fromJS(props),
+  fromJS(props),
   compose(applyMiddleware(sagaMiddleware)),
 );
 

@@ -1,6 +1,6 @@
 // @flow
 import { createAction } from 'redux-actions';
-import actionTypes from './actionTypes.js'
+import actionTypes from './actionTypes';
 
 export const addTodo = createAction(actionTypes.ADD_TODO);
 export const addTodoSuccess = createAction(actionTypes.ADD_TODO_SUCCESS);
