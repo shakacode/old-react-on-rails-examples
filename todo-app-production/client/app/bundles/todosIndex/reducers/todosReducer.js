@@ -11,6 +11,7 @@ let tempID = 0;
 
 const todos = handleActions({
   [actionTypes.ADD_TODO]: ($$state: State, { payload }: todoPayload) => $$state.mergeIn(
+    // eslint-disable-next-line no-plusplus
     [tempID++], // initialize database PK at around 100 or so that tempIDs and ids won't conflict?
     $$Map({
       description: payload.description,
