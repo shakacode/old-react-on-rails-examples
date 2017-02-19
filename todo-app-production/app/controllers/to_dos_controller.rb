@@ -36,7 +36,7 @@ class ToDosController < ApplicationController
 
     respond_to do |format|
       if @to_do.save
-        format.html { redirect_to @to_do, notice: 'ToDo was successfully created.' }
+        format.html { redirect_to @to_do, notice: "ToDo was successfully created." }
         format.json { render json: @to_do, status: :created, location: @to_do }
       else
         format.html { render :new }
@@ -50,7 +50,7 @@ class ToDosController < ApplicationController
   def update
     respond_to do |format|
       if @to_do.update(todo_params)
-        format.html { redirect_to @to_do, notice: 'ToDo was successfully updated.' }
+        format.html { redirect_to @to_do, notice: "ToDo was successfully updated." }
         format.json { render json: @to_do, status: :ok, location: @to_do }
       else
         format.html { render :edit }
@@ -64,7 +64,7 @@ class ToDosController < ApplicationController
   def destroy
     @to_do.destroy
     respond_to do |format|
-      format.html { redirect_to to_dos_url, notice: 'ToDo was successfully destroyed.' }
+      format.html { redirect_to to_dos_url, notice: "ToDo was successfully destroyed." }
       format.json { head :no_content }
     end
   end
