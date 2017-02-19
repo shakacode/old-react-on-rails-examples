@@ -1,0 +1,24 @@
+#!/bin/sh
+echo Linting with Rubocop, scss-lint, eslint, and flow
+
+# Keep in sync with files in circle.yml
+bin/rubocop \
+  'app/**/*.rb' \
+  'config/**/*.rb' \
+  'db/migrate/**/*.rb' \
+  'db/seeds.rb' \
+  'lib/**/*.rb' \
+  'lib/**/*.rake' \
+  'spec/**/*.rb' \
+  'config.ru' \
+  'Gemfile' \
+  'Rakefile'
+
+bin/scss-lint
+
+cd client
+yarn run lint
+yarn run flow
+cd ..
+
+echo Done linting
