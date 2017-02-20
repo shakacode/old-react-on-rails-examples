@@ -10,7 +10,6 @@ function setPlugins(builderConfig, webpackConfig) {
   const ifHmr = option => addOption(builderConfig.hmr, option);
   const ifExtractText = option => addOption(builderConfig.extractText, option);
   const ifChunk = option => addOption(builderConfig.chunk, option);
-  const ifDeveloperAids = option => addOption(builderConfig.developerAids, option);
 
   const plugins = removeEmpty([
     new webpack.DefinePlugin({
@@ -42,7 +41,7 @@ function setPlugins(builderConfig, webpackConfig) {
           plugins: removeEmpty([
             ifOptimize('babel-plugin-transform-react-remove-prop-types'),
             // ifDeveloperAids('typecheck'), // skipped until typecheck can be updated
-            ifDeveloperAids('babel-plugin-flow-react-proptypes'),
+            // ifDeveloperAids('babel-plugin-flow-react-proptypes'),
             ifHmr([
               'babel-plugin-react-transform',
               {
@@ -62,9 +61,9 @@ function setPlugins(builderConfig, webpackConfig) {
 
     ifChunk(new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      // CUSTOMIZE: Add the style files that should go into the vendor-client-bundle.js
       chunks: [
         'global-styles', // See ./set-entry.js
+        'listings-index',
       ],
       filename: 'vendor-client-bundle.js',
       minChunks: Infinity,

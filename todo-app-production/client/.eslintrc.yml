@@ -2,9 +2,11 @@
 extends:
   - eslint-config-shakacode
   - plugin:flowtype/recommended
+  - plugin:lodash-fp/recommended
 
 plugins:
   - flowtype
+  - lodash-fp
 
 settings:
   import/resolver:
@@ -21,28 +23,12 @@ globals:
   __SERVER_ERRORS__: true
 
 rules:
-  # Candidates for Official ShakaCode StyleGuide
-
-  # Not clear why
-  # http://eslint.org/docs/rules/no-continue
-  no-continue: 0
-
-  # Not clear why
-  # http://eslint.org/docs/rules/no-plusplus
-  no-plusplus: 0
-
-  # This breaks flow type imports and it's handled by `import/no-duplicates`
-  # http://eslint.org/docs/rules/no-duplicate-imports
-  no-duplicate-imports: 0
-
-  # This thing never worked as expected - everytime for a new reason, now it doesn't work b/c of @flow
-  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-comp.md
-  react/sort-comp: 0
-
-  # This rule conflicts w/ @flow as we must type all props,
-  # even some of them are not used in component
-  # https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-unused-prop-types.md
-  react/no-unused-prop-types: 0
+  max-len:
+      - error
+      - 120
+  no-duplicate-imports: 0 # This breaks flow type imports and it's handled by `import/no-duplicates`
+  import/prefer-default-export: 0
+  react/no-unused-prop-types: 0 # https://github.com/yannickcr/eslint-plugin-react/issues/933#issuecomment-258366811
 
   # Ignoring test deps
   # https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-extraneous-dependencies.md

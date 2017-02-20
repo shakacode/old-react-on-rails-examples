@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/shakacode/react-on-rails-pro.svg?style=shield&circle-token=e20e264f7ae4b96797c2b2590c17ae98362e8150)](https://circleci.com/gh/shakacode/react-on-rails-pro)
+
 # Goals of "React on Rails Pro"
 
 1. Provide premium, actively updated code examples of best practices regarding the usage of React on Rails and React-Native.

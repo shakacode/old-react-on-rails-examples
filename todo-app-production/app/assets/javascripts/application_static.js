@@ -7,7 +7,6 @@
 // CRITICAL that webpack/vendor-bundle must be BEFORE turbolinks
 // since it is exposing jQuery and jQuery-ujs
 //= require vendor-client-bundle
-//= require hello-world-client-bundle
 
 // Non-webpack assets incl turbolinks
 //= require application_hot

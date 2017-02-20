@@ -1,49 +1,42 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
+ruby "2.4.0"
 
-git_source(:github) do |repo_name|
-  repo_name = '#{repo_name}/#{repo_name}' unless repo_name.include?('/')
-  "https://github.com/#{repo_name}.git"
-end
+gem "jbuilder"
+gem "puma"
+gem "rails"
+gem "foreman"
 
-gem 'jbuilder', '~> 2.5'
-gem 'puma', '~> 3.0'
-gem 'rails', '~> 5.0.1'
+gem "react_on_rails"
+gem "execjs"
+gem "mini_racer", platforms: :ruby
 
-gem 'react_on_rails', '~> 6.4'
-gem 'execjs'
-gem 'mini_racer', platforms: :ruby
-
-gem 'pg'
-gem 'turbolinks', '~> 5'
+gem "pg"
+gem "turbolinks"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :development, :test do
-  gem 'byebug', platform: :mri
-  gem 'factory_girl_rails'
-  gem 'listen', '~> 3.0.5'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem "byebug", platform: :mri
+  gem "factory_girl_rails"
+  gem "listen"
+  gem "spring"
+  gem "spring-watcher-listen"
 
-  ################################################################################
   # Linters and Security
-  gem 'brakeman', require: false
-  gem 'bundler-audit', require: false
-  gem 'rubocop', require: false
-  gem 'ruby-lint', require: false
-  # Critical that require: false be set! https://github.com/brigade/scss-lint/issues/278
-  gem 'scss_lint', require: false
+  gem "brakeman", require: false
+  gem "bundler-audit", require: false
+  gem "rubocop", require: false
+  gem "scss_lint", require: false
 end
 
 group :test do
-  gem 'capybara'
-  gem 'capybara-screenshot'
-  gem 'chromedriver-helper'
-  gem 'database_cleaner'
-  gem 'generator_spec'
-  gem 'launchy'
-  gem 'rails-controller-testing'
-  gem 'rspec-rails', '~> 3.5.0.beta3'
-  gem 'rspec-retry'
-  gem 'selenium-webdriver', '<3.0.0'
+  gem "capybara"
+  gem "capybara-screenshot"
+  gem "chromedriver-helper"
+  gem "database_cleaner"
+  gem "launchy" # call save_and_open_page to see what"s on a page for debugging capybara tests
+  gem "rails-controller-testing"
+  gem "rspec-rails"
+  gem "selenium-webdriver", "<3.0.0"
+  gem "rspec_junit_formatter" # See https://circleci.com/docs/test-metadata/#rspec
 end

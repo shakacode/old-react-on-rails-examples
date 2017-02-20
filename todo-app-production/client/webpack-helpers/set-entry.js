@@ -15,22 +15,17 @@ function setEntry(builderConfig, webpackConfig) {
 
   const entry = {
     'global-styles': entryLoc('./app/assets/styles/globals/base.js'),
-    'hello-world': entryLoc('./app/bundles/HelloWorld/startup/registration'),
+    'todos-index': entryLoc('./app/bundles/todosIndex/startup/App.jsx'),
     vendor: [
       'babel-polyfill',
       'classnames',
       'es5-shim',
-      'honeybadger-js',
       'immutable',
       'isomorphic-fetch',
       'lodash',
       'lodash/fp',
       'normalizr',
       'react',
-      'react-addons-pure-render-mixin',
-      'react-addons-shallow-compare',
-      'react-addons-update',
-      'react-bootstrap',
       'react-dom',
       'react-on-rails',
       'react-redux',

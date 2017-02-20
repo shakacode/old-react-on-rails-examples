@@ -1,33 +1,82 @@
 general:
   build_dir: todo-app-production
   artifacts:
-    - test.log
+    - log/test.log
+    - tmp/capybara
 
 machine:
   environment:
     RAILS_ENV: test
     RACK_ENV: test
-    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
+    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:${HOME}/.yarn/bin"
+    YARN_VERSION: 0.19.1
   node:
     version: 7.4
 
 dependencies:
   pre:
-    # Install yarn
-    - sudo apt-key adv --fetch-keys http://dl.yarnpkg.com/debian/pubkey.gpg
-    - echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-    - sudo apt-get update -qq
-    - sudo apt-get install -y -qq yarn=0.19.1-1
+    # Install Yarn
+    - |
+      if [[ ! -e ~/.yarn/bin/yarn || $(yarn --version) != "${YARN_VERSION}" ]]; then
+        echo "Download and install Yarn."
+        curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version $YARN_VERSION
+      else
+        echo "The correct version of Yarn is already installed."
+      fi
   cache_directories:
-    - "~/.yarn-cache"
+    - "~/.yarn"
+    - "~/.cache/yarn"
   override:
     - yarn
     - bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
+  post:
+    - yarn run build:all:rspec:
+        pwd: client
 
 test:
-  override:
-    - bundle exec rspec spec --format progress
-    - bundle exec brakeman
-    - bundle exec bundle-audit
-    - bundle exec rubocop -RD:
+  post:
+    - $(yarn bin)/mocha --opts mocha.opts --reporter mocha-junit-reporter:
+        pwd: client
         parallel: true
+        environment:
+          NODE_PATH: .:./app:./app/bundles
+          NODE_ENV: test
+          MOCHA_FILE: $CIRCLE_TEST_REPORTS/mocha/test-results.xml
+        files:
+          - 'app/**/*.spec.js'
+          - 'app/**/*.spec.jsx'
+          - 'webpack-helpers/**/*.spec.js'
+    - $(yarn bin)/eslint --ext .js,.jsx:
+        pwd: client
+        parallel: true
+        files:
+          - 'app/**/*.js'
+          - 'app/**/*.jsx'
+          - 'webpack-helpers/**/*.js'
+          - 'server-rendering-entry.js'
+          - 'server.js'
+          - 'webpack.config.babel.js'
+    - yarn run flow:
+        pwd: client
+    - bundle exec rubocop:
+        parallel: true
+        # keep in sync with files in script/lint
+        files:
+          - 'app/**/*.rb'
+          - 'config/**/*.rb'
+          - 'db/migrate/**/*.rb'
+          - 'db/seeders/**/*.rb'
+          - 'db/seeds.rb'
+          - 'lib/**/*.rb'
+          - 'lib/**/*.rake'
+          - 'spec/**/*.rb'
+          - 'config.ru'
+          - 'Gemfile'
+          - 'Rakefile'
+    - bundle exec scss-lint:
+        parallel: true
+        files:
+          - 'app/assets/styles/**/*.scss'
+          - 'client/app/**/*.scss'
+    - bundle exec brakeman
+    - bundle exec bundle-audit update && bundle exec bundle-audit

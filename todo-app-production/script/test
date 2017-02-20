@@ -1,0 +1,43 @@
+#!/bin/sh
+
+# script/test: Run test suite for application. Optionally pass in a path to an
+#              individual test file to run a single test.
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+[ -z "$DEBUG" ] || set -x
+
+export RACK_ROOT=$(cd "$(dirname $0)"/.. && pwd)
+
+export RAILS_ENV="test" RACK_ENV="test"
+
+script/setup
+
+echo "===> Building webpack bundles from scratch..."
+bin/rake assets:clobber
+cd client
+yarn run build:all:rspec
+cd ..
+
+echo "===> Running Ruby tests..."
+bin/rake spec
+
+echo "===> Running JS tests..."
+cd client
+yarn run test
+cd ..
+
+echo "===> Running linting..."
+script/lint
+
+echo "===> Running Security audit..."
+bin/rake security_audit
+
+echo "===> Running Brakeman..."
+bin/brakeman
+
+echo "===> Running Bundle Audit..."
+bin/bundle-audit update
+bin/bundle-audit
