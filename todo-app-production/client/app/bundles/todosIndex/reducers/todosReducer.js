@@ -1,20 +1,17 @@
 // @flow
 import { handleActions } from 'redux-actions';
 import { Map as $$Map } from 'immutable';
-import type { $$Todo, numberPayload, todoPayload } from '../types';
+import type { $$Todo, numberPayload, addTodoPayload } from '../types';
 import actionTypes from '../actions/todos/actionTypes';
 
 // types
 export type State = $$Map<number, $$Todo>;
 
-let tempID = 0;
-
 export const todosInitialState = new $$Map();
 
 const todos = handleActions({
-  [actionTypes.ADD_TODO]: ($$state: State, { payload }: todoPayload) => $$state.set(
-    // eslint-disable-next-line no-plusplus
-    tempID++,
+  [actionTypes.ADD_TODO]: ($$state: State, { payload }: addTodoPayload) => $$state.mergeIn(
+    payload.placeholderID,
     $$Map({
       description: payload.description,
       completed: false,
