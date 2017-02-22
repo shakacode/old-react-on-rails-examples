@@ -20,6 +20,9 @@ export type numberPayload = {
   payload: number,
 }
 
-export type todoPayload = {
-  payload: Todo,
+export type addTodoPayload = {
+  payload: {
+    placeholderID: string,
+    description: string,
+  }
 }
