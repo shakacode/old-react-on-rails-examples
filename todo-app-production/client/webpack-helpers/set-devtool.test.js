@@ -13,8 +13,8 @@ describe('webpack-helpers/set-devtool', () => {
     const builderConfig = { sourceMaps: 'foo' };
 
     it('sets config\'s devtool to "foo"', () => {
-      const expected = 'foo';
       const actual = setDevtool(builderConfig, {}).devtool;
+      const expected = 'foo';
 
       expect(actual).toBe(expected);
     });

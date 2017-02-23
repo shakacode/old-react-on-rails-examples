@@ -1,31 +1,43 @@
-import { Map as $$Map, fromJS as $$fromJS } from 'immutable';
+import { Map as $$Map, fromJS } from 'immutable';
 import * as actions from '../actions/todos';
-import reducer from './todosReducer';
+import reducer, { todosInitialState } from './todosReducer';
 
 test('addTodo', () => {
-  const state = $$fromJS({});
-  const action = actions.addTodo({description: 'todo'});
-  expect(reducer(state, action).toJS()).toEqual({"0": {description: 'todo',
-                                                       completed: false,
-                                                       temp: true}});
-})
+  const todoId = 0;
+  const state = fromJS({});
+  const action = actions.addTodo({ description: 'todo' });
+  const actual = reducer(state, action).toJS();
+  const expected = { [todoId]: { description: 'todo',
+    completed: false,
+    temp: true } };
+  expect(actual).toEqual(expected);
+});
 
-test('removeTodo', () => {
-  const state = $$fromJS({0: 'wat'});
-  const action = actions.removeTodoSuccess("0");
-  expect(reducer(state, action)).toEqual($$Map());
-})
+test('removeTodoSuccess', () => {
+  const todoId = 0;
+  const state = todosInitialState.set(todoId, $$Map({ description: 'todo', completed: true }));
+  const action = actions.removeTodoSuccess(todoId);
+  const actual = reducer(state, action);
+  const expected = todosInitialState;
+  expect(actual).toEqual(expected);
+});
 
 describe('toggleTodo', () => {
   test('switches completed from true to false', () => {
-    const state = $$fromJS({0: {description: 'todo', completed: true}});
-    const action = actions.toggleTodo("0");
-    expect(reducer(state, action)).toEqual($$fromJS({0: {description: 'todo', completed: false}}));
-  })
+    const todoId = 0;
+    const state = todosInitialState.set(todoId, $$Map({ description: 'todo', completed: true }));
+    const action = actions.toggleTodo(todoId);
+    const actual = reducer(state, action);
+    const expected = todosInitialState.set(todoId, $$Map({ description: 'todo', completed: false }));
+    expect(actual).toEqual(expected);
+  });
 
   test('switches completed from false to true', () => {
-    const state = $$fromJS({0: {description: 'todo', completed: false}});
-    const action = actions.toggleTodo("0");
-    expect(reducer(state, action)).toEqual($$fromJS({0: {description: 'todo', completed: true}}));
-  })
-})
+    const todoId = 0;
+    const state = todosInitialState.set(todoId, $$Map({ description: 'todo', completed: false }));
+    const action = actions.toggleTodo(todoId);
+    const actual = reducer(state, action);
+    const expected = todosInitialState.set(todoId, $$Map({ description: 'todo', completed: true }));
+    expect(actual).toEqual(expected);
+  });
+});
