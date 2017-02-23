@@ -10,7 +10,13 @@
 1. [todo-app-production](./todo-app-production)
 2. todo-app-react-native: Coming soon!
 
-Access to this respository is limited to:
+# How Do I?
+
+See [How do I?](./how-do-i.md)
+
+# Access to this repository
+
+Limited to:
 
 1. Members of the ShakaCode Team bound by a [mast.ly](https://mast.ly) contract.
 1. Invited contributors to the react-on-rails-pro repo that have signed the contributor agreement.
