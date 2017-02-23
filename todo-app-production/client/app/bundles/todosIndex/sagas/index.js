@@ -5,15 +5,12 @@ import * as api from '../../../api';
 import AddTodoFormActionTypes from '../actions/AddTodoForm/actionTypes';
 import todosActionTypes from '../actions/todos/actionTypes';
 import * as todosActions from '../actions/todos';
-import placeholderIDGenerator from '../services/placeholderIDGeneretor';
-import type { stringPayload, numberPayload } from '../types';
+import type { numberPayload, tempTodoPayload } from '../types';
 
-export function* addTodo({ payload }: stringPayload): Generator<any, putEffect, any> {
-  const placeholderID = yield call(placeholderIDGenerator);
-  yield put(todosActions.addTodo({ placeholderID, description: payload }));
-  const { response, error } = yield call(api.addTodo, payload);
+export function* addTodo({ payload }: tempTodoPayload): Generator<any, putEffect, any> {
+  const { response, error } = yield call(api.addTodo, payload.description);
   if (response) {
-    yield put(todosActions.addTodoSuccess(response.data));
+    yield put(todosActions.addTodo({ Todo: response.data, tempTodo: payload }));
   } else {
     yield put(todosActions.addTodoFailure(error.message));
   }
