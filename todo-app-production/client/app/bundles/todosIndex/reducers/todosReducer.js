@@ -10,15 +10,7 @@ export type State = $$Map<number, $$Todo>;
 export const todosInitialState = new $$Map();
 
 const todos = handleActions({
-  [actionTypes.ADD_TODO]: ($$state: State, { payload }: addTodoPayload) => $$state.mergeIn(
-    // eslint-disable-next-line no-plusplus
-    payload.placeholderID, // initialize database PK at around 100 or so that tempIDs and ids won't conflict?
-    $$Map({
-      description: payload.description,
-      completed: false,
-      temp: true,
-    })),
-  [actionTypes.ADD_TODO_SUCCESS]: () => { throw new Error('reducer helper not implemented yet'); },
+  [actionTypes.ADD_TODO]: ($$state: State, { payload }: addTodoPayload) => { throw new Error('reducer helper not implemented yet'); },
   [actionTypes.ADD_TODO_FAILURE]: () => { throw new Error('reducer helper not implemented yet'); },
   [actionTypes.REMOVE_TODO_SUCCESS]: ($$state: State,
                                       { payload }: numberPayload) => $$state.delete(payload),
