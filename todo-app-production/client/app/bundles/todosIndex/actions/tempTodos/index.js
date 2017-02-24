@@ -1,5 +1,5 @@
 // @flow
-import _ from 'lodash';
+import _ from 'lodash/fp';
 import { createAction } from 'redux-actions';
 import actionTypes from './actionTypes';
 
