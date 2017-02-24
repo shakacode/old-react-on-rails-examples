@@ -3660,6 +3660,13 @@ jest-junit-reporter@^1.0.1:
   dependencies:
     xml "^1.0.1"
 
+jest-junit@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/jest-junit/-/jest-junit-1.2.0.tgz#5894bab45a5a13a7e1380cc7c63e7aae260064f4"
+  dependencies:
+    mkdirp "^0.5.1"
+    xml "^1.0.1"
+
 jest-matcher-utils@^18.1.0:
   version "18.1.0"
   resolved "https://registry.yarnpkg.com/jest-matcher-utils/-/jest-matcher-utils-18.1.0.tgz#1ac4651955ee2a60cef1e7fcc98cdfd773c0f932"
