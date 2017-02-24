@@ -34,18 +34,20 @@ dependencies:
         pwd: client
 
 test:
+  pre:
+    - mkdir -p $CIRCLE_TEST_REPORTS/jest
   post:
-    - $(yarn bin)/mocha --opts mocha.opts --reporter mocha-junit-reporter:
+    - $(yarn bin)/jest .*\\.test\\.js:
         pwd: client
         parallel: true
+        files:
+          - 'app/**/*.test.js'
+          - 'app/**/*.test.jsx'
+          - 'webpack-helpers/**/*.test.js'
         environment:
           NODE_PATH: .:./app:./app/bundles
           NODE_ENV: test
-          MOCHA_FILE: $CIRCLE_TEST_REPORTS/mocha/test-results.xml
-        files:
-          - 'app/**/*.spec.js'
-          - 'app/**/*.spec.jsx'
-          - 'webpack-helpers/**/*.spec.js'
+          TEST_REPORT_PATH: $CIRCLE_TEST_REPORTS/jest
     - $(yarn bin)/eslint --ext .js,.jsx:
         pwd: client
         parallel: true
