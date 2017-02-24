@@ -35,17 +35,13 @@ dependencies:
 
 test:
   post:
-    - $(yarn bin)/mocha --opts mocha.opts --reporter mocha-junit-reporter:
+    - $(yarn bin)/jest .*\\.test\\.js:
         pwd: client
         parallel: true
         environment:
           NODE_PATH: .:./app:./app/bundles
           NODE_ENV: test
-          MOCHA_FILE: $CIRCLE_TEST_REPORTS/mocha/test-results.xml
-        files:
-          - 'app/**/*.spec.js'
-          - 'app/**/*.spec.jsx'
-          - 'webpack-helpers/**/*.spec.js'
+          JEST_JUNIT_OUTPUT: $CIRCLE_TEST_REPORTS/jest/junit.xml
     - $(yarn bin)/eslint --ext .js,.jsx:
         pwd: client
         parallel: true
