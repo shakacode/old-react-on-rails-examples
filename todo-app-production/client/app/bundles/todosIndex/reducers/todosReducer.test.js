@@ -13,6 +13,7 @@ test('addTodo', () => {
       completed: false,
       temp: true },
   }).mapKeys(id => parseInt(id, 10));
+
   expect(actual).toEqual(expected);
 });
 
@@ -22,6 +23,7 @@ test('removeTodoSuccess', () => {
   const action = actions.removeTodoSuccess(todoId);
   const actual = reducer(state, action);
   const expected = todosInitialState;
+
   expect(actual).toEqual(expected);
 });
 
@@ -32,6 +34,7 @@ describe('toggleTodo', () => {
     const action = actions.toggleTodo(todoId);
     const actual = reducer(state, action);
     const expected = todosInitialState.set(todoId, $$Map({ description: 'todo', completed: false }));
+
     expect(actual).toEqual(expected);
   });
 
@@ -41,6 +44,7 @@ describe('toggleTodo', () => {
     const action = actions.toggleTodo(todoId);
     const actual = reducer(state, action);
     const expected = todosInitialState.set(todoId, $$Map({ description: 'todo', completed: true }));
+
     expect(actual).toEqual(expected);
   });
 });
