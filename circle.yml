@@ -34,8 +34,6 @@ dependencies:
         pwd: client
 
 test:
-  pre:
-    - mkdir -p $CIRCLE_TEST_REPORTS/jest
   post:
     - $(yarn bin)/jest .*\\.test\\.js:
         pwd: client
@@ -43,7 +41,7 @@ test:
         environment:
           NODE_PATH: .:./app:./app/bundles
           NODE_ENV: test
-          JEST_JUNIT_OUTPUT: $CIRCLE_TEST_REPORTS/jest
+          JEST_JUNIT_OUTPUT: $CIRCLE_TEST_REPORTS/jest/junit.xml
     - $(yarn bin)/eslint --ext .js,.jsx:
         pwd: client
         parallel: true
