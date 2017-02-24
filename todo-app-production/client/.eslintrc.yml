@@ -18,7 +18,6 @@ settings:
 env:
   jest/globals: true
   browser: true
-  mocha: true
   jquery: true
 
 globals:
@@ -32,10 +31,3 @@ rules:
   no-duplicate-imports: 0 # This breaks flow type imports and it's handled by `import/no-duplicates`
   import/prefer-default-export: 0
   react/no-unused-prop-types: 0 # https://github.com/yannickcr/eslint-plugin-react/issues/933#issuecomment-258366811
-
-  # Ignoring test deps
-  # https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-extraneous-dependencies.md
-  import/no-extraneous-dependencies:
-    - 2
-    - devDependencies:
-        - "**/*.spec.js"
