@@ -32,9 +32,9 @@ export type tempTodoPayload = {
   payload: tempTodo
 }
 
-export type addTodoPayload = {
+export type addTodoSuccessPayload = {
   payload: {
     Todo: Todo,
-    tempTodo: tempTodo,
+    tempTodo: tempTodo
   }
 }

@@ -1,14 +1,8 @@
 // @flow
-import mirrorCreator from 'mirror-creator';
-
-const actionTypes = mirrorCreator([
-  'ADD_TODO',
-  'ADD_TODO_SUCCESS',
-  'ADD_TODO_FAILURE',
-  'REMOVE_TODO',
-  'REMOVE_TODO_SUCCESS',
-  'REMOVE_TODO_FAILURE',
-  'TOGGLE_TODO',
-]);
-
-export default actionTypes;
+export const ADD_TODO = 'ADD_TODO';
+export const ADD_TODO_SUCCESS = 'ADD_TODO_SUCCESS';
+export const ADD_TODO_FAILURE = 'ADD_TODO_FAILURE';
+export const REMOVE_TODO = 'REMOVE_TODO';
+export const REMOVE_TODO_SUCCESS = 'REMOVE_TODO_SUCCESS';
+export const REMOVE_TODO_FAILURE = 'REMOVE_TODO_FAILURE';
+export const TOGGLE_TODO = 'TOGGLE_TODO';

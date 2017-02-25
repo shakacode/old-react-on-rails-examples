@@ -1,21 +1,7 @@
-import { Map as $$Map, fromJS } from 'immutable';
+import { Map as $$Map } from 'immutable';
 
 import * as actions from '../actions/todos';
 import reducer, { todosInitialState } from './todosReducer';
-
-test('addTodo', () => {
-  const todoId = 0;
-  const state = fromJS({});
-  const action = actions.addTodo({ description: 'todo' });
-  const actual = reducer(state, action);
-  const expected = fromJS({
-    [todoId]: { description: 'todo',
-      completed: false,
-      temp: true },
-  }).mapKeys(id => parseInt(id, 10));
-
-  expect(actual).toEqual(expected);
-});
 
 test('removeTodoSuccess', () => {
   const todoId = 0;

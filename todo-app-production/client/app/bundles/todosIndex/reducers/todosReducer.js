@@ -2,7 +2,7 @@
 import { handleActions } from 'redux-actions';
 import { Map as $$Map } from 'immutable';
 import type { $$Todo, numberPayload } from '../types';
-import actionTypes from '../actions/todos/actionTypes';
+import * as actionTypes from '../actions/todos/actionTypes';
 
 // types
 export type State = $$Map<number, $$Todo>;
@@ -10,7 +10,7 @@ export type State = $$Map<number, $$Todo>;
 export const todosInitialState = new $$Map();
 
 const todos = handleActions({
-  [actionTypes.ADD_TODO]: () => { throw new Error('reducer helper not implemented yet'); },
+  [actionTypes.ADD_TODO_SUCCESS]: () => { throw new Error('reducer helper not implemented yet'); },
   [actionTypes.ADD_TODO_FAILURE]: () => { throw new Error('reducer helper not implemented yet'); },
   [actionTypes.REMOVE_TODO_SUCCESS]: ($$state: State,
                                       { payload }: numberPayload) => $$state.delete(payload),
