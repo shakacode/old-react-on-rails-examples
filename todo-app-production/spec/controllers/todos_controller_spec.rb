@@ -4,7 +4,9 @@ RSpec.describe TodosController, type: :controller do
   describe "#index" do
     it "renders an array of Todo JSON objects" do
       todo = create(:todo)
+
       get :index, format: :json
+
       expect(response.body).to eql([todo].to_json)
     end
   end
@@ -12,19 +14,26 @@ RSpec.describe TodosController, type: :controller do
   describe "#show" do
     it "renders a Todo JSON object" do
       todo = create(:todo)
+
       get :show, params: { id: todo.id }, format: :json
+
       expect(response.body).to eql(todo.to_json)
     end
   end
 
   describe "#create" do
     it "renders a Todo JSON object upon success" do
-      post :create, params: { todo: { description: "Todo" } }, format: :json
+      todo_attrs = attributes_for(:todo)
+
+      post :create, params: { todo: todo_attrs }, format: :json
+
+      expect(response).to have_http_status(:created)
       expect(response.body).to include('"description":"Todo","completed":false,')
     end
 
     it "renders a Todo JSON object upon failure" do
       post :create, params: { todo: { completed: "yes" } }, format: :json
+
       expect(response.body).to eql('{"description":["is too short (minimum is 1 character)"]}')
     end
   end
@@ -32,8 +41,10 @@ RSpec.describe TodosController, type: :controller do
   describe "#update" do
     it "renders a Todo JSON object upon success" do
       todo = create(:todo)
+
       put :update, params: { id: todo.id,
                              todo: { description: "Todo", completed: true } }, format: :json
+
       expect(response.body).to include('description":"Todo","completed":true,')
     end
 
@@ -46,7 +57,10 @@ RSpec.describe TodosController, type: :controller do
   describe "#destroy" do
     it "returns { head: no_content }" do
       todo = create(:todo)
+
       delete :destroy, params: { id: todo.id }, format: :json
+
+      expect(response).to have_http_status(:success)
       expect(response.body).to eql("")
     end
   end
