@@ -6,19 +6,13 @@ class TodosController < ApplicationController
   # GET /todos.json
   def index
     @todos = Todo.all.order(:id)
-    respond_to do |format|
-      format.html
-      format.json { render json: @todos }
-    end
+    render json: @todos
   end
 
   # GET /todos/1
   # GET /todos/1.json
   def show
-    respond_to do |format|
-      format.html
-      format.json { render json: @todo }
-    end
+    render json: @todo
   end
 
   # GET /todos/new
@@ -34,28 +28,20 @@ class TodosController < ApplicationController
   def create
     @todo = Todo.new(todo_params)
 
-    respond_to do |format|
-      if @todo.save
-        format.html { redirect_to @todo, notice: "Todo was successfully created." }
-        format.json { render json: @todo, status: :created, location: @todo }
-      else
-        format.html { render :new }
-        format.json { render json: @todo.errors, status: :unprocessable_entity }
-      end
+    if @todo.save
+      render json: @todo, status: :created, location: @todo
+    else
+      render json: @todo.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /todos/1
   # PATCH/PUT /todos/1.json
   def update
-    respond_to do |format|
-      if @todo.update(todo_params)
-        format.html { redirect_to @todo, notice: "Todo was successfully updated." }
-        format.json { render json: @todo, status: :ok, location: @todo }
-      else
-        format.html { render :edit }
-        format.json { render json: @todo.errors, status: :unprocessable_entity }
-      end
+    if @todo.update(todo_params)
+      render json: @todo, status: :ok, location: @todo
+    else
+      render json: @todo.errors, status: :unprocessable_entity
     end
   end
 
@@ -63,10 +49,7 @@ class TodosController < ApplicationController
   # DELETE /todos/1.json
   def destroy
     @todo.destroy
-    respond_to do |format|
-      format.html { redirect_to todos_url, notice: "Todo was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    head :no_content
   end
 
   private
