@@ -22,5 +22,5 @@ esproposal.class_static_fields=enable
 esproposal.class_instance_fields=enable
 
 module.name_mapper='.*\.s?css' -> 'CSSModule'
-module.name_mapper='^api\/\(.*\)$' -> '<PROJECT_ROOT>/api/\1'
-module.name_mapper='^app\/\(.*\)$' -> '<PROJECT_ROOT>/app/\1'
+module.name_mapper='^app\(.*\)$' -> '<PROJECT_ROOT>/app\1'
+module.name_mapper='^todosIndex\(.*\)$' -> '<PROJECT_ROOT>/app/bundles/todosIndex\1'

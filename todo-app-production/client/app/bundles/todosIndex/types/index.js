@@ -43,3 +43,13 @@ export type addTodoSuccessPayload = {
     tempTodo: tempTodo,
   },
 };
+
+export type tempTodoAction = {
+  type: string,
+  payload: tempTodo,
+};
+
+export type numberAction = {
+  type: string,
+  payload: number,
+};
