@@ -3,34 +3,33 @@ import { call, put } from 'redux-saga/effects';
 import * as api from '../../../api';
 
 import * as sagas from './index';
-import { handleSubmit } from '../actions/AddTodoForm';
 import * as todosActions from '../actions/todos';
 
 test('addTodo Saga handles async responses', () => {
-  const payload = 'todo description';
-  const action = handleSubmit(payload);
+  const description = 'todo description';
+  const id = 'todoId';
+  const payload = { description, id };
+
+  const action = todosActions.addTodo(description, id);
   const generator = sagas.addTodo(action);
 
   let nextGen = generator.next();
-  expect(nextGen.value).toEqual(put(todosActions.addTodo(payload)));
-
-  nextGen = generator.next();
   expect(nextGen.value).toEqual(call(api.addTodo, payload));
 
   const result = { response: { data: 'data' } };
   nextGen = generator.next(result);
-  expect(nextGen.value).toEqual(put(todosActions.addTodoSuccess(result.response.data)));
+  expect(nextGen.value).toEqual(put(todosActions.addTodoSuccess({ todo: result.response.data, tempTodo: payload })));
 });
 
 test('addTodo Saga handles async errors', () => {
-  const payload = 'todo description';
-  const action = handleSubmit(payload);
+  const description = 'todo description';
+  const id = 'todoId';
+  const payload = { description, id };
+
+  const action = todosActions.addTodo(description, id);
   const generator = sagas.addTodo(action);
 
   let nextGen = generator.next();
-  expect(nextGen.value).toEqual(put(todosActions.addTodo(payload)));
-
-  nextGen = generator.next();
   expect(nextGen.value).toEqual(call(api.addTodo, payload));
 
   const result = { error: { message: 'error!' } };

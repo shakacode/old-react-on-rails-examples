@@ -1,9 +1,6 @@
 // @flow
-import mirrorCreator from 'mirror-creator';
+import { buildActionType } from '../../../../libs/utils/redux';
 
-const actionTypes = mirrorCreator([
-  'EDIT_ADDTODOFORM',
-  'SUBMIT_ADDTODOFORM',
-]);
+export const buildFormsActionType = buildActionType('forms');
 
-export default actionTypes;
+export const editAddTodoForm = buildFormsActionType('editAddTodoForm');

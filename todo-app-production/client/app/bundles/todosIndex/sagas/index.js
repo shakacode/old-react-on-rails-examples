@@ -2,17 +2,14 @@
 import { call, put, fork, takeEvery } from 'redux-saga/effects';
 import type { putEffect, IOEffect } from 'redux-saga/effects';
 import * as api from '../../../api';
-import AddTodoFormActionTypes from '../actions/AddTodoForm/actionTypes';
-import todosActionTypes from '../actions/todos/actionTypes';
+import { addTodo as addTodoActionType, removeTodo as removeTodoActionType } from '../actions/todos/actionTypes';
 import * as todosActions from '../actions/todos';
-import type { stringPayload, numberPayload } from '../types';
+import type { numberPayload, tempTodoPayload } from '../types';
 
-
-export function* addTodo({ payload }: stringPayload): Generator<any, putEffect, any> {
-  yield put(todosActions.addTodo(payload));
+export function* addTodo({ payload }: tempTodoPayload): Generator<any, putEffect, any> {
   const { response, error } = yield call(api.addTodo, payload);
   if (response) {
-    yield put(todosActions.addTodoSuccess(response.data));
+    yield put(todosActions.addTodoSuccess({ todo: response.data, tempTodo: payload }));
   } else {
     yield put(todosActions.addTodoFailure(error.message));
   }
@@ -28,11 +25,11 @@ export function* removeTodo({ payload }: numberPayload): Generator<any, putEffec
 }
 
 function* addTodoSaga() {
-  yield takeEvery(AddTodoFormActionTypes.SUBMIT_ADDTODOFORM, addTodo);
+  yield takeEvery(addTodoActionType, addTodo);
 }
 
 function* removeTodoSaga() {
-  yield takeEvery(todosActionTypes.REMOVE_TODO, removeTodo);
+  yield takeEvery(removeTodoActionType, removeTodo);
 }
 
 export default function* root(): Generator<IOEffect, any, any> {

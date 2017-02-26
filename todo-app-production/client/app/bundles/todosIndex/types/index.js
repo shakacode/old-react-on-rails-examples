@@ -1,11 +1,19 @@
 // @flow
 import { Map as $$Map } from 'immutable';
 
-export type $$Todo = $$Map<string, | string | boolean>;
+export type $$Todo = $$Map<string, string | boolean>;
+
+export type tempTodo = {
+  id: string,
+  description: string,
+};
 
 export type Todo = {
+  id: number,
   completed: boolean,
   description: string,
+  created_at: string,
+  updated_at: string,
 };
 
 export type MappedTodo = {
@@ -14,12 +22,19 @@ export type MappedTodo = {
 
 export type stringPayload = {
   payload: string,
-}
+};
 
 export type numberPayload = {
   payload: number,
-}
+};
 
-export type todoPayload = {
-  payload: Todo,
-}
+export type tempTodoPayload = {
+  payload: tempTodo,
+};
+
+export type addTodoSuccessPayload = {
+  payload: {
+    todo: Todo,
+    tempTodo: tempTodo,
+  },
+};
