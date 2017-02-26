@@ -5,7 +5,7 @@ import reducer, { tempTodosInitialState } from './tempTodosReducer';
 
 test('addTodo', () => {
   const todoId = 'todoId';
-  const state = fromJS({});
+  const state = tempTodosInitialState;
   const action = actions.addTodo('todo', todoId);
   const actual = reducer(state, action);
   const expected = fromJS({

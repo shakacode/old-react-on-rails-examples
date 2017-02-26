@@ -127,6 +127,11 @@
     "@kadira/storybook-addons": "^1.3.0"
   },
   "jest": {
-    "testResultsProcessor": "./node_modules/jest-junit"
+    "testResultsProcessor": "./node_modules/jest-junit",
+    "moduleNameMapper": {
+      "^app(.*)$": "<rootDir>/app$1",
+
+      "\\.(css|less)$": "<rootDir>/app/libs/interfaces/CSSModule.js"
+    }
   }
 }
