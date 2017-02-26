@@ -18,7 +18,7 @@ test('addTodo Saga handles async responses', () => {
 
   const result = { response: { data: 'data' } };
   nextGen = generator.next(result);
-  expect(nextGen.value).toEqual(put(todosActions.addTodoSuccess({ Todo: result.response.data, tempTodo: payload })));
+  expect(nextGen.value).toEqual(put(todosActions.addTodoSuccess({ todo: result.response.data, tempTodo: payload })));
 });
 
 test('addTodo Saga handles async errors', () => {

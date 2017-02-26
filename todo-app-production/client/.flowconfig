@@ -8,7 +8,7 @@
 ./flow-typed/
 ./node_modules/fbjs/node_modules/promise
 ./node_modules/fbjs/flow/lib
-./app/lib/interfaces/
+./app/libs/interfaces/
 node_modules/iflow-immutable/index.js.flow
 node_modules/iflow-moment/index.js.flow
 node_modules/iflow-react-router/index.js.flow

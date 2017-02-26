@@ -10,12 +10,12 @@ export type State = $$Map<number, $$Todo>;
 export const todosInitialState = new $$Map();
 
 const todos = handleActions({
-  [actionTypes.ADD_TODO_SUCCESS]: () => { throw new Error('reducer helper not implemented yet'); },
-  [actionTypes.ADD_TODO_FAILURE]: () => { throw new Error('reducer helper not implemented yet'); },
-  [actionTypes.REMOVE_TODO_SUCCESS]: ($$state: State,
+  [actionTypes.addTodoSuccess]: () => { throw new Error('reducer helper not implemented yet'); },
+  [actionTypes.addTodoFailure]: () => { throw new Error('reducer helper not implemented yet'); },
+  [actionTypes.removeTodoSuccess]: ($$state: State,
                                       { payload }: numberPayload) => $$state.delete(payload),
-  [actionTypes.REMOVE_TODO_FAILURE]: () => { throw new Error('reducer helper not implemented yet'); },
-  [actionTypes.TOGGLE_TODO]: ($$state: State, { payload }: numberPayload) => {
+  [actionTypes.removeTodoFailure]: () => { throw new Error('reducer helper not implemented yet'); },
+  [actionTypes.toggleTodo]: ($$state: State, { payload }: numberPayload) => {
     const $$oldTodo: $$Todo = $$state.get(payload);
     const $$newTodo: $$Todo = $$oldTodo.set('completed', !$$oldTodo.get('completed'));
     return $$state.set(payload, $$newTodo);

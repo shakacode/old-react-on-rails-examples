@@ -4,11 +4,13 @@ import { createAction } from 'redux-actions';
 
 import * as actionTypes from './actionTypes';
 
-export const addTodo = createAction(actionTypes.ADD_TODO,
-  (description: string, id: string = _.uniqueId('TEMP_TODO_')) => ({ description, id }));
-export const addTodoSuccess = createAction(actionTypes.ADD_TODO_SUCCESS);
-export const addTodoFailure = createAction(actionTypes.ADD_TODO_FAILURE);
-export const removeTodo = createAction(actionTypes.REMOVE_TODO);
-export const removeTodoSuccess = createAction(actionTypes.REMOVE_TODO_SUCCESS);
-export const removeTodoFailure = createAction(actionTypes.REMOVE_TODO_FAILURE);
-export const toggleTodo = createAction(actionTypes.TOGGLE_TODO);
+export const addTodo = createAction(actionTypes.addTodo, (
+  description: string,
+  id: string = _.uniqueId('TEMP_TODO_'),
+) => ({ description, id }));
+export const addTodoSuccess = createAction(actionTypes.addTodoSuccess);
+export const addTodoFailure = createAction(actionTypes.addTodoFailure);
+export const removeTodo = createAction(actionTypes.removeTodo);
+export const removeTodoSuccess = createAction(actionTypes.removeTodoSuccess);
+export const removeTodoFailure = createAction(actionTypes.removeTodoFailure);
+export const toggleTodo = createAction(actionTypes.toggleTodo);

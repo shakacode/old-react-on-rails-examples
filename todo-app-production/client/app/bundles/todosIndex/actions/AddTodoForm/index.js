@@ -1,5 +1,5 @@
 // @flow
 import { createAction } from 'redux-actions';
-import * as actionTypes from './actionTypes';
+import { editAddTodoForm } from './actionTypes';
 
-export const handleChange = createAction(actionTypes.EDIT_ADDTODOFORM);
+export const handleChange = createAction(editAddTodoForm);

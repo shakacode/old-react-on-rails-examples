@@ -1,2 +1,6 @@
 // @flow
-export const EDIT_ADDTODOFORM = 'EDIT_ADDTODOFORM';
+import { buildActionType } from '../../../../libs/utils/redux';
+
+export const buildFormsActionType = buildActionType('forms');
+
+export const editAddTodoForm = buildFormsActionType('editAddTodoForm');
