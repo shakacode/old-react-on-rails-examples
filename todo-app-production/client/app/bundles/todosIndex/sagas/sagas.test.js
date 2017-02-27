@@ -1,6 +1,6 @@
 import { call, put } from 'redux-saga/effects';
 
-import { callApi } from 'app/api';
+import * as api from 'app/api/todos';
 
 import * as sagas from './index';
 import * as todosActions from '../actions/todos';
@@ -15,7 +15,7 @@ describe('addTodo Saga', () => {
     const generator = sagas.addTodo(action);
 
     let nextGen = generator.next();
-    expect(nextGen.value).toEqual(call(callApi, action));
+    expect(nextGen.value).toEqual(call(api.addTodo, payload));
 
     const result = { response: { data: 'data' } };
     nextGen = generator.next(result);
@@ -25,12 +25,13 @@ describe('addTodo Saga', () => {
   it('handles async errors', () => {
     const description = 'todo description';
     const id = 'todoId';
+    const payload = { description, id };
 
     const action = todosActions.addTodo(description, id);
     const generator = sagas.addTodo(action);
 
     let nextGen = generator.next();
-    expect(nextGen.value).toEqual(call(callApi, action));
+    expect(nextGen.value).toEqual(call(api.addTodo, payload));
 
     const result = { error: { message: 'error!' } };
     nextGen = generator.next(result);
@@ -45,7 +46,7 @@ describe('removeTodo Saga', () => {
     const generator = sagas.removeTodo(action);
 
     let nextGen = generator.next();
-    expect(nextGen.value).toEqual(call(callApi, action));
+    expect(nextGen.value).toEqual(call(api.removeTodo, payload));
 
     const result = { response: { data: 'data' } };
     nextGen = generator.next(result);
@@ -58,7 +59,7 @@ describe('removeTodo Saga', () => {
     const generator = sagas.removeTodo(action);
 
     let nextGen = generator.next();
-    expect(nextGen.value).toEqual(call(callApi, action));
+    expect(nextGen.value).toEqual(call(api.removeTodo, payload));
 
     const result = { error: { message: 'error!' } };
     nextGen = generator.next(result);

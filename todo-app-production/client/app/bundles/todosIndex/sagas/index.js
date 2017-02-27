@@ -1,22 +1,22 @@
 // @flow
 import { call, put, fork, takeEvery } from 'redux-saga/effects';
 import type { putEffect, IOEffect } from 'redux-saga/effects';
-import { callApi } from 'app/api';
+import * as api from 'app/api/todos';
 import { addTodo as addTodoActionType, removeTodo as removeTodoActionType } from '../actions/todos/actionTypes';
 import * as todosActions from '../actions/todos';
-import type { numberAction, tempTodoAction } from '../types';
+import type { numberPayload, tempTodoPayload } from '../types';
 
-export function* addTodo(action: tempTodoAction): Generator<any, putEffect, any> {
-  const { response, error } = yield call(callApi, action);
+export function* addTodo({ payload }: tempTodoPayload): Generator<any, putEffect, any> {
+  const { response, error } = yield call(api.addTodo, payload);
   if (response) {
-    yield put(todosActions.addTodoSuccess({ todo: response.data, tempTodo: action.payload }));
+    yield put(todosActions.addTodoSuccess({ todo: response.data, tempTodo: payload }));
   } else {
     yield put(todosActions.addTodoFailure(error.message));
   }
 }
 
-export function* removeTodo(action: numberAction): Generator<any, putEffect, any> {
-  const { response, error } = yield call(callApi, action);
+export function* removeTodo({ payload }: numberPayload): Generator<any, putEffect, any> {
+  const { response, error } = yield call(api.removeTodo, payload);
   if (response) {
     // But there is no data on a successful delete?
     yield put(todosActions.removeTodoSuccess(response.data));

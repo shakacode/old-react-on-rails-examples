@@ -51,8 +51,8 @@
     "babel-preset-stage-2": "^6.22.0",
     "babel-register": "^6.18.0",
     "babel-runtime": "^6.20.0",
-    "bootstrap-loader": "^2.0.0-beta.21",
     "bootstrap": "^4.0.0-alpha.6",
+    "bootstrap-loader": "2.0.0-beta.21",
     "classnames": "^2.2.5",
     "css-loader": "^0.26.1",
     "es5-shim": "^4.5.8",
@@ -68,6 +68,7 @@
     "node-sass": "3.13.0",
     "normalizr": "^2.2.1",
     "postcss-loader": "^1.2.1",
+    "qs": "^6.3.1",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-on-rails": "6.4.0",
@@ -131,8 +132,7 @@
     "moduleNameMapper": {
       "^app(.*)$": "<rootDir>/app$1",
       "^todosIndex(.*)$": "<rootDir>/app/bundles/todosIndex$1",
-
-      "\\.(css|less)$": "<rootDir>/app/libs/interfaces/CSSModule.js"
+      "\\.(css|scss)$": "<rootDir>/app/libs/interfaces/CSSModule.js"
     }
   }
 }
