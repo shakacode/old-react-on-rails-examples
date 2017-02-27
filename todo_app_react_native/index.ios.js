@@ -1,15 +1,17 @@
 /**
- * Sample React Native ToDo App
+ *
+ * Rect Native To Do App
+ *
  */
 
 import React from 'react';
 import { AppRegistry } from 'react-native';
-import AppContainer from './containers/AppContainer';
+import AppContainer from './app/containers/AppContainer';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, combineReducers, compose} from 'redux';
 import createLogger from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
-import reducer from './reducers';
+import reducer from './app/reducers';
 
 const loggerMiddleware = createLogger({ predicate: (getState, action) => __DEV__ });
 
