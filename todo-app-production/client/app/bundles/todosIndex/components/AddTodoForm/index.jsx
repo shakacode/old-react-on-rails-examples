@@ -8,7 +8,7 @@ type Props = {
 };
 
 const AddTodoForm = ({ text, addTodo, editAddTodoForm }: Props) => (
-  <form onSubmit={event => event.preventDefault() && addTodo()}>
+  <form onSubmit={event => event.preventDefault() && addTodo(event.target.value)}>
     <input
       type="text"
       value={text}

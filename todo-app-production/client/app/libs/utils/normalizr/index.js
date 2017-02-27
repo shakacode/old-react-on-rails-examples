@@ -2,6 +2,7 @@
 
 import { arrayOf as __arrayOf, normalize as __normalize } from 'normalizr';
 import _ from 'lodash/fp';
+
 import { fromJS, Map as $$Map, OrderedSet as $$OrderedSet } from 'immutable';
 
 import { toArray } from '../index';

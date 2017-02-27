@@ -1,7 +1,9 @@
 // @flow
 import { call, put, fork, takeEvery } from 'redux-saga/effects';
 import type { putEffect, IOEffect } from 'redux-saga/effects';
+
 import * as api from 'app/api/todos';
+
 import { addTodo as addTodoActionType, removeTodo as removeTodoActionType } from '../actionTypes/todos';
 import * as todosActions from '../actions/todos';
 import type { numberPayload, tempTodoPayload } from '../types';
@@ -18,7 +20,6 @@ export function* addTodo({ payload }: tempTodoPayload): Generator<any, putEffect
 export function* removeTodo({ payload }: numberPayload): Generator<any, putEffect, any> {
   const { response, error } = yield call(api.removeTodo, payload);
   if (response) {
-    // But there is no data on a successful delete?
     yield put(todosActions.removeTodoSuccess(response.data));
   } else {
     yield put(todosActions.removeTodoFailure(error.message));
