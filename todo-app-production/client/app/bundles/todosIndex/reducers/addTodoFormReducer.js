@@ -1,8 +1,8 @@
 // @flow
 import { handleActions } from 'redux-actions';
 import type { stringPayload } from '../types';
-import { editAddTodoForm } from '../actions/AddTodoForm/actionTypes';
-import { addTodo } from '../actions/todos/actionTypes';
+import { editAddTodoForm } from '../actionTypes/forms';
+import { addTodo } from '../actionTypes/todos';
 
 // types
 export type State = string;

@@ -3,7 +3,7 @@ import { handleActions } from 'redux-actions';
 import { List as $$List } from 'immutable';
 
 import type { errorPayload } from '../types';
-import { addTodoFailure, removeTodoFailure } from '../actions/todos/actionTypes';
+import { addTodoFailure, removeTodoFailure } from '../actionTypes/todos';
 
 // types
 export type State = $$List<Error>;

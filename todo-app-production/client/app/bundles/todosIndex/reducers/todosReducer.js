@@ -5,7 +5,7 @@ import { Map as $$Map } from 'immutable';
 import { normalizeArrayToMap } from 'app/libs/utils/normalizr';
 
 import type { $$Todo, numberPayload, addTodoSuccessPayload } from '../types';
-import { addTodoSuccess, removeTodoSuccess, toggleTodo } from '../actions/todos/actionTypes';
+import { addTodoSuccess, removeTodoSuccess, toggleTodo } from '../actionTypes/todos';
 
 // types
 export type State = $$Map<number, $$Todo>;

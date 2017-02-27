@@ -3,7 +3,7 @@ import { handleActions } from 'redux-actions';
 import { Map as $$Map } from 'immutable';
 
 import type { $$Todo, stringPayload, tempTodoPayload, addTodoSuccessPayload } from '../types';
-import { addTodo, addTodoSuccess, toggleTodo } from '../actions/todos/actionTypes';
+import { addTodo, addTodoSuccess, toggleTodo } from '../actionTypes/todos';
 
 // types
 export type State = $$Map<string, $$Todo>;
