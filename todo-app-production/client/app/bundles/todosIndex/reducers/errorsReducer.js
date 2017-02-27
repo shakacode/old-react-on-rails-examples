@@ -8,14 +8,17 @@ import { addTodoFailure, removeTodoFailure } from '../actionTypes/todos';
 // types
 export type State = $$List<Error>;
 
-export const errorsInitialState = $$List();
+// initial state
+export const errorsInitialState = new $$List();
 
-const errors = handleActions(
-  {
-    [addTodoFailure]: (state: State, { payload }: errorPayload) => state.push(payload),
-    [removeTodoFailure]: (state: State, { payload }: errorPayload) => state.push(payload),
-  },
-  errorsInitialState,
-);
+// helpers
+const pushPayload = (state: State, { payload }: errorPayload) => state.push(payload);
 
-export default errors;
+// handlers
+const handlers = {
+  [addTodoFailure]: pushPayload,
+  [removeTodoFailure]: pushPayload,
+};
+
+// reducer
+export default handleActions(handlers, errorsInitialState);

@@ -10,13 +10,15 @@ export type State = string;
 // initial state
 export const addTodoFormInitialState = '';
 
-const addTodoForm = handleActions(
-  {
-    // eslint-disable-next-line no-unused-vars
-    [editAddTodoForm]: (state: string, { payload }: stringPayload) => payload,
-    [addTodo]: () => '',
-  },
-  addTodoFormInitialState,
-);
+// helpers
+// eslint-disable-next-line no-unused-vars
+const stateToPayload = (state: string, { payload }: stringPayload) => payload;
+const stateToEmptyString = () => '';
 
-export default addTodoForm;
+// handlers
+const handlers = {
+  [editAddTodoForm]: stateToPayload,
+  [addTodo]: stateToEmptyString,
+};
+
+export default handleActions(handlers, addTodoFormInitialState);
