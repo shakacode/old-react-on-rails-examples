@@ -1,7 +1,8 @@
+// @flow
 import { buildUrl } from './index';
 
 describe('libs/utils/api', () => {
-  test('{ buildUrl }', () => {
+  describe('{ buildUrl }', () => {
     it('combines a path and an object of key values into a url with a query', () => {
       const path = 'example.com';
       const query = { page: 1 };

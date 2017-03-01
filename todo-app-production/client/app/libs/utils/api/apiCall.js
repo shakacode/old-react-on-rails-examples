@@ -1,31 +1,34 @@
-import { isObject } from 'app/libs/utils';
+// @flow
+import _ from 'lodash/fp';
+
 import * as apiUtils from 'app/libs/utils/api';
 import { apiRoutes } from 'app/libs/routes/api';
 
 import createAjaxRequestTracker from './ajaxRequestTracker';
+import ApiError from './ApiError';
 
 export default {
-  get(params) {
+  get(params: any) {
     return this.callApi('GET', params);
   },
 
-  post(params) {
+  post(params: any) {
     return this.callApi('POST', params);
   },
 
-  patch(params) {
+  patch(params: any) {
     return this.callApi('PATCH', params);
   },
 
-  put(params) {
+  put(params: any) {
     return this.callApi('PUT', params);
   },
 
-  delete(params) {
+  delete(params: any) {
     return this.callApi('DELETE', params);
   },
 
-  callApi(method, rawParams) {
+  callApi(method: MethodType, rawParams: any) {
     const parsedParams = this.parseRawParams(method, rawParams);
 
     const reqUrl = this.buildReqUrl(parsedParams);
@@ -48,15 +51,15 @@ export default {
       });
   },
 
-  parseRawParams(method, rawParams) {
+  parseRawParams(method: MethodType, rawParams: string | Object) {
     return typeof rawParams === 'string' ? { method, url: rawParams } : Object.assign({}, { method }, rawParams);
   },
 
-  buildReqUrl(params) {
+  buildReqUrl(params: Request) {
     return params.remote ? params.url : apiRoutes.apiScope(params.url);
   },
 
-  buildReqParams(params) {
+  buildReqParams(params: Request) {
     const reqParams = {};
 
     reqParams.method = params.method;
@@ -71,7 +74,7 @@ export default {
         'Content-Type': 'application/json',
         'X-CSRF-Token': apiUtils.getCsrfToken(),
       };
-    } else if (params.remote && params.data && isObject(this.parseImmutableData(params.data))) {
+    } else if (params.remote && params.data && _.isPlainObject(this.parseImmutableData(params.data))) {
       reqParams.headers = {
         'Content-Type': 'application/json',
       };
@@ -80,33 +83,28 @@ export default {
     return reqParams;
   },
 
-  buildReqBody(data) {
+  buildReqBody(data: any) {
     const reqBody = this.parseImmutableData(data);
 
-    return isObject(reqBody) ? JSON.stringify(reqBody) : reqBody;
+    return _.isPlainObject(reqBody) ? JSON.stringify(reqBody) : reqBody;
   },
 
-  parseImmutableData(data) {
+  parseImmutableData(data: any) {
     return typeof data.toJS === 'function' ? data.toJS() : data;
   },
 
-  checkResponseStatus(response) {
+  checkResponseStatus(response: Response) {
     if (response.ok) return response;
 
     return response.json().then(errData => {
-      const isBadCsrfToken = response.status === 401 && response.message === 'FnG: Bad Authenticity Token';
+      const isBadCsrfToken = response.status === 401 && errData.message === 'Bad Authenticity Token';
       if (isBadCsrfToken) window.location.reload();
-      const error = new Error(response.statusText);
-      error.isApiError = true;
-      error.response = {
-        body: errData,
-        status: response.status,
-      };
+      const error = new ApiError(response.statusText, errData, response.status);
       throw error;
     });
   },
 
-  parseResponse(response) {
+  parseResponse(response: Response) {
     return response.status !== 204 ? response.json() : response;
   },
 };

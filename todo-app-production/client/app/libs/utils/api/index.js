@@ -1,10 +1,11 @@
+// @flow
 import { stringify } from 'qs';
 import _ from 'lodash/fp';
 
 import Environment from 'app/libs/constants/Environment';
 import * as env from 'app/libs/utils/env';
 
-export function buildUrl(path, query) {
+export function buildUrl(path: string, query: Object) {
   const filteredQuery = _.pickBy(_.identity, query);
   return `${path}?${stringify(filteredQuery, { arrayFormat: 'brackets' })}`;
 }

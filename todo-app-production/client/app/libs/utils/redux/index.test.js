@@ -1,7 +1,8 @@
+// @flow
 import { buildActionType } from './index';
 
 describe('utils/redux', () => {
-  test('buildActionType', () => {
+  describe('buildActionType', () => {
     it('creates an action type string', () => {
       const namespace = 'todos';
       const actionName = 'createSucceeded';
