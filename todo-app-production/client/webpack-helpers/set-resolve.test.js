@@ -1,3 +1,4 @@
+// @flow
 const setResolve = require('./set-resolve');
 
 describe('webpack-helpers/set-resolve', () => {

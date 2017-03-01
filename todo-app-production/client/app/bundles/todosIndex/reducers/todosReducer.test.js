@@ -1,3 +1,4 @@
+// @flow
 import { Map as $$Map } from 'immutable';
 
 import { normalizeArrayToMap } from 'app/libs/utils/normalizr';

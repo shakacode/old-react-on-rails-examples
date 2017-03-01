@@ -30,7 +30,7 @@
     "flow": "flow",
     "flow:all": "flow --show-all-errors",
     "flow:update": "flow-typed update",
-    "lint": "eslint --ext .js,.jsx .",
+    "lint": "eslint --fix --ext .js,.jsx .",
     "start": "NODE_ENV=dev babel-node server.js",
     "storybook": "NODE_ENV=test start-storybook -p 9001 -c .storybook",
     "test": "NODE_ENV=test jest .*\\.test\\.js",

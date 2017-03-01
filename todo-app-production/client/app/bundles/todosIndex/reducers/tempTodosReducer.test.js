@@ -1,3 +1,4 @@
+// @flow
 import { Map as $$Map, fromJS } from 'immutable';
 
 import * as actions from '../actions/todos';

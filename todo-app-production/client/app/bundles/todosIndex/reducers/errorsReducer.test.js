@@ -1,3 +1,4 @@
+// @flow
 import { addTodoFailure, removeTodoFailure } from '../actions/todos';
 import reducer, { errorsInitialState } from './errorsReducer';
 

@@ -1,3 +1,4 @@
+// @flow
 const _ = require('lodash/fp');
 
 const setPlugins = require('./set-plugins');
@@ -11,7 +12,7 @@ describe('webpack-helpers/set-plugins', () => {
   });
 
   describe('optimize', () => {
-    test('when builderConfig.optimize is true', () => {
+    describe('when builderConfig.optimize is true', () => {
       const builderConfig = { optimize: true };
 
       it('adds uglifyJS plugin', () => {
@@ -23,7 +24,7 @@ describe('webpack-helpers/set-plugins', () => {
   });
 
   describe('hmr', () => {
-    test('when builderConfig.hmr is true', () => {
+    describe('when builderConfig.hmr is true', () => {
       const builderConfig = { hmr: true };
 
       it('adds HotModuleReplacementPlugin', () => {
@@ -41,7 +42,7 @@ describe('webpack-helpers/set-plugins', () => {
   });
 
   describe('extractText', () => {
-    test('when builderConfig.extractText is true', () => {
+    describe('when builderConfig.extractText is true', () => {
       const builderConfig = { extractText: true };
 
       it('adds ExtractTextPlugin', () => {
@@ -53,7 +54,7 @@ describe('webpack-helpers/set-plugins', () => {
   });
 
   describe('chunk', () => {
-    test('when builderConfig.chunk is true', () => {
+    describe('when builderConfig.chunk is true', () => {
       const builderConfig = { chunk: true };
 
       it('uses CommonsChunkPlugin', () => {
@@ -63,13 +64,13 @@ describe('webpack-helpers/set-plugins', () => {
       });
     });
 
-    test('when builderConfig.chunk is falsy', () => {
+    describe('when builderConfig.chunk is falsy', () => {
       const builderConfig = { chunk: false };
 
       it('does not use CommonsChunkPlugin', () => {
         const actual = setPlugins(builderConfig, {}).plugins;
 
-        expect(_.find(['constructor.name', 'CommonsChunkPlugin'], actual)).toBeDefined();
+        expect(_.find(['constructor.name', 'CommonsChunkPlugin'], actual)).toBeUndefined();
       });
     });
   });
