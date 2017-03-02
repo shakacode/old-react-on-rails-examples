@@ -5,7 +5,11 @@ import _ from 'lodash/fp';
 import Environment from 'app/libs/constants/Environment';
 import * as env from 'app/libs/utils/env';
 
-export function buildUrl(path: string, query: Object) {
+type strictQuery = {|
+  page?: ?number,
+|};
+
+export function buildUrl(path: string, query: strictQuery) {
   const filteredQuery = _.pickBy(_.identity, query);
   return `${path}?${stringify(filteredQuery, { arrayFormat: 'brackets' })}`;
 }

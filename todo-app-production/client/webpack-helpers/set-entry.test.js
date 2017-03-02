@@ -8,10 +8,10 @@ describe('webpack-helpers/set-entry', () => {
       const builderConfig = { chunk: true, developerAids: true };
 
       it('uses adds "react-addons-perf" entry to vendor', () => {
-        const expected = [expect.stringMatching('react-addons-perf')];
+        const expected = expect.arrayContaining(['react-addons-perf']);
         const actual = setEntry(builderConfig, {}).entry.vendor;
 
-        expect(actual).toEqual(expect.arrayContaining(expected));
+        expect(actual).toEqual(expected);
       });
     });
   });
@@ -21,10 +21,10 @@ describe('webpack-helpers/set-entry', () => {
       const builderConfig = { chunk: true, extractText: false };
 
       it('uses basic bootstrap loader', () => {
-        const expected = [expect.stringMatching('bootstrap-loader')];
+        const expected = expect.arrayContaining(['bootstrap-loader']);
         const actual = setEntry(builderConfig, {}).entry.vendor;
 
-        expect(actual).toEqual(expect.arrayContaining(expected));
+        expect(actual).toEqual(expected);
       });
     });
 
@@ -32,10 +32,10 @@ describe('webpack-helpers/set-entry', () => {
       const builderConfig = { chunk: true, extractText: true };
 
       it('uses bootstrap extract-styles loader', () => {
-        const expected = [expect.stringMatching('bootstrap-loader/extractStyles')];
+        const expected = expect.arrayContaining(['bootstrap-loader/extractStyles']);
         const actual = setEntry(builderConfig, {}).entry.vendor;
 
-        expect(actual).toEqual(expect.arrayContaining(expected));
+        expect(actual).toEqual(expected);
       });
     });
   });

@@ -8,27 +8,27 @@ import createAjaxRequestTracker from './ajaxRequestTracker';
 import ApiError from './ApiError';
 
 export default {
-  get(params: any) {
+  get(params: string | Object) {
     return this.callApi('GET', params);
   },
 
-  post(params: any) {
+  post(params: string | Object) {
     return this.callApi('POST', params);
   },
 
-  patch(params: any) {
+  patch(params: string | Object) {
     return this.callApi('PATCH', params);
   },
 
-  put(params: any) {
+  put(params: string | Object) {
     return this.callApi('PUT', params);
   },
 
-  delete(params: any) {
+  delete(params: string | Object) {
     return this.callApi('DELETE', params);
   },
 
-  callApi(method: MethodType, rawParams: any) {
+  callApi(method: MethodType, rawParams: string | Object) {
     const parsedParams = this.parseRawParams(method, rawParams);
 
     const reqUrl = this.buildReqUrl(parsedParams);
