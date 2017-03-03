@@ -15,14 +15,6 @@ class TodosController < ApplicationController
     render json: @todo
   end
 
-  # GET /todos/new
-  def new
-    @todo = Todo.new
-  end
-
-  # GET /todos/1/edit
-  def edit; end
-
   # POST /todos
   # POST /todos.json
   def create

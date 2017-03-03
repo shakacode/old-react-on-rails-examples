@@ -28,6 +28,11 @@ export type numberPayload = {
   payload: number,
 };
 
+export type errorPayload = {
+  payload: any,
+  error: boolean,
+};
+
 export type tempTodoPayload = {
   payload: tempTodo,
 };

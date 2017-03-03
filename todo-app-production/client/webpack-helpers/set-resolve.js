@@ -7,7 +7,7 @@ function setResolve(_builderConfig, webpackConfig) {
     alias: {
       api: path.resolve(__dirname, '..', 'app', 'api'),
       app: path.resolve(__dirname, '..', 'app'),
-      'accounts-edit': path.resolve(__dirname, '..', 'app', 'bundles', 'hello-world'),
+      todosIndex: path.resolve(__dirname, '..', 'app', 'bundles', 'todosIndex'),
     },
     extensions: ['.js', '.jsx', '.json'],
   };

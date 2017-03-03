@@ -3,36 +3,30 @@
 # loglevel: debug
 
 # Major version of Bootstrap: 3 or 4
-bootstrapVersion: 3
+bootstrapVersion: 4
+
+# If Bootstrap version 4 is used - turn on/off flexbox model
+useFlexbox: true
 
 # Webpack loaders, order matters
 styleLoaders:
-  - style-loader
-  - css-loader
-  - sass-loader
+  - style
+  - css
+  - postcss
+  - sass
 
-# Extract styles to stand-alone css file
-# Different settings for different environments can be used,
-# It depends on value of NODE_ENV environment variable
-# This param can also be set in webpack config:
-#   entry: 'bootstrap?extractStyles!./app'
-# extractStyles: false
-# env:
-#   development:
-#     extractStyles: false
-#   production:
-#     extractStyles: true
+env:
+  development:
+    extractStyles: false
+  test:
+    extractStyles: false
+  production:
+    extractStyles: true
 
-# Customize Bootstrap variables that get imported before the original Bootstrap variables.
-# Thus original Bootstrap variables can depend on values from here.
 preBootstrapCustomizations: ./app/assets/styles/bootstrap/pre-customizations.scss
 
-# This gets loaded after bootstrap/variables is loaded
-# So you can refer to bootstrap variables
 bootstrapCustomizations: ./app/assets/styles/bootstrap/post-customizations.scss
 
-# With CSS Modules we load all application styles directly in React components
-# appStyles: ./app/assets/styles/globals/_index
 
 ### Bootstrap styles
 styles:
@@ -43,11 +37,11 @@ styles:
   # Reset and dependencies
   normalize: true
   print: true
-  glyphicons: true
 
   # Core CSS
-  scaffolding: true
+  reboot: true
   type: true
+  images: true
   code: true
   grid: true
   tables: true
@@ -55,40 +49,44 @@ styles:
   buttons: true
 
   # Components
-  component-animations: true
-  dropdowns: true
-  button-groups: true
-  input-groups: true
-  navs: true
+  animation: true
+  dropdown: true
+  button-group: true
+  input-group: true
+  custom-forms: true
+  nav: true
   navbar: true
-  breadcrumbs: true
+  card: true
+  breadcrumb: true
   pagination: true
-  pager: true
-  labels: true
-  badges: true
   jumbotron: true
-  thumbnails: true
-  alerts: true
-  progress-bars: true
+  alert: true
+  progress: true
   media: true
   list-group: true
-  panels: true
-  wells: true
   responsive-embed: true
   close: true
+  tags: true
 
   # Components w/ JavaScript
-  modals: true
+  modal: true
   tooltip: true
-  popovers: true
-  carousel: false
+  popover: true
+  carousel: true
 
   # Utility classes
   utilities: true
-  responsive-utilities: true
 
 ### Bootstrap scripts
 scripts:
   alert: true
   button: true
-  transition: true
+  carousel: true
+  collapse: true
+  dropdown: true
+  modal: true
+  popover: true
+  scrollspy: true
+  tab: true
+  tooltip: true
+  util: true

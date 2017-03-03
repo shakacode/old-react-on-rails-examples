@@ -1,8 +1,10 @@
 // @flow
 import { call, put, fork, takeEvery } from 'redux-saga/effects';
 import type { putEffect, IOEffect } from 'redux-saga/effects';
-import * as api from '../../../api';
-import { addTodo as addTodoActionType, removeTodo as removeTodoActionType } from '../actions/todos/actionTypes';
+
+import * as api from 'app/api/todos';
+
+import { addTodo as addTodoActionType, removeTodo as removeTodoActionType } from '../actionTypes/todos';
 import * as todosActions from '../actions/todos';
 import type { numberPayload, tempTodoPayload } from '../types';
 
