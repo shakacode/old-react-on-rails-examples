@@ -6,12 +6,13 @@ import * as api from 'app/api/todos';
 
 import { addTodo as addTodoActionType, removeTodo as removeTodoActionType } from '../actionTypes/todos';
 import * as todosActions from '../actions/todos';
+import { normalizeTodo } from '../schemas';
 import type { numberPayload, tempTodoPayload } from '../types';
 
 export function* addTodo({ payload }: tempTodoPayload): Generator<any, putEffect, any> {
   const { response, error } = yield call(api.addTodo, payload);
   if (response) {
-    yield put(todosActions.addTodoSuccess({ todo: response.data, tempTodo: payload }));
+    yield put(todosActions.addTodoSuccess({ todo: normalizeTodo(response.data), tempTodo: payload }));
   } else {
     yield put(todosActions.addTodoFailure(error.message));
   }
