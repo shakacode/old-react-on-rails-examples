@@ -15,6 +15,8 @@
     "url": "https://github.com/shakacode/react-on-rails-pro/issues"
   },
   "scripts": {
+    "all-checks": "npm run front-end-checks && npm run back-end-checks",
+    "back-end-checks": "cd .. && rake",
     "build:all:prod": "yarn run build:client-bundles:prod & yarn run build:server-bundle:prod; wait",
     "build:all:rspec": "yarn run build:client-bundles:rspec & yarn run build:server-bundle:rspec; wait",
     "build:all:rspec:watch": "yarn run build:client-bundles:rspec:watch & yarn run build:server-bundle:rspec:watch; wait",
@@ -30,8 +32,9 @@
     "flow": "flow",
     "flow:all": "flow --show-all-errors",
     "flow:update": "flow-typed update",
+    "front-end-checks": "npm test && npm run lint && npm run flow",
     "lint": "eslint --ext .js,.jsx .",
-    "prepush": "opt --out prepush --exec 'npm test && npm run lint && npm run flow'",
+    "prepush": "opt --in front-end-checks --exec 'npm run front-end-checks' && opt --in back-end-checks --exec 'npm run back-end-checks' && opt --in all-checks --exec 'npm run all-checks'",
     "start": "NODE_ENV=dev babel-node server.js",
     "storybook": "NODE_ENV=test start-storybook -p 9001 -c .storybook",
     "test": "NODE_ENV=test jest .*\\.test\\.js",
