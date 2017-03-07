@@ -5,6 +5,7 @@ import * as api from 'app/api/todos';
 
 import * as sagas from './index';
 import * as todosActions from '../actions/todos';
+import { normalizeTodo } from '../schemas';
 
 describe('addTodo Saga', () => {
   it('handles async responses', () => {
@@ -18,9 +19,16 @@ describe('addTodo Saga', () => {
     let nextGen = generator.next();
     expect(nextGen.value).toEqual(call(api.addTodo, payload));
 
-    const result = { response: { data: 'data' } };
+    const data = {
+      id: 1,
+      description: 'todo',
+      completed: false,
+      created_at: 'earlier',
+      updated_at: 'also earlier',
+    };
+    const result = { response: { data } };
     nextGen = generator.next(result);
-    expect(nextGen.value).toEqual(put(todosActions.addTodoSuccess({ todo: result.response.data, tempTodo: payload })));
+    expect(nextGen.value).toEqual(put(todosActions.addTodoSuccess({ todo: normalizeTodo(data), tempTodo: payload })));
   });
 
   it('handles async errors', () => {
