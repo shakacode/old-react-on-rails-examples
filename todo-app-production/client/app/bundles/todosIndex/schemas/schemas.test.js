@@ -1,5 +1,7 @@
 // @flow
-import { Map as $$Map, OrderedSet as $$OrderedSet } from 'immutable';
+import { OrderedSet as $$OrderedSet } from 'immutable';
+
+import { normalizeArrayToMap } from 'app/libs/utils/normalizr';
 
 import { normalizeTodo } from './index';
 
@@ -14,9 +16,7 @@ test('normalizeTodos', () => {
   const actual = normalizeTodo(apiResponse);
   const expected = {
     entities: {
-      todos: $$Map({
-        [1]: $$Map(apiResponse), // eslint-disable-line no-useless-computed-key
-      }).mapKeys(id => parseInt(id, 10)),
+      todos: normalizeArrayToMap([apiResponse]),
     },
     result: $$OrderedSet([1]),
   };
