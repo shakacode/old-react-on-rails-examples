@@ -88,6 +88,7 @@ function setPlugins(builderConfig, webpackConfig) {
     ),
     ifHmr(new webpack.HotModuleReplacementPlugin()),
     ifHmr(new webpack.NoEmitOnErrorsPlugin()),
+    ifHmr(new webpack.NamedModulesPlugin()),
     ifOptimize(
       new webpack.optimize.UglifyJsPlugin({
         compress: {
