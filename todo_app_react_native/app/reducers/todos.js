@@ -1,8 +1,7 @@
-import createReducer from '../lib/createReducer'
-import * as types from '../actions/types'
+import * as types from '../actions/types';
 
 export default function todos(state = [], action) {
-  switch(action.type) {
+  switch (action.type) {
     case types.ADD_TODO:
       return [
         ...state,
