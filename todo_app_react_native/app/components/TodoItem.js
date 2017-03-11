@@ -17,3 +17,7 @@ export default class TodoItem extends Component {
     );
   }
 }
+
+TodoItem.propTypes = {
+  text: React.PropTypes.string,
+};

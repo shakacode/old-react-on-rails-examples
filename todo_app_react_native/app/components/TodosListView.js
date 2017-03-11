@@ -19,6 +19,14 @@ class TodosListView extends Component {
   }
 }
 
+TodosListView.propTypes = {
+  todos: React.PropTypes.arrayOf(
+    React.PropTypes.shape({
+      id: React.PropTypes.number,
+      text: React.PropTypes.string,
+      completed: React.PropTypes.bool })),
+};
+
 function getVisibleTodos(todos, filter) {
   switch (filter) {
     case 'SHOW_ALL':
