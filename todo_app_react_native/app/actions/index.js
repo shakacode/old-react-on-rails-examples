@@ -3,9 +3,10 @@ import * as types from './types';
 let nextTodoId = 0;
 
 export function addTodo(text) {
+  nextTodoId += 1;
   return {
     type: types.ADD_TODO,
-    id: nextTodoId++,
+    id: nextTodoId,
     text,
   };
 }
