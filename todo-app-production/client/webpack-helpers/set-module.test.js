@@ -40,16 +40,16 @@ describe('webpack-helpers/set-module', () => {
         const cssLoader = _.find({ test: /\.css$/ }, setModule(builderConfig, {}).module.rules);
         const sassLoader = _.find({ test: /\.scss$/ }, setModule(builderConfig, {}).module.rules);
 
-        expect(cssLoader.loader).toMatch(/extract-text-webpack-plugin/);
-        expect(sassLoader.loader).toMatch(/extract-text-webpack-plugin/);
+        expect(cssLoader.loader[0].loader).toMatch(/extract-text-webpack-plugin/);
+        expect(sassLoader.loader[0].loader).toMatch(/extract-text-webpack-plugin/);
       });
 
       it('minimizes Sass and CSS', () => {
         const cssLoader = _.find({ test: /\.css$/ }, setModule(builderConfig, {}).module.rules);
         const sassLoader = _.find({ test: /\.scss$/ }, setModule(builderConfig, {}).module.rules);
 
-        expect(cssLoader.loader).toMatch(/minimize/);
-        expect(sassLoader.loader).toMatch(/minimize/);
+        expect(cssLoader.loader[2].query.minimize).toBe(true);
+        expect(sassLoader.loader[2].query.minimize).toBe(true);
       });
     });
 

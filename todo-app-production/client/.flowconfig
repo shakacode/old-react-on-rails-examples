@@ -1,6 +1,7 @@
 [ignore]
 .*/bin/.*
 .*/node_modules/react-motion/.*
+.*/node_modules/react-base16-styling/__tests__/.*
 
 [include]
 
