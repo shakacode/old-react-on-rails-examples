@@ -57,8 +57,8 @@ const extractTextStyleLoaders = () => [
   {
     test: /\.css$/,
     loader: ExtractTextPlugin.extract({
-      fallbackLoader: 'style-loader',
-      loader: [
+      fallback: 'style-loader',
+      use: [
         {
           loader: 'css-loader',
           query: {
@@ -75,8 +75,8 @@ const extractTextStyleLoaders = () => [
   {
     test: /\.scss$/,
     loader: ExtractTextPlugin.extract({
-      fallbackLoader: 'style-loader',
-      loader: [
+      fallback: 'style-loader',
+      use: [
         {
           loader: 'css-loader',
           query: {
@@ -131,9 +131,7 @@ const serverRenderingStyleLoaders = () => [
 
 function setModule(builderConfig, webpackConfig) {
   const webpackModule = {
-    noParse: removeEmpty([
-      /\.min\.js$/,
-    ]),
+    noParse: removeEmpty([/\.min\.js$/]),
     rules: removeEmpty([
       {
         test: /\.woff2?$/,
