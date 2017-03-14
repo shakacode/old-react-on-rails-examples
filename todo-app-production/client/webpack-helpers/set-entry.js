@@ -17,6 +17,7 @@ function setEntry(builderConfig, webpackConfig) {
     'todos-index': entryLoc('./app/bundles/todosIndex/startup/registration.js'),
     vendor: [
       'babel-polyfill',
+      'react-hot-loader/patch',
       'classnames',
       'es5-shim',
       'immutable',

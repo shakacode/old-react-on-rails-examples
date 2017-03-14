@@ -4,9 +4,9 @@ import { AppContainer } from 'react-hot-loader';
 
 import actualApp from '../containers/App';
 
-const App = (Component: () => React$Element<any>) => (
+const App = (child: () => React$Element<any>) => (
   <AppContainer>
-    <Component />
+    <child />
   </AppContainer>
 );
 

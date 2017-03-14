@@ -10,10 +10,8 @@ import AddTodoFormContainer from './AddTodoFormContainer';
 import TodoListContainer from './TodoListContainer';
 import NavLinks from '../components/NavLinks';
 
-const store = ReactOnRails.getStore('todoListStore');
-
 const App = () => (
-  <Provider store={store}>
+  <Provider store={ReactOnRails.getStore('todoListStore')}>
     <div>
       <Router basename="/todos">
         <Route path="/:filter">
