@@ -2,7 +2,7 @@
   "presets": [["es2015", { "modules": false }], "stage-2", "react"],
   "env": {
     "development": {
-      "plugins": ["flow-react-proptypes"]
+      "plugins": ["flow-react-proptypes", "react-hot-loader/babel"]
     },
     "test": {
       "presets":  ["es2015", "stage-2", "react"]

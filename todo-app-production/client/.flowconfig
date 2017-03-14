@@ -9,6 +9,7 @@
 ./flow-typed/
 node_modules/iflow-immutable/index.js.flow
 node_modules/iflow-react-router/index.js.flow
+app/libs/interfaces/module.js.flow
 
 [options]
 module.system=node

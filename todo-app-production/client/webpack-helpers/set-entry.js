@@ -7,17 +7,17 @@ function setEntry(builderConfig, webpackConfig) {
     return _.set('entry', './server-rendering-entry.js', webpackConfig);
   }
 
-  const entryLoc = loc => (
+  const entryLoc = loc => // eslint-disable-line no-confusing-arrow
     builderConfig.hmr
       ? [`webpack-dev-server/client?http://lvh.me:${getPort()}`, 'webpack/hot/only-dev-server', loc]
-      : [loc]
-  );
+      : [loc];
 
   const entry = {
     'global-styles': entryLoc('./app/assets/styles/globals/base.js'),
-    'todos-index': entryLoc('./app/bundles/todosIndex/startup/App.jsx'),
+    'todos-index': entryLoc('./app/bundles/todosIndex/startup/registration.js'),
     vendor: [
       'babel-polyfill',
+      'react-hot-loader/patch',
       'classnames',
       'es5-shim',
       'immutable',

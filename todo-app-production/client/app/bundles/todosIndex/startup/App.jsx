@@ -1,32 +1,17 @@
 // @flow
-import React from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-} from 'react-router-dom';
-import ReactOnRails from 'react-on-rails';
-import { Provider } from 'react-redux';
+import React from 'react'; // eslint-disable-next-line import/no-extraneous-dependencies
+import { AppContainer } from 'react-hot-loader';
 
-import store from '../store';
-import AddTodoFormContainer from '../containers/AddTodoFormContainer';
-import NavLinks from '../components/NavLinks';
-import TodoListContainer from '../containers/TodoListContainer';
+import ActualApp from '../containers/App';
 
-const App = (railsProps: {}, _railsContext) => (
-  <Provider store={store(railsProps)}>
-    <Router basename="/todos">
-      <Route path="/:filter">
-        {
-          (_matchProps) =>
-            <div>
-              <AddTodoFormContainer />
-              <NavLinks />
-              <TodoListContainer />
-            </div>
-        }
-      </Route>
-    </Router>
-  </Provider>
+const App = () => (
+  <AppContainer>
+    <ActualApp />
+  </AppContainer>
 );
 
-ReactOnRails.register({ App });
+if (module.hot) {
+  module.hot.accept('../containers/App', App);
+}
+
+export default App;
