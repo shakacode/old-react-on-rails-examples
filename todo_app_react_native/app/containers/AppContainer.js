@@ -34,8 +34,8 @@ class AppContainer extends Component {
           <TextInput
             style={styles.textInput}
             placeholder="What do you want to get done?"
-            onChangeText={(text) => this.state.text = text}
-            ref={(textInput) => this.textInput = textInput}
+            onChangeText={(text) => { this.state.text = text; }}
+            ref={(textInput) => { this.textInput = textInput; }}
           />
           <Button
             style={styles.addButton}
