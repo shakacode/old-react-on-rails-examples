@@ -2,20 +2,16 @@
 import React from 'react'; // eslint-disable-next-line import/no-extraneous-dependencies
 import { AppContainer } from 'react-hot-loader';
 
-import actualApp from '../containers/App';
+import ActualApp from '../containers/App';
 
-const App = (child: () => React$Element<any>) => (
+const App = () => (
   <AppContainer>
-    <child />
+    <ActualApp />
   </AppContainer>
 );
 
-App(actualApp);
-
 if (module.hot) {
-  module.hot.accept('../containers/App', () => {
-    App(actualApp);
-  });
+  module.hot.accept('../containers/App', App);
 }
 
 export default App;
