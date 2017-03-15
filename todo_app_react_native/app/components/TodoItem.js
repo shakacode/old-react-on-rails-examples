@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import {
   View,
-  Text,
   TouchableHighlight,
 } from 'react-native';
+import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from './TodoItemStyle';
+import { toggleTodo } from '../actions';
 
+class TodoItem extends Component {
+  onTodoClick = () => {
+    this.props.dispatch(toggleTodo(this.props.id));
+  };
 
-export default class TodoItem extends Component {
   render() {
     const iconName =
       this.props.completed ? 'check-box' : 'check-box-outline-blank';
@@ -29,6 +33,7 @@ export default class TodoItem extends Component {
             iconStyle={{ marginRight:0, marginLeft: -10 }}
             activeOpacity={1}
             borderRadius={5}
+            onPress={this.onTodoClick}
           >
             {this.props.text}
           </Icon.Button>
@@ -41,5 +46,16 @@ export default class TodoItem extends Component {
 TodoItem.propTypes = {
   text: React.PropTypes.string,
   completed: React.PropTypes.bool,
-  onClick: React.PropTypes.function,
 };
+
+function mapStateToProps(state) {
+  return {};
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoItem);
