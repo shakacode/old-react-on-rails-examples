@@ -6,7 +6,6 @@ const styles = StyleSheet.create({
     padding: 1,
   },
   topBar: {
-    flex: 1,
     flexDirection: 'row',
     padding: 20,
   },
@@ -19,9 +18,12 @@ const styles = StyleSheet.create({
   addButton: {
     flex: 1,
     height: 35,
+    width: 40,
   },
-  todosList: {
-    flex: 1,
+  scrollSection: {
+    backgroundColor: 'transparent',
+    paddingLeft: 5,
+    paddingRight: 5,
   },
 });
 

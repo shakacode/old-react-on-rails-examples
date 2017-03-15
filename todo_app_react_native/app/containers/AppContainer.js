@@ -4,10 +4,11 @@ import {
   TextInput,
   Button,
   View,
+  ScrollView,
 } from 'react-native';
-import TodosListView from '../components/TodosListView';
 import { addTodo } from '../actions';
 import styles from './AppContainerStyle';
+import TodoItem from '../components/TodoItem';
 
 class AppContainer extends Component {
   constructor(props) {
@@ -43,16 +44,31 @@ class AppContainer extends Component {
             onPress={this.onAddButton}
           />
         </View>
-        <TodosListView />
+        <ScrollView style={styles.scrollSection}>
+          { this.props.todos.map((todo) => <TodoItem {...todo} />) }
+        </ScrollView>
       </View>
     );
+  }
+}
+
+function getVisibleTodos(todos, filter) {
+  switch (filter) {
+    case 'SHOW_ALL':
+      return todos;
+    case 'SHOW_ACTIVE':
+      return todos.filter(t => !t.completed);
+    case 'SHOW_COMPLETED':
+      return todos.filter(t => t.completed);
+    default:
+      return todos;
   }
 }
 
 function mapStateToProps(state) {
   return {
     visbilityFilter: state.visbilityFilter,
-    todos: state.todos,
+    todos: getVisibleTodos(state.todos, state.visbilityFilter),
   };
 }
 
