@@ -4,7 +4,7 @@ import * as colors from '../styles/colors';
 const styles = StyleSheet.create({
   todoSection: {
     flex: 1,
-    justifyContent: 'center',
+    flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: colors.ITEM_BACKGROUND_COLOR,
   },

@@ -5,15 +5,20 @@ import {
 import { connect } from 'react-redux';
 import styles from './TodosListViewStyle';
 import TodoItem from './TodoItem';
+import { toggleTodo } from '../actions';
 
 // TODO: Make this into a ListView, for now just a ScrollView - much simpler
 
 class TodosListView extends Component {
 
+  onTodoClick = () => {
+    this.props.dispatch(toggleTodo(this.props.id));
+  };
+
   render() {
     return (
       <ScrollView style={styles.scrollSection}>
-        { this.props.todos.map((todo) => <TodoItem {...todo} />) }
+        { this.props.todos.map((todo) => <TodoItem {...todo} onClick={this.onTodoClick} />) }
       </ScrollView>
     );
   }

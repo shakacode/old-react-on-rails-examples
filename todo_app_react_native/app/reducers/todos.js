@@ -12,4 +12,12 @@ export const todos = createReducer([], {
       },
     ];
   },
+  [types.TOGGLE_TODO](state, action) {
+    return state.map(t => {
+      if (t.id === action.id) {
+        return Object.assign({}, t, { completed: !action.completed });
+      }
+      return t;
+    });
+  },
 });
