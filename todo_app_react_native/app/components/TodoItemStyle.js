@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
   todoSection: {
     flex: 1,
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     backgroundColor: colors.ITEM_BACKGROUND_COLOR,
   },
   todoText: {
