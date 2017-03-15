@@ -45,7 +45,7 @@ class AppContainer extends Component {
           />
         </View>
         <ScrollView style={styles.scrollSection}>
-          { this.props.todos.map((todo) => <TodoItem {...todo} />) }
+          { this.props.todos.map((todo) => <TodoItem {...todo} key={todo.id} />) }
         </ScrollView>
       </View>
     );
