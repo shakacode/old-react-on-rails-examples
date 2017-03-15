@@ -1929,10 +1929,6 @@ css-color-names@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/css-color-names/-/css-color-names-0.0.4.tgz#808adc2e79cf84738069b646cb20ec27beb629e0"
 
-css-element-queries@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/css-element-queries/-/css-element-queries-0.3.2.tgz#535d80891b3af21395d005f19905fe5154b5ccff"
-
 css-loader@^0.26.1:
   version "0.26.4"
   resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-0.26.4.tgz#b61e9e30db94303e6ffc892f10ecd09ad025a1fd"
@@ -3024,10 +3020,6 @@ generate-object-property@^1.1.0:
 get-caller-file@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-1.0.2.tgz#f702e63127e7e231c160a80c1554acb70d5047e5"
-
-get-params@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/get-params/-/get-params-0.1.2.tgz#bae0dfaba588a0c60d7834c0d8dc2ff60eeef2fe"
 
 get-stdin@^4.0.1:
   version "4.0.1"
@@ -5547,8 +5539,8 @@ react-inspector@^1.1.0:
     is-dom "^1.0.5"
 
 react-json-tree@^0.10.0:
-  version "0.10.6"
-  resolved "https://registry.yarnpkg.com/react-json-tree/-/react-json-tree-0.10.6.tgz#8abb67007dbaad8a27328a6c39c211c3858aef88"
+  version "0.10.7"
+  resolved "https://registry.yarnpkg.com/react-json-tree/-/react-json-tree-0.10.7.tgz#1f6cd1b1b7dc01f9745b7a30ffabe2c880d04d4c"
   dependencies:
     babel-runtime "^6.6.1"
     react-base16-styling "^0.5.1"
@@ -5822,13 +5814,6 @@ redux-devtools-diff-monitor@^5.0.5:
     immutable "^3.7.6"
     react-json-tree "^0.6.5"
 
-redux-devtools-dispatch@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/redux-devtools-dispatch/-/redux-devtools-dispatch-2.2.0.tgz#7181389dc2f44bbc51bb2893f8c9a11d8a5672f2"
-  dependencies:
-    get-params "^0.1.2"
-    redux-devtools-themes "^1.0.0"
-
 redux-devtools-dock-monitor@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/redux-devtools-dock-monitor/-/redux-devtools-dock-monitor-1.1.1.tgz#6ef4ff5a7c42f5d7fa39c34859a8f4eb4dee9947"
@@ -5854,10 +5839,6 @@ redux-devtools-log-monitor@^1.2.0:
     react-pure-render "^1.0.2"
     redux-devtools-themes "^1.0.0"
 
-redux-devtools-multiple-monitors@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/redux-devtools-multiple-monitors/-/redux-devtools-multiple-monitors-1.0.1.tgz#ee456f61f45f765c5a36fa993952d2af33162199"
-
 redux-devtools-themes@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/redux-devtools-themes/-/redux-devtools-themes-1.0.0.tgz#c482dce3c5373976045f40134907d9dcb3ae3d5d"
@@ -5880,13 +5861,6 @@ redux-logger@^2.8.2:
 redux-saga@^0.14.3:
   version "0.14.3"
   resolved "https://registry.yarnpkg.com/redux-saga/-/redux-saga-0.14.3.tgz#28cd2c5b49cf780a1de25875765724150c630513"
-
-redux-slider-monitor@^1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/redux-slider-monitor/-/redux-slider-monitor-1.0.7.tgz#6ad06af012381d58edfd1cc0361c7e2c258b3940"
-  dependencies:
-    css-element-queries "^0.3.2"
-    redux-devtools-themes "^1.0.0"
 
 redux@^3.5.2, redux@^3.6.0:
   version "3.6.0"

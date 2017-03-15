@@ -79,6 +79,7 @@
     "recompose": "^0.22.0",
     "redux": "^3.6.0",
     "redux-actions": "^2.0.1",
+    "redux-devtools-log-monitor": "^1.2.0",
     "redux-saga": "^0.14.3",
     "reselect": "^2.5.3",
     "resolve-url-loader": "^2.0.0",
@@ -122,12 +123,8 @@
     "redux-devtools": "^3.3.2",
     "redux-devtools-chart-monitor": "^1.6.1",
     "redux-devtools-diff-monitor": "^5.0.5",
-    "redux-devtools-dispatch": "^2.2.0",
     "redux-devtools-dock-monitor": "^1.1.1",
-    "redux-devtools-log-monitor": "^1.2.0",
-    "redux-devtools-multiple-monitors": "^1.0.1",
     "redux-logger": "^2.8.2",
-    "redux-slider-monitor": "^1.0.7",
     "webpack-dev-server": "^2.4.1"
   },
   "peerDependencies": {
