@@ -23,24 +23,6 @@ describe('webpack-helpers/set-plugins', () => {
     });
   });
 
-  describe('hmr', () => {
-    describe('when builderConfig.hmr is true', () => {
-      const builderConfig = { hmr: true };
-
-      it('adds HotModuleReplacementPlugin', () => {
-        const actual = setPlugins(builderConfig, {}).plugins;
-
-        expect(_.find(['constructor.name', 'HotModuleReplacementPlugin'], actual)).toBeDefined();
-      });
-
-      it('adds NoEmitOnErrorsPlugin', () => {
-        const actual = setPlugins(builderConfig, {}).plugins;
-
-        expect(_.find(['constructor.name', 'NoEmitOnErrorsPlugin'], actual)).toBeDefined();
-      });
-    });
-  });
-
   describe('extractText', () => {
     describe('when builderConfig.extractText is true', () => {
       const builderConfig = { extractText: true };

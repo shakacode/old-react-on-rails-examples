@@ -3,5 +3,5 @@
 # TODO: Re-enable when we do server rendering
 # NODE_ENV=test \
 # $(yarn bin)/webpack \
-#   --env.serverBundleRspec \
+#   --env=serverBundleRspec \
 #   --config webpack.config.babel.js

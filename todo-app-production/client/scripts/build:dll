@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [[ $WEBPACK_SKIP_DLL_BUILD == "true" ]]; then
+  echo "Skipping DLL build...";
+  exit 0
+fi
+
+echo "Compiling DLL development build...";
+
+rm -rf ../app/assets/webpack-dll/*
+
+$(yarn bin)/webpack --config webpack.config.dll.babel.js
