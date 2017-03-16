@@ -23,6 +23,11 @@ module.exports.vendor = [
   'redux',
   'redux-saga',
   'reselect',
+  'redux-devtools',
+  'redux-devtools-chart-monitor',
+  'redux-devtools-diff-monitor',
+  'redux-devtools-dock-monitor',
+  'redux-logger',
 ];
 
-module.exports.dllExceptions = ['bootstrap-loader/extractStyles', 'jquery'];
+module.exports.dllExceptions = ['bootstrap-loader/extractStyles'];

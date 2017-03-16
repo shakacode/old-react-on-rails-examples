@@ -4,14 +4,9 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const { vendor, dllExceptions } = require('./webpack-helpers/vendor');
 const { getDllPath } = require('./webpack-helpers/utils');
 
-const sharedStoreBundle = './app/bundles/shared-store';
-
 module.exports = {
   entry: {
-    vendor:
-      vendor
-        .filter(lib => !dllExceptions.includes(lib))
-        .concat(sharedStoreBundle),
+    vendor: vendor.filter(lib => !dllExceptions.includes(lib)),
   },
   output: {
     filename: '[name]-client-bundle.js',
