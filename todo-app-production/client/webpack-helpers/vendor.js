@@ -23,11 +23,14 @@ module.exports.vendor = [
   'redux',
   'redux-saga',
   'reselect',
+];
+
+module.exports.dllExceptions = ['bootstrap-loader/extractStyles'];
+
+module.exports.devtools = [
   'redux-devtools',
   'redux-devtools-chart-monitor',
   'redux-devtools-diff-monitor',
   'redux-devtools-dock-monitor',
   'redux-logger',
 ];
-
-module.exports.dllExceptions = ['bootstrap-loader/extractStyles'];

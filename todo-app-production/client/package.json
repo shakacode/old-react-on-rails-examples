@@ -102,7 +102,6 @@
     "@kadira/storybook": "^2.35.3",
     "babel-jest": "^19.0.0",
     "babel-plugin-flow-react-proptypes": "^0.21.0",
-    "babel-plugin-react-transform": "2.0.2",
     "babel-plugin-transform-react-remove-prop-types": "^0.3.2",
     "babel-plugin-typecheck": "3.9.0",
     "eslint": "^3.17.1",

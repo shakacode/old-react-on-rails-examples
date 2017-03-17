@@ -1,12 +1,12 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const { vendor, dllExceptions } = require('./webpack-helpers/vendor');
+const { vendor, dllExceptions, devtools } = require('./webpack-helpers/vendor');
 const { getDllPath } = require('./webpack-helpers/utils');
 
 module.exports = {
   entry: {
-    vendor: vendor.filter(lib => !dllExceptions.includes(lib)),
+    vendor: vendor.filter(lib => !dllExceptions.includes(lib)).concat(devtools),
   },
   output: {
     filename: '[name]-client-bundle.js',

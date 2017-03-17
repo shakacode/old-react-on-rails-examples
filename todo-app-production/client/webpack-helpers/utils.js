@@ -1,3 +1,6 @@
+/* eslint-disable no-confusing-arrow */
+const path = require('path');
+
 module.exports = {
   addOption: (shouldAdd, option) => shouldAdd ? option : undefined,
   removeEmpty: array => array.filter(item => !!item),

@@ -37,7 +37,7 @@ describe('webpack-helpers/set-plugins', () => {
 
   describe('chunk', () => {
     describe('when builderConfig.chunk is true', () => {
-      const builderConfig = { chunk: true };
+      const builderConfig = { deps: 'chunks' };
 
       it('uses CommonsChunkPlugin', () => {
         const actual = setPlugins(builderConfig, {}).plugins;
@@ -47,7 +47,7 @@ describe('webpack-helpers/set-plugins', () => {
     });
 
     describe('when builderConfig.chunk is falsy', () => {
-      const builderConfig = { chunk: false };
+      const builderConfig = {};
 
       it('does not use CommonsChunkPlugin', () => {
         const actual = setPlugins(builderConfig, {}).plugins;

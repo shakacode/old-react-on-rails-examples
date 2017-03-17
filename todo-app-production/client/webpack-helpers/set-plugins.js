@@ -6,10 +6,11 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const { addOption, getEnvVar, removeEmpty, getDllPath } = require('./utils');
 
 function setPlugins(builderConfig, webpackConfig) {
-  const ifDll = option => addOption(builderConfig.deps === 'dll', option);
   const ifChunk = option => addOption(builderConfig.deps === 'chunks', option);
-  const ifOptimize = option => addOption(builderConfig.optimize, option);
+  const ifDeveloperAids = option => addOption(builderConfig.developerAids, option);
+  const ifDll = option => addOption(builderConfig.deps === 'dll', option);
   const ifExtractText = option => addOption(builderConfig.extractText, option);
+  const ifOptimize = option => addOption(builderConfig.optimize, option);
 
   let dllManifest;
   try {
@@ -64,20 +65,7 @@ function setPlugins(builderConfig, webpackConfig) {
           cacheDirectory: '../tmp/babel-cache',
           plugins: removeEmpty([
             ifOptimize('babel-plugin-transform-react-remove-prop-types'),
-            // ifDeveloperAids('typecheck'), // skipped until typecheck can be updated
-            // ifDeveloperAids('babel-plugin-flow-react-proptypes'),
-            ifHmr([
-              'babel-plugin-react-transform',
-              {
-                transforms: [
-                  {
-                    transform: 'react-transform-hmr',
-                    imports: ['react'],
-                    locals: ['module'],
-                  },
-                ],
-              },
-            ]),
+            ifDeveloperAids('babel-plugin-flow-react-proptypes'),
           ]),
         },
       },
