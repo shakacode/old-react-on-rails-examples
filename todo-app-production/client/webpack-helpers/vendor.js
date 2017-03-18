@@ -25,7 +25,7 @@ module.exports.vendor = [
   'reselect',
 ];
 
-module.exports.dllExceptions = ['bootstrap-loader/extractStyles'];
+module.exports.dllExceptions = ['babel-polyfill'];
 
 module.exports.devtools = [
   'redux-devtools',

@@ -7,8 +7,8 @@ function setEntry(builderConfig, webpackConfig) {
   const withDllExceptions = bundle => builderConfig.deps === 'dll' ? dllExceptions.concat(bundle) : bundle;
 
   const entry = {
-    'global-styles': withDllExceptions('./app/assets/styles/globals/base.js'),
-    'todos-index': './app/bundles/todosIndex/startup/App.jsx',
+    'global-styles': './app/assets/styles/globals/base.js',
+    'todos-index': withDllExceptions('./app/bundles/todosIndex/startup/App.jsx'),
   };
 
   if (builderConfig.deps === 'chunks') {

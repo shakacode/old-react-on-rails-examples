@@ -21,7 +21,6 @@ Rails.application.config.assets.version = "1.0"
 Rails.application.config.assets.paths << Rails.root.join("app", "assets", "webpack")
 
 Rails.application.config.assets.precompile += %w(*-client-bundle.*)
-end
 
 Rails.application.config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
 Rails.application.config.assets.precompile += %w(*.eot *.svg *.ttf *.woff *.woff2)
