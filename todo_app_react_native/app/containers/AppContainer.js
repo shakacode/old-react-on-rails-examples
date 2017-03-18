@@ -6,9 +6,10 @@ import {
   View,
   ScrollView,
 } from 'react-native';
-import { addTodo } from '../actions';
+import { addTodo, setVisbilityFilter } from '../actions';
 import styles from './AppContainerStyle';
 import TodoItem from '../components/TodoItem';
+import * as todoList from '../model/todoList';
 
 class AppContainer extends Component {
   constructor(props) {
@@ -17,10 +18,9 @@ class AppContainer extends Component {
       text: '',
     };
     this.textInput = null;
-    this.onAddButton = this.onAddButton.bind(this);
   }
 
-  onAddButton() {
+  onAddButton = () => {
     if (this.state.text !== '') {
       this.props.dispatch(addTodo(this.state.text));
       this.textInput.clear();
@@ -28,47 +28,49 @@ class AppContainer extends Component {
     }
   }
 
+  onListButton = () => {
+    this.props.dispatch(
+      setVisbilityFilter(
+        todoList.getNextState(this.props.visbilityFilter)
+      ));
+  };
+
   render() {
+    const filterButtonLabel = todoList.getNextState(this.props.visbilityFilter);
     return (
       <View style={styles.container}>
-        <View style={styles.topBar}>
-          <TextInput
-            style={styles.textInput}
-            placeholder="What do you want to get done?"
-            onChangeText={(text) => { this.state.text = text; }}
-            ref={(textInput) => { this.textInput = textInput; }}
-          />
-          <Button
-            style={styles.addButton}
-            title="ADD"
-            onPress={this.onAddButton}
-          />
+        <View flexDirection='column'>
+          <View style={styles.topBar}>
+            <TextInput
+              style={styles.textInput}
+              placeholder="What do you want to get done?"
+              onChangeText={(text) => { this.state.text = text; }}
+              ref={(textInput) => { this.textInput = textInput; }}
+            />
+            <Button
+              style={styles.addButton}
+              title="ADD"
+              onPress={this.onAddButton}
+            />
+          </View>
+          <ScrollView style={styles.scrollSection}>
+            { this.props.todos.map((todo) => <TodoItem {...todo} key={todo.id} />) }
+          </ScrollView>
         </View>
-        <ScrollView style={styles.scrollSection}>
-          { this.props.todos.map((todo) => <TodoItem {...todo} key={todo.id} />) }
-        </ScrollView>
+        <Button
+          style={styles.listButton}
+          title={filterButtonLabel}
+          onPress={this.onListButton}
+        />
       </View>
     );
-  }
-}
-
-function getVisibleTodos(todos, filter) {
-  switch (filter) {
-    case 'SHOW_ALL':
-      return todos;
-    case 'SHOW_ACTIVE':
-      return todos.filter(t => !t.completed);
-    case 'SHOW_COMPLETED':
-      return todos.filter(t => t.completed);
-    default:
-      return todos;
   }
 }
 
 function mapStateToProps(state) {
   return {
     visbilityFilter: state.visbilityFilter,
-    todos: getVisibleTodos(state.todos, state.visbilityFilter),
+    todos: todoList.getVisibleTodos(state.todos, state.visbilityFilter),
   };
 }
 

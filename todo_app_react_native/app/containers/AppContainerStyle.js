@@ -20,6 +20,10 @@ const styles = StyleSheet.create({
     height: 35,
     width: 40,
   },
+  listButton: {
+    flexDirection: 'row',
+    height: 35,
+  },
   scrollSection: {
     backgroundColor: 'transparent',
     paddingLeft: 5,

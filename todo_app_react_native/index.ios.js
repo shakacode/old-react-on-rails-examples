@@ -12,6 +12,7 @@ import createLogger from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 import reducer from './app/reducers';
 import AppContainer from './app/containers/AppContainer';
+import * as todoList from './app/model/todoList';
 
 const loggerMiddleware = createLogger({ predicate: (getState, action) => __DEV__ });
 
@@ -24,7 +25,7 @@ function configureStore(initialState) {
   return createStore(reducer, initialState, enhancer);
 }
 
-const store = configureStore({ visbilityFilter: 'SHOW_ALL', todos: [] });
+const store = configureStore({ visbilityFilter: todoList.SHOW_ALL, todos: [] });
 
 const App = () => (
   <Provider store={store}>
