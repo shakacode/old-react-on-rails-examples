@@ -12,15 +12,8 @@ function setPlugins(builderConfig, webpackConfig) {
   const ifExtractText = option => addOption(builderConfig.extractText, option);
   const ifOptimize = option => addOption(builderConfig.optimize, option);
 
-  let dllManifest;
-  try {
-    // eslint-disable-next-line global-require, import/no-dynamic-require
-    dllManifest = require(getDllPath('vendor.json'));
-  } catch (error) {
-    if (builderConfig.deps === 'dll') {
-      throw new Error('DLL manifest is missing. Run `yarn run build:dll`');
-    }
-  }
+  // eslint-disable-next-line global-require, import/no-dynamic-require
+  const dllManifest = require(getDllPath('vendor.json'));
 
   const plugins = removeEmpty([
     ifDll(
