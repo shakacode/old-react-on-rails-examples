@@ -1,48 +1,18 @@
+/* eslint-disable no-confusing-arrow */
 const _ = require('lodash/fp');
 
-const { getPort } = require('./utils');
+const { vendor, dllExceptions } = require('./vendor');
 
 function setEntry(builderConfig, webpackConfig) {
-  if (!builderConfig.chunk) {
-    return _.set('entry', './server-rendering-entry.js', webpackConfig);
-  }
-
-  const entryLoc = loc => (
-    builderConfig.hmr
-      ? [`webpack-dev-server/client?http://lvh.me:${getPort()}`, 'webpack/hot/only-dev-server', loc]
-      : [loc]
-  );
+  const withDllExceptions = bundle => builderConfig.deps === 'dll' ? dllExceptions.concat(bundle) : bundle;
 
   const entry = {
-    'global-styles': entryLoc('./app/assets/styles/globals/base.js'),
-    'todos-index': entryLoc('./app/bundles/todosIndex/startup/App.jsx'),
-    vendor: [
-      'babel-polyfill',
-      'classnames',
-      'es5-shim',
-      'immutable',
-      'isomorphic-fetch',
-      'lodash',
-      'lodash/fp',
-      'normalizr',
-      'react',
-      'react-dom',
-      'react-on-rails',
-      'react-redux',
-      'recompose',
-      'redux',
-      'reselect',
-    ],
+    'global-styles': './app/assets/styles/globals/base.js',
+    'todos-index': withDllExceptions('./app/bundles/todosIndex/startup/App.jsx'),
   };
 
-  if (builderConfig.extractText) {
-    entry.vendor.push('bootstrap-loader/extractStyles');
-  } else {
-    entry.vendor.push('bootstrap-loader');
-  }
-
-  if (builderConfig.developerAids) {
-    entry.vendor.push('react-addons-perf');
+  if (builderConfig.deps === 'chunks') {
+    entry.vendor = vendor;
   }
 
   return _.set('entry', entry, webpackConfig);

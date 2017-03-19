@@ -23,24 +23,6 @@ describe('webpack-helpers/set-plugins', () => {
     });
   });
 
-  describe('hmr', () => {
-    describe('when builderConfig.hmr is true', () => {
-      const builderConfig = { hmr: true };
-
-      it('adds HotModuleReplacementPlugin', () => {
-        const actual = setPlugins(builderConfig, {}).plugins;
-
-        expect(_.find(['constructor.name', 'HotModuleReplacementPlugin'], actual)).toBeDefined();
-      });
-
-      it('adds NoEmitOnErrorsPlugin', () => {
-        const actual = setPlugins(builderConfig, {}).plugins;
-
-        expect(_.find(['constructor.name', 'NoEmitOnErrorsPlugin'], actual)).toBeDefined();
-      });
-    });
-  });
-
   describe('extractText', () => {
     describe('when builderConfig.extractText is true', () => {
       const builderConfig = { extractText: true };
@@ -55,7 +37,7 @@ describe('webpack-helpers/set-plugins', () => {
 
   describe('chunk', () => {
     describe('when builderConfig.chunk is true', () => {
-      const builderConfig = { chunk: true };
+      const builderConfig = { deps: 'chunks' };
 
       it('uses CommonsChunkPlugin', () => {
         const actual = setPlugins(builderConfig, {}).plugins;
@@ -65,7 +47,7 @@ describe('webpack-helpers/set-plugins', () => {
     });
 
     describe('when builderConfig.chunk is falsy', () => {
-      const builderConfig = { chunk: false };
+      const builderConfig = {};
 
       it('does not use CommonsChunkPlugin', () => {
         const actual = setPlugins(builderConfig, {}).plugins;

@@ -1,0 +1,7 @@
+#!/bin/sh
+
+NODE_ENV=dev \
+$(yarn bin)/webpack \
+  --env=dev \
+  --config webpack.config.babel.js \
+  --watch

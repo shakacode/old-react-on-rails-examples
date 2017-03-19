@@ -14,7 +14,7 @@ import type { State as errorsState } from './errorsReducer';
 export type State = {
   todos: todosState,
   tempTodos: tempTodosState,
-  AddTodoForm: addTodoFormState,
+  addTodoForm: addTodoFormState,
   errors: errorsState,
 };
 

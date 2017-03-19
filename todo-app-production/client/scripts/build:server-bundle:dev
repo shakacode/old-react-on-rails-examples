@@ -2,5 +2,5 @@
 
 NODE_ENV=dev \
 $(yarn bin)/webpack \
-  --env.serverBundleDev \
+  --env=serverBundleDev \
   --config webpack.config.babel.js

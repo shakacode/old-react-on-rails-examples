@@ -152,19 +152,6 @@ function setModule(builderConfig, webpackConfig) {
         use: 'file-loader',
       },
       {
-        test: require.resolve('jquery'),
-        use: [
-          {
-            loader: 'expose-loader',
-            query: 'jQuery',
-          },
-          {
-            loader: 'expose-loader',
-            query: '$',
-          },
-        ],
-      },
-      {
         test: /bootstrap-sass\/assets\/javascripts\//,
         use: {
           loader: 'imports-loader',

@@ -3,4 +3,5 @@
 NODE_ENV=test \
 $(yarn bin)/webpack \
   --env=rspec \
-  --config webpack.config.babel.js
+  --config webpack.config.babel.js \
+  --watch

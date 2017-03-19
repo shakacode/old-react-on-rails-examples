@@ -1,5 +1,7 @@
-const _ = require('lodash/fp');
+const fs = require('fs');
+
 const builder = require('./webpack-helpers/builder');
+const { getDllPath } = require('./webpack-helpers/utils');
 
 /*
  * builder config options:
@@ -14,9 +16,9 @@ const builder = require('./webpack-helpers/builder');
  */
 const BUILDER_CONFIGS = {
   dev: {
-    chunk: true,
+    deps: 'dll',
     developerAids: true,
-    hmr: true,
+    extractText: true,
     sourceMaps: 'eval',
   },
 
@@ -27,7 +29,7 @@ const BUILDER_CONFIGS = {
   },
 
   prod: {
-    chunk: true,
+    deps: 'chunks',
     extractText: true,
     optimize: true,
     sourceMaps: 'source-map',
@@ -40,7 +42,7 @@ const BUILDER_CONFIGS = {
   },
 
   rspec: {
-    chunk: true,
+    deps: 'chunks',
     developerAids: true,
     extractText: true,
     sourceMaps: 'inline-source-map',
@@ -53,12 +55,12 @@ const BUILDER_CONFIGS = {
   },
 };
 
-// envs come in like: { prod: true }
-module.exports = env => {
-  const envKey = _.keys(env)[0] || 'prod';
-  const builderConfig = BUILDER_CONFIGS[envKey];
-  // NOTE: `eslint-import-resolver-webpack` rethrows this as it doesn't pass any `env`
-  // if (!builderConfig) throw new Error(`Webpack config received unknown env key: ${envKey}`);
+module.exports = (env = 'prod') => {
+  const builderConfig = BUILDER_CONFIGS[env];
+
+  if (builderConfig.deps === 'dll' && !fs.existsSync(getDllPath('vendor.json'))) {
+    throw new Error('DLL manifest is missing. Run `yarn run build:dll`');
+  }
 
   return builder(builderConfig);
 };
