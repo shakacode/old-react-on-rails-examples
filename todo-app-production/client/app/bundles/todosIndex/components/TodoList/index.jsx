@@ -8,11 +8,16 @@ import type { MappedTodo } from '../../types';
 type Props = {
   todos: MappedTodo,
   onTodoClick: Function,
+  editTodo: Function,
+  editTodoDescription: Function,
 };
 
-const TodoList = ({ todos, onTodoClick }: Props) => (
+const TodoList = ({ todos, onTodoClick, editTodo, editTodoDescription }: Props) => (
   <ul>
-    {_.map(todo => <Todo key={todo.id} {...todo} onClick={onTodoClick} />, todos)}
+    {_.map(
+      todo => <Todo {...todo} onClick={onTodoClick} editTodo={editTodo} editTodoDescription={editTodoDescription} />,
+      todos,
+    )}
   </ul>
 );
 

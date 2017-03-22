@@ -4,8 +4,8 @@ import { Map as $$Map } from 'immutable';
 
 import { normalizeArrayToMap } from 'app/libs/utils/normalizr';
 
-import type { $$Todo, numberPayload, addTodoSuccessPayload } from '../types';
-import { addTodoSuccess, removeTodoSuccess, toggleTodo } from '../actionTypes/todos';
+import type { $$Todo, numberPayload, addTodoSuccessPayload, tempTodoPayload } from '../types';
+import { addTodoSuccess, removeTodoSuccess, editTodoDescription, toggleTodo } from '../actionTypes/todos';
 
 // types
 export type State = $$Map<number, $$Todo>;
@@ -16,6 +16,8 @@ export const todosInitialState = $$Map();
 // helpers
 const createTodo = (state: State, { payload }: addTodoSuccessPayload) => state.merge(normalizeArrayToMap(payload.todo));
 const deleteTodo = (state: State, { payload }: numberPayload) => state.delete(payload);
+const editDescription = (state: State, { payload }: tempTodoPayload) =>
+  state.setIn([payload.id, 'description'], payload.description);
 const toggle = (state: State, { payload }: numberPayload) => {
   const oldTodo: $$Todo = state.get(payload);
   const newTodo: $$Todo = oldTodo.set('completed', !oldTodo.get('completed'));
@@ -26,6 +28,7 @@ const toggle = (state: State, { payload }: numberPayload) => {
 const handlers = {
   [addTodoSuccess]: createTodo,
   [removeTodoSuccess]: deleteTodo,
+  [editTodoDescription]: editDescription,
   [toggleTodo]: toggle,
 };
 

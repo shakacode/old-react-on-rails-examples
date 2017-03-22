@@ -18,6 +18,17 @@ test('addTodoSuccess', () => {
   expect(actual).toEqual(expected);
 });
 
+test('edits the description of selected Todo', () => {
+  const todoId = 0;
+  const state = todosInitialState.set(todoId, $$Map({ description: 'todo', completed: true }));
+  const action = actions.editTodoDescription({ id: todoId, description: 'new description' });
+
+  const actual = reducer(state, action);
+  const expected = todosInitialState.set(todoId, $$Map({ description: 'new description', completed: true }));
+
+  expect(actual).toEqual(expected);
+});
+
 test('removeTodoSuccess', () => {
   const todoId = 0;
   const state = todosInitialState.set(todoId, $$Map({ description: 'todo', completed: true }));

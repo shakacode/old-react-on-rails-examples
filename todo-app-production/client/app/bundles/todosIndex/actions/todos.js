@@ -10,6 +10,10 @@ export const addTodo = createAction(todos.addTodo, (description: string, id: str
 }));
 export const addTodoSuccess = createAction(todos.addTodoSuccess);
 export const addTodoFailure = createAction(todos.addTodoFailure);
+export const editTodo = createAction(todos.editTodo);
+export const editTodoDescription = createAction(todos.editTodoDescription);
+export const editTodoSuccess = createAction(todos.editTodoSuccess);
+export const editTodoFailure = createAction(todos.editTodoFailure);
 export const removeTodo = createAction(todos.removeTodo);
 export const removeTodoSuccess = createAction(todos.removeTodoSuccess);
 export const removeTodoFailure = createAction(todos.removeTodoFailure);

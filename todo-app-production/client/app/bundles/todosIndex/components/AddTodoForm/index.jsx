@@ -8,14 +8,20 @@ type Props = {
 };
 
 const AddTodoForm = ({ text, addTodo, editAddTodoForm }: Props) => (
-  <form onSubmit={event => event.preventDefault() && addTodo(event.target.value)}>
+  <form
+    onSubmit={event => {
+      event.preventDefault();
+      event.stopPropagation();
+      addTodo(event.target.firstChild.value);
+    }}
+  >
     <input
       type="text"
       value={text}
       placeholder="Describe what you need to do here."
       onChange={event => editAddTodoForm(event.target.value)}
     />
-    <input className="hidden" type="submit" />
+    <input className="hidden-xs-up" type="submit" />
   </form>
 );
 

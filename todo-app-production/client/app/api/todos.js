@@ -12,6 +12,12 @@ export const addTodo = (data: tempTodo) => {
   return apiCall.post({ url, data });
 };
 
+// /api/v1/todos
+export const editTodo = (todo: tempTodo) => {
+  const url = todosScope(`/${todo.id}`);
+  return apiCall.put({ url, description: todo.description });
+};
+
 // /api/v1/todos/:todo_id
 export const removeTodo = (todoId: number) => {
   const url = todosScope(`/${todoId}`);

@@ -3,7 +3,7 @@ import { handleActions } from 'redux-actions';
 import { List as $$List } from 'immutable';
 
 import type { errorPayload } from '../types';
-import { addTodoFailure, removeTodoFailure } from '../actionTypes/todos';
+import { addTodoFailure, editTodoFailure, removeTodoFailure } from '../actionTypes/todos';
 
 // types
 export type State = $$List<Error>;
@@ -17,6 +17,7 @@ const pushPayload = (state: State, { payload }: errorPayload) => state.push(payl
 // handlers
 const handlers = {
   [addTodoFailure]: pushPayload,
+  [editTodoFailure]: pushPayload,
   [removeTodoFailure]: pushPayload,
 };
 
