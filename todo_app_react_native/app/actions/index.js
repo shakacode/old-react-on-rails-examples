@@ -1,8 +1,10 @@
+// @flow
+
 import * as types from './types';
 
 let nextTodoId = 0;
 
-export function addTodo(text) {
+export function addTodo(text: string) {
   nextTodoId += 1;
   return {
     type: types.ADD_TODO,
@@ -11,14 +13,14 @@ export function addTodo(text) {
   };
 }
 
-export function setVisbilityFilter(filter) {
+export function setVisbilityFilter(filter: string) {
   return {
     type: types.SET_VISIBILITY_FILTER,
     filter,
   };
 }
 
-export function toggleTodo(id) {
+export function toggleTodo(id: number) {
   return {
     type: types.TOGGLE_TODO,
     id,
