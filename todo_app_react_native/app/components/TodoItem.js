@@ -4,19 +4,19 @@ import {
   View,
   TouchableHighlight,
 } from 'react-native';
-import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from './TodoItemStyle';
-import { toggleTodo } from '../actions';
 
 type PropsType = {
   text: string,
   completed: bool,
+  id: number,
+  onTodoClick: Function,
 };
 
-class TodoItem extends Component {
+export default class TodoItem extends Component {
   onTodoClick = () => {
-    this.props.dispatch(toggleTodo(this.props.id));
+    this.props.onTodoClick(this.props.id);
   }
 
   props: PropsType
@@ -38,7 +38,7 @@ class TodoItem extends Component {
           <Icon.Button
             name={iconName}
             size={40}
-            iconStyle={{ marginRight:0, marginLeft: -10 }}
+            iconStyle={{ marginRight: 0, marginLeft: -10 }}
             activeOpacity={1}
             borderRadius={5}
             onPress={this.onTodoClick}
@@ -50,15 +50,3 @@ class TodoItem extends Component {
     );
   }
 }
-
-function mapStateToProps() {
-  return {};
-}
-
-function mapDispatchToProps(dispatch: Object) {
-  return {
-    dispatch,
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(TodoItem);
