@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import {
   View,
@@ -8,12 +9,19 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from './TodoItemStyle';
 import { toggleTodo } from '../actions';
 
+type PropsType = {
+  text: string,
+  completed: bool,
+};
+
 class TodoItem extends Component {
   onTodoClick = () => {
     this.props.dispatch(toggleTodo(this.props.id));
-  };
+  }
 
-  render() {
+  props: PropsType
+
+  render = () => {
     const iconName =
       this.props.completed ? 'check-box' : 'check-box-outline-blank';
     return (
@@ -43,16 +51,11 @@ class TodoItem extends Component {
   }
 }
 
-TodoItem.propTypes = {
-  text: React.PropTypes.string,
-  completed: React.PropTypes.bool,
-};
-
-function mapStateToProps(state) {
+function mapStateToProps() {
   return {};
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Object) {
   return {
     dispatch,
   };
