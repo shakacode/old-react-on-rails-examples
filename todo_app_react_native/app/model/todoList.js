@@ -33,14 +33,14 @@ const nextState = {
 };
 
 export function getVisibleTodos(todos, filter) {
-  if (todosFilters.hasOwnProperty(filter)) {
+  if (Object.prototype.hasOwnProperty.call(todosFilters, filter)) {
     return todosFilters[filter](todos);
   }
   return todos;
 }
 
 export function getNextState(state) {
-  if (nextState.hasOwnProperty(state)) {
+  if (Object.prototype.hasOwnProperty.call(nextState, state)) {
     return nextState[state]();
   }
   return state;

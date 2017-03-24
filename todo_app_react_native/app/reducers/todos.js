@@ -1,7 +1,7 @@
 import * as types from '../actions/types';
 import createReducer from '../lib/createReducer';
 
-export const todos = createReducer([], {
+const todos = createReducer([], {
   [types.ADD_TODO](state, action) {
     return [
       ...state,
@@ -21,3 +21,5 @@ export const todos = createReducer([], {
     });
   },
 });
+
+export default todos;
