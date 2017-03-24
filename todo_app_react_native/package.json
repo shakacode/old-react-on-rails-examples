@@ -21,6 +21,7 @@
     "babel-jest": "19.0.0",
     "babel-plugin-flow-react-proptypes": "^0.21.0",
     "babel-preset-react-native": "1.9.1",
+    "babylon": "^6.16.1",
     "eslint": "^3.17.1",
     "eslint-config-shakacode": "^14.1.1",
     "eslint-plugin-babel": "^4.1.1",

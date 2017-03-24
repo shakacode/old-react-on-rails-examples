@@ -3,6 +3,7 @@ import createReducer from '../lib/createReducer';
 
 const todos = createReducer([], {
   [types.ADD_TODO](state, action) {
+    console.log('Add todo reducer.');
     return [
       ...state,
       {

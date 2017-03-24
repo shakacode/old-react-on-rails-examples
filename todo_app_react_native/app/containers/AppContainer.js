@@ -1,5 +1,6 @@
 // @flow
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {
   TextInput,
@@ -31,6 +32,7 @@ class AppContainer extends Component {
 
   onAddButton = () => {
     if (this.state.text !== '') {
+      console.log('Calling addTodo.');
       this.props.addTodo(this.state.text);
       this.textInput.clear();
       this.state.text = '';
@@ -94,12 +96,9 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps() {
-  return {
-    addTodo,
-    setVisbilityFilter,
-    toggleTodo,
-  };
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    { addTodo, setVisbilityFilter, toggleTodo }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

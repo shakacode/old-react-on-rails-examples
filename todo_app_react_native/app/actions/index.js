@@ -6,6 +6,7 @@ let nextTodoId = 0;
 
 export function addTodo(text: string) {
   nextTodoId += 1;
+  console.log('ADD_TODO triggered.');
   return {
     type: types.ADD_TODO,
     id: nextTodoId,
