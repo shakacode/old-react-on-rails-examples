@@ -32,7 +32,6 @@ class AppContainer extends Component {
 
   onAddButton = () => {
     if (this.state.text !== '') {
-      console.log('Calling addTodo.');
       this.props.addTodo(this.state.text);
       this.textInput.clear();
       this.state.text = '';
