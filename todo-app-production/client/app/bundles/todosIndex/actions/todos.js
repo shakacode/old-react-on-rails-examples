@@ -1,13 +1,9 @@
 // @flow
-import _ from 'lodash/fp';
 import { createAction } from 'redux-actions';
 
 import * as todos from '../actionTypes/todos';
 
-export const addTodo = createAction(todos.addTodo, (description: string, id: string = _.uniqueId('TEMP_TODO_')) => ({
-  description,
-  id,
-}));
+export const addTodo = createAction(todos.addTodo);
 export const addTodoSuccess = createAction(todos.addTodoSuccess);
 export const addTodoFailure = createAction(todos.addTodoFailure);
 export const editTodo = createAction(todos.editTodo);

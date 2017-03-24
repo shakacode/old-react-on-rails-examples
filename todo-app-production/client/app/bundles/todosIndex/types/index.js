@@ -3,7 +3,7 @@ import { Map as $$Map } from 'immutable';
 
 export type $$Todo = $$Map<string, string | boolean>;
 
-export type tempTodo = {
+export type descriptionAndId = {
   id: string,
   description: string,
 };
@@ -20,6 +20,10 @@ export type MappedTodo = {
   [id: number]: Todo,
 };
 
+export type normalizedTodoPayload = {
+  payload: $$Map<number, Todo>,
+};
+
 export type stringPayload = {
   payload: string,
 };
@@ -33,13 +37,6 @@ export type errorPayload = {
   error: boolean,
 };
 
-export type tempTodoPayload = {
-  payload: tempTodo,
-};
-
-export type addTodoSuccessPayload = {
-  payload: {
-    todo: Todo,
-    tempTodo: tempTodo,
-  },
+export type descriptionPayload = {
+  payload: descriptionAndId,
 };
