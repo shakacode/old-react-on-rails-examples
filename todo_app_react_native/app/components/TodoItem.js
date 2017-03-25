@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import {
   View,
   TouchableHighlight,
+  Text,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from './TodoItemStyle';
@@ -24,27 +25,33 @@ export default class TodoItem extends Component {
   render = () => {
     const iconName =
       this.props.completed ? 'check-box' : 'check-box-outline-blank';
+    const color = this.props.completed ? '#C5C8C9' : '#000';
+    const textDecorationLine = this.props.completed ? 'line-through' : 'none';
     return (
       <TouchableHighlight
         underlayColor={'#eee'}
         style={{
           paddingTop: 6,
           paddingBottom: 6,
-          backgroundColor: "#F8F8F8",
+          backgroundColor: "clear",
           borderBottomWidth: 1,
           borderColor: '#eee' }}
       >
         <View style={styles.todoSection}>
           <Icon.Button
             name={iconName}
+            color={color}
             size={40}
             iconStyle={{ marginRight: 0, marginLeft: -10 }}
             activeOpacity={1}
             borderRadius={5}
+            backgroundColor='rgba(0,0,0,0)'
+            underlayColor='rgba(0,0,0,0)'
             onPress={this.onTodoClick}
-          >
+          />
+          <Text style={{fontSize:18, color: color, textDecorationLine: textDecorationLine}}>
             {this.props.text}
-          </Icon.Button>
+          </Text>
         </View>
       </TouchableHighlight>
     );
