@@ -48,7 +48,13 @@ export default class TodoItem extends Component {
             underlayColor='rgba(0,0,0,0)'
             onPress={this.onTodoClick}
           />
-          <Text style={{fontSize:18, color: color, textDecorationLine: textDecorationLine}}>
+          <Text
+            style={{
+              fontSize: 18,
+              color: color,
+              textDecorationLine: textDecorationLine
+            }}
+          >
             {this.props.text}
           </Text>
         </View>
