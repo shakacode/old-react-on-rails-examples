@@ -33,7 +33,6 @@ export default class TodoItem extends Component {
         style={{
           paddingTop: 6,
           paddingBottom: 6,
-          backgroundColor: "clear",
           borderBottomWidth: 1,
           borderColor: '#eee' }}
       >
