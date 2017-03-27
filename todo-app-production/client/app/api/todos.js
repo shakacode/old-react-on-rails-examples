@@ -7,9 +7,10 @@ import type { descriptionAndId } from 'todosIndex/types';
 export const todosScope = (path: ?string) => `/todos${path || ''}`;
 
 // /api/v1/todos
-export const addTodo = (data: string) => {
+export const addTodo = (description: string, completed: boolean = false) => {
   const url = todosScope();
-  return apiCall.post({ url, data });
+  const todoParams = { todo: { description, completed } };
+  return apiCall.post({ url, data: todoParams });
 };
 
 // /api/v1/todos
