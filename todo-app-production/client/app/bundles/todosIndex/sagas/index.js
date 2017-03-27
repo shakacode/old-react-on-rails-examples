@@ -14,30 +14,18 @@ import * as todosActions from '../actions/todos';
 import type { numberPayload, stringPayload, descriptionPayload } from '../types';
 
 export function* addTodo({ payload }: stringPayload): Generator<any, putEffect, any> {
-  const { response, error } = yield call(api.addTodo, payload);
-  if (response) {
-    yield put(todosActions.addTodoSuccess(normalizeObjectToMap(response.data)));
-  } else {
-    yield put(todosActions.addTodoFailure(error.message));
-  }
+  const response = yield call(api.addTodo, payload);
+  yield put(todosActions.addTodoSuccess(normalizeObjectToMap([response.data])));
 }
 
 export function* editTodo({ payload }: descriptionPayload): Generator<any, putEffect, any> {
-  const { response, error } = yield call(api.editTodo, payload);
-  if (response) {
-    yield put(todosActions.editTodoSuccess(normalizeObjectToMap(response.data)));
-  } else {
-    yield put(todosActions.editTodoFailure(error.message));
-  }
+  const response = yield call(api.editTodo, payload);
+  yield put(todosActions.editTodoSuccess(normalizeObjectToMap([response.data])));
 }
 
 export function* removeTodo({ payload }: numberPayload): Generator<any, putEffect, any> {
-  const { response, error } = yield call(api.removeTodo, payload);
-  if (response) {
-    yield put(todosActions.removeTodoSuccess(response.data));
-  } else {
-    yield put(todosActions.removeTodoFailure(error.message));
-  }
+  const response = yield call(api.removeTodo, payload);
+  yield put(todosActions.removeTodoSuccess(response.data));
 }
 
 function* addTodoSaga() {
