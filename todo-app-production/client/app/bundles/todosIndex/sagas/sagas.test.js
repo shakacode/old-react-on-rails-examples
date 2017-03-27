@@ -2,22 +2,20 @@
 import { call, put } from 'redux-saga/effects';
 
 import * as api from 'app/api/todos';
+import { normalizeArrayToMap } from 'app/libs/utils/normalizr';
 
 import * as sagas from './index';
 import * as todosActions from '../actions/todos';
-import { normalizeTodo } from '../schemas';
 
 describe('addTodo Saga', () => {
   it('handles async responses', () => {
     const description = 'todo description';
-    const id = 'todoId';
-    const payload = { description, id };
 
-    const action = todosActions.addTodo(description, id);
+    const action = todosActions.addTodo(description);
     const generator = sagas.addTodo(action);
 
     let nextGen = generator.next();
-    expect(nextGen.value).toEqual(call(api.addTodo, payload));
+    expect(nextGen.value).toEqual(call(api.addTodo, description));
 
     const data = {
       id: 1,
@@ -28,19 +26,17 @@ describe('addTodo Saga', () => {
     };
     const result = { response: { data } };
     nextGen = generator.next(result);
-    expect(nextGen.value).toEqual(put(todosActions.addTodoSuccess({ todo: normalizeTodo(data), tempTodo: payload })));
+    expect(nextGen.value).toEqual(put(todosActions.addTodoSuccess(normalizeArrayToMap([data]))));
   });
 
   it('handles async errors', () => {
     const description = 'todo description';
-    const id = 'todoId';
-    const payload = { description, id };
 
-    const action = todosActions.addTodo(description, id);
+    const action = todosActions.addTodo(description);
     const generator = sagas.addTodo(action);
 
     let nextGen = generator.next();
-    expect(nextGen.value).toEqual(call(api.addTodo, payload));
+    expect(nextGen.value).toEqual(call(api.addTodo, description));
 
     const result = { error: { message: 'error!' } };
     nextGen = generator.next(result);
@@ -69,7 +65,7 @@ describe('editTodo Saga', () => {
     };
     const result = { response: { data } };
     nextGen = generator.next(result);
-    expect(nextGen.value).toEqual(put(todosActions.editTodoSuccess({ todo: normalizeTodo(data), tempTodo: payload })));
+    expect(nextGen.value).toEqual(put(todosActions.editTodoSuccess(normalizeArrayToMap([data]))));
   });
 
   it('handles async errors', () => {

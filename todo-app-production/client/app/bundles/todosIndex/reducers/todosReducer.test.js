@@ -7,13 +7,13 @@ import * as actions from '../actions/todos';
 import reducer, { todosInitialState } from './todosReducer';
 
 test('addTodoSuccess', () => {
-  const todo = { id: 0, description: 'todo' };
-  const payload = { todo };
+  const todo = normalizeArrayToMap([{ id: 0, description: 'todo description' }]);
+  const payload = todo;
   const state = todosInitialState;
   const action = actions.addTodoSuccess(payload);
 
   const actual = reducer(state, action);
-  const expected = state.merge(normalizeArrayToMap(todo));
+  const expected = state.merge(todo);
 
   expect(actual).toEqual(expected);
 });

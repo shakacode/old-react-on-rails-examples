@@ -3,6 +3,7 @@ import { call, put, fork, takeEvery } from 'redux-saga/effects';
 import type { putEffect, IOEffect } from 'redux-saga/effects';
 
 import * as api from 'app/api/todos';
+import { normalizeArrayToMap } from 'app/libs/utils/normalizr';
 
 import {
   addTodo as addTodoActionType,
@@ -10,22 +11,21 @@ import {
   editTodo as editTodoActionType,
 } from '../actionTypes/todos';
 import * as todosActions from '../actions/todos';
-import { normalizeTodo } from '../schemas';
-import type { numberPayload, tempTodoPayload } from '../types';
+import type { numberPayload, stringPayload, descriptionPayload } from '../types';
 
-export function* addTodo({ payload }: tempTodoPayload): Generator<any, putEffect, any> {
+export function* addTodo({ payload }: stringPayload): Generator<any, putEffect, any> {
   const { response, error } = yield call(api.addTodo, payload);
   if (response) {
-    yield put(todosActions.addTodoSuccess({ todo: normalizeTodo(response.data), tempTodo: payload }));
+    yield put(todosActions.addTodoSuccess(normalizeArrayToMap([response.data])));
   } else {
     yield put(todosActions.addTodoFailure(error.message));
   }
 }
 
-export function* editTodo({ payload }: tempTodoPayload): Generator<any, putEffect, any> {
+export function* editTodo({ payload }: descriptionPayload): Generator<any, putEffect, any> {
   const { response, error } = yield call(api.editTodo, payload);
   if (response) {
-    yield put(todosActions.editTodoSuccess({ todo: normalizeTodo(response.data), tempTodo: payload }));
+    yield put(todosActions.editTodoSuccess(normalizeArrayToMap([response.data])));
   } else {
     yield put(todosActions.editTodoFailure(error.message));
   }
