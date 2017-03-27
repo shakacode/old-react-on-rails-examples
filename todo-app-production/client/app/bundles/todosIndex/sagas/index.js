@@ -14,13 +14,13 @@ import * as todosActions from '../actions/todos';
 import type { numberPayload, stringPayload, descriptionPayload } from '../types';
 
 export function* addTodo({ payload }: stringPayload): Generator<any, putEffect, any> {
-  const response = yield call(api.addTodo, payload);
-  yield put(todosActions.addTodoSuccess(normalizeObjectToMap([response.data])));
+  const { response } = yield call(api.addTodo, payload);
+  yield put(todosActions.addTodoSuccess(normalizeObjectToMap(response.data)));
 }
 
 export function* editTodo({ payload }: descriptionPayload): Generator<any, putEffect, any> {
-  const response = yield call(api.editTodo, payload);
-  yield put(todosActions.editTodoSuccess(normalizeObjectToMap([response.data])));
+  const { response } = yield call(api.editTodo, payload);
+  yield put(todosActions.editTodoSuccess(normalizeObjectToMap(response.data)));
 }
 
 export function* removeTodo({ payload }: numberPayload): Generator<any, putEffect, any> {
