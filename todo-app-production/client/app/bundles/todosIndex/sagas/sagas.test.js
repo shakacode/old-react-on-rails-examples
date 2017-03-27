@@ -2,7 +2,7 @@
 import { call, put } from 'redux-saga/effects';
 
 import * as api from 'app/api/todos';
-import { normalizeArrayToMap } from 'app/libs/utils/normalizr';
+import { normalizeObjectToMap } from 'app/libs/utils/normalizr';
 
 import * as sagas from './index';
 import * as todosActions from '../actions/todos';
@@ -26,7 +26,7 @@ describe('addTodo Saga', () => {
     };
     const result = { response: { data } };
     nextGen = generator.next(result);
-    expect(nextGen.value).toEqual(put(todosActions.addTodoSuccess(normalizeArrayToMap([data]))));
+    expect(nextGen.value).toEqual(put(todosActions.addTodoSuccess(normalizeObjectToMap(data))));
   });
 
   it('handles async errors', () => {
@@ -65,7 +65,7 @@ describe('editTodo Saga', () => {
     };
     const result = { response: { data } };
     nextGen = generator.next(result);
-    expect(nextGen.value).toEqual(put(todosActions.editTodoSuccess(normalizeArrayToMap([data]))));
+    expect(nextGen.value).toEqual(put(todosActions.editTodoSuccess(normalizeObjectToMap(data))));
   });
 
   it('handles async errors', () => {

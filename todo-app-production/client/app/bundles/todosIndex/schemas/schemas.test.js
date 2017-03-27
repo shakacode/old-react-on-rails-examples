@@ -1,7 +1,7 @@
 // @flow
 import { OrderedSet as $$OrderedSet } from 'immutable';
 
-import { normalizeArrayToMap } from 'app/libs/utils/normalizr';
+import { normalizeObjectToMap } from 'app/libs/utils/normalizr';
 
 import { normalizeTodo } from './index';
 
@@ -16,7 +16,7 @@ test('normalizeTodos', () => {
   const actual = normalizeTodo(apiResponse);
   const expected = {
     entities: {
-      todos: normalizeArrayToMap([apiResponse]),
+      todos: normalizeObjectToMap(apiResponse),
     },
     result: $$OrderedSet([1]),
   };

@@ -3,7 +3,7 @@ import { call, put, fork, takeEvery } from 'redux-saga/effects';
 import type { putEffect, IOEffect } from 'redux-saga/effects';
 
 import * as api from 'app/api/todos';
-import { normalizeArrayToMap } from 'app/libs/utils/normalizr';
+import { normalizeObjectToMap } from 'app/libs/utils/normalizr';
 
 import {
   addTodo as addTodoActionType,
@@ -16,7 +16,7 @@ import type { numberPayload, stringPayload, descriptionPayload } from '../types'
 export function* addTodo({ payload }: stringPayload): Generator<any, putEffect, any> {
   const { response, error } = yield call(api.addTodo, payload);
   if (response) {
-    yield put(todosActions.addTodoSuccess(normalizeArrayToMap([response.data])));
+    yield put(todosActions.addTodoSuccess(normalizeObjectToMap(response.data)));
   } else {
     yield put(todosActions.addTodoFailure(error.message));
   }
@@ -25,7 +25,7 @@ export function* addTodo({ payload }: stringPayload): Generator<any, putEffect, 
 export function* editTodo({ payload }: descriptionPayload): Generator<any, putEffect, any> {
   const { response, error } = yield call(api.editTodo, payload);
   if (response) {
-    yield put(todosActions.editTodoSuccess(normalizeArrayToMap([response.data])));
+    yield put(todosActions.editTodoSuccess(normalizeObjectToMap(response.data)));
   } else {
     yield put(todosActions.editTodoFailure(error.message));
   }

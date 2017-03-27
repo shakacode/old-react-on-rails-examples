@@ -29,3 +29,6 @@ export function normalize(...args: Array<*>): Normalized {
 export const normalizeArray = _.reduce((acc: {}, item: { id: number }) => _.set(parseInt(item.id, 10), item, acc), {});
 
 export const normalizeArrayToMap = _.flow(normalizeArray, normalizeMapIdKeys);
+
+export const normalizeObjectToMap = (object: { id: number }) =>
+  normalizeMapIdKeys({ [parseInt(object.id, 10)]: object });
