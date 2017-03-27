@@ -1,13 +1,13 @@
 // @flow
 import { Map as $$Map } from 'immutable';
 
-import { normalizeArrayToMap } from 'app/libs/utils/normalizr';
+import { normalizeObjectToMap } from 'app/libs/utils/normalizr';
 
 import * as actions from '../actions/todos';
 import reducer, { todosInitialState } from './todosReducer';
 
 test('addTodoSuccess', () => {
-  const todo = normalizeArrayToMap([{ id: 0, description: 'todo description' }]);
+  const todo = normalizeObjectToMap({ id: 0, description: 'todo description' });
   const payload = todo;
   const state = todosInitialState;
   const action = actions.addTodoSuccess(payload);
