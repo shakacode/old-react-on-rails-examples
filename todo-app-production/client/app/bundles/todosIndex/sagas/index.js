@@ -24,7 +24,7 @@ export function* editTodo({ payload }: descriptionPayload): Generator<any, putEf
 }
 
 export function* removeTodo({ payload }: numberPayload): Generator<any, putEffect, any> {
-  const response = yield call(api.removeTodo, payload);
+  const { response } = yield call(api.removeTodo, payload);
   yield put(todosActions.removeTodoSuccess(response.data));
 }
 

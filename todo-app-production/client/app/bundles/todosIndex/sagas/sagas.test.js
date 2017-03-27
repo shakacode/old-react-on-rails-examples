@@ -28,20 +28,6 @@ describe('addTodo Saga', () => {
     nextGen = generator.next(result);
     expect(nextGen.value).toEqual(put(todosActions.addTodoSuccess(normalizeObjectToMap(data))));
   });
-
-  it('handles async errors', () => {
-    const description = 'todo description';
-
-    const action = todosActions.addTodo(description);
-    const generator = sagas.addTodo(action);
-
-    let nextGen = generator.next();
-    expect(nextGen.value).toEqual(call(api.addTodo, description));
-
-    const result = { error: { message: 'error!' } };
-    nextGen = generator.next(result);
-    expect(nextGen.value).toEqual(put(todosActions.addTodoFailure(result.error.message)));
-  });
 });
 
 describe('editTodo Saga', () => {
@@ -67,22 +53,6 @@ describe('editTodo Saga', () => {
     nextGen = generator.next(result);
     expect(nextGen.value).toEqual(put(todosActions.editTodoSuccess(normalizeObjectToMap(data))));
   });
-
-  it('handles async errors', () => {
-    const description = 'todo description';
-    const id = 'todoId';
-    const payload = { description, id };
-
-    const action = todosActions.editTodo(payload);
-    const generator = sagas.editTodo(action);
-
-    let nextGen = generator.next();
-    expect(nextGen.value).toEqual(call(api.editTodo, payload));
-
-    const result = { error: { message: 'error!' } };
-    nextGen = generator.next(result);
-    expect(nextGen.value).toEqual(put(todosActions.editTodoFailure(result.error.message)));
-  });
 });
 
 describe('removeTodo Saga', () => {
@@ -97,18 +67,5 @@ describe('removeTodo Saga', () => {
     const result = { response: { data: 'data' } };
     nextGen = generator.next(result);
     expect(nextGen.value).toEqual(put(todosActions.removeTodoSuccess(result.response.data)));
-  });
-
-  it('handles async errors', () => {
-    const payload = '1';
-    const action = todosActions.removeTodo(payload);
-    const generator = sagas.removeTodo(action);
-
-    let nextGen = generator.next();
-    expect(nextGen.value).toEqual(call(api.removeTodo, payload));
-
-    const result = { error: { message: 'error!' } };
-    nextGen = generator.next(result);
-    expect(nextGen.value).toEqual(put(todosActions.removeTodoFailure(result.error.message)));
   });
 });
