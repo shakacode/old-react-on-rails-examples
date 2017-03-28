@@ -17,16 +17,15 @@ describe('addTodo Saga', () => {
     let nextGen = generator.next();
     expect(nextGen.value).toEqual(call(api.addTodo, description));
 
-    const data = {
+    const result = {
       id: 1,
       description: 'todo',
       completed: false,
       created_at: 'earlier',
       updated_at: 'also earlier',
     };
-    const result = { response: { data } };
     nextGen = generator.next(result);
-    expect(nextGen.value).toEqual(put(todosActions.addTodoSuccess(normalizeObjectToMap(data))));
+    expect(nextGen.value).toEqual(put(todosActions.addTodoSuccess(normalizeObjectToMap(result))));
   });
 });
 
@@ -42,16 +41,15 @@ describe('editTodo Saga', () => {
     let nextGen = generator.next();
     expect(nextGen.value).toEqual(call(api.editTodo, payload));
 
-    const data = {
+    const result = {
       id: 1,
       description: 'todo',
       completed: false,
       created_at: 'earlier',
       updated_at: 'also earlier',
     };
-    const result = { response: { data } };
     nextGen = generator.next(result);
-    expect(nextGen.value).toEqual(put(todosActions.editTodoSuccess(normalizeObjectToMap(data))));
+    expect(nextGen.value).toEqual(put(todosActions.editTodoSuccess(normalizeObjectToMap(result))));
   });
 });
 
@@ -64,8 +62,8 @@ describe('removeTodo Saga', () => {
     let nextGen = generator.next();
     expect(nextGen.value).toEqual(call(api.removeTodo, payload));
 
-    const result = { response: { data: 'data' } };
+    const result = 'data';
     nextGen = generator.next(result);
-    expect(nextGen.value).toEqual(put(todosActions.removeTodoSuccess(result.response.data)));
+    expect(nextGen.value).toEqual(put(todosActions.removeTodoSuccess(result)));
   });
 });
