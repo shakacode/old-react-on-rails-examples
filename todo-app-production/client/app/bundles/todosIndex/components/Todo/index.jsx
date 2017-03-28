@@ -13,7 +13,6 @@ type Props = {
 
 const Todo = ({ id, onClick, completed, description, editTodo, editTodoDescription }: Props) => (
   <form
-    key={id}
     onSubmit={event => {
       event.preventDefault();
       event.stopPropagation();

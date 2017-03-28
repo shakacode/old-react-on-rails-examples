@@ -15,7 +15,15 @@ type Props = {
 const TodoList = ({ todos, toggleTodo, editTodo, editTodoDescription }: Props) => (
   <ul>
     {_.map(
-      todo => <Todo {...todo} onClick={toggleTodo} editTodo={editTodo} editTodoDescription={editTodoDescription} />,
+      todo => (
+        <Todo
+          key={todo.id}
+          {...todo}
+          onClick={toggleTodo}
+          editTodo={editTodo}
+          editTodoDescription={editTodoDescription}
+        />
+      ),
       todos,
     )}
   </ul>
