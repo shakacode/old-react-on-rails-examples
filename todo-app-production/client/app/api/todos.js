@@ -16,7 +16,8 @@ export const addTodo = (description: string, completed: boolean = false) => {
 // /api/v1/todos
 export const editTodo = (todo: descriptionAndId) => {
   const url = todosScope(`/${todo.id}`);
-  return apiCall.put({ url, description: todo.description });
+  const todoParams = { todo: { description: todo.description } };
+  return apiCall.put({ url, data: todoParams });
 };
 
 // /api/v1/todos/:todo_id

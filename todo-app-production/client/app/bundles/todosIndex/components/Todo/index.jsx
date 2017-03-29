@@ -13,18 +13,17 @@ type Props = {
 
 const Todo = ({ id, onClick, completed, description, editTodo, editTodoDescription }: Props) => (
   <form
-    key={id}
     onSubmit={event => {
       event.preventDefault();
       event.stopPropagation();
-      editTodo(event.target.firstChild.value);
+      editTodo({ id, description: event.target.firstChild.value });
     }}
   >
     <input
       onClick={() => onClick(id)}
       value={description}
       style={completed ? css.completed : css.pending}
-      onChange={event => editTodoDescription(id, event.target.value)}
+      onChange={event => editTodoDescription({ id, description: event.target.value })}
     />
     <input className="hidden-xs-up" type="submit" />
   </form>

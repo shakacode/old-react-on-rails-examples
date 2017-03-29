@@ -3,7 +3,13 @@ import { handleActions } from 'redux-actions';
 import { Map as $$Map } from 'immutable';
 
 import type { $$Todo, numberPayload, normalizedTodoPayload, descriptionPayload } from '../types';
-import { addTodoSuccess, removeTodoSuccess, editTodoDescription, toggleTodo } from '../actionTypes/todos';
+import {
+  addTodoSuccess,
+  editTodoSuccess,
+  removeTodoSuccess,
+  editTodoDescription,
+  toggleTodo,
+} from '../actionTypes/todos';
 
 // types
 export type State = $$Map<number, $$Todo>;
@@ -12,7 +18,7 @@ export type State = $$Map<number, $$Todo>;
 export const todosInitialState = $$Map();
 
 // helpers
-const createTodo = (state: State, { payload }: normalizedTodoPayload) => state.merge(payload);
+const mergeTodo = (state: State, { payload }: normalizedTodoPayload) => state.merge(payload);
 const deleteTodo = (state: State, { payload }: numberPayload) => state.delete(payload);
 const editDescription = (state: State, { payload }: descriptionPayload) =>
   state.setIn([payload.id, 'description'], payload.description);
@@ -24,8 +30,9 @@ const toggle = (state: State, { payload }: numberPayload) => {
 
 // handlers
 const handlers = {
-  [addTodoSuccess]: createTodo,
+  [addTodoSuccess]: mergeTodo,
   [removeTodoSuccess]: deleteTodo,
+  [editTodoSuccess]: mergeTodo,
   [editTodoDescription]: editDescription,
   [toggleTodo]: toggle,
 };
