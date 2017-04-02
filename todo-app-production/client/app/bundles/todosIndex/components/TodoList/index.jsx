@@ -19,8 +19,8 @@ const TodoList = ({ todos, toggleTodo, editTodo, editTodoDescription }: Props) =
         <Todo
           key={todo.id}
           {...todo}
-          onClick={toggleTodo}
           editTodo={editTodo}
+          toggleTodo={toggleTodo}
           editTodoDescription={editTodoDescription}
         />
       ),

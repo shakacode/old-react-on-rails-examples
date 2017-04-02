@@ -1,10 +1,7 @@
-<%=
+<% bundle_name = "todos-index-client-bundle" %>
+<%
   provide(:head) do
-    env_javascript_include_tag(
-      hot: "http://lvh.me:3500/todos-index-client-bundle.js",
-      static: "todos-index-client-bundle.js",
-      "data-turbolinks-track" => false
-    )
+    include_webpack_bundle(bundle_name)
   end
 %>
 

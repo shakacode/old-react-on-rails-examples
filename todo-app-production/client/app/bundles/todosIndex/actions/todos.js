@@ -11,3 +11,4 @@ export const editTodoSuccess = createAction(todos.editTodoSuccess);
 export const removeTodo = createAction(todos.removeTodo);
 export const removeTodoSuccess = createAction(todos.removeTodoSuccess);
 export const toggleTodo = createAction(todos.toggleTodo);
+export const toggleTodoSuccess = createAction(todos.toggleTodoSuccess);

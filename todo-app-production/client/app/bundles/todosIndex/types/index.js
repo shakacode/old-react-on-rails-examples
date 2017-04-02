@@ -4,8 +4,13 @@ import { Map as $$Map } from 'immutable';
 export type $$Todo = $$Map<string, string | boolean>;
 
 export type descriptionAndId = {
-  id: string,
+  id: number,
   description: string,
+};
+
+export type toggle = {
+  id: number,
+  completed: boolean,
 };
 
 export type Todo = {
@@ -39,4 +44,8 @@ export type errorPayload = {
 
 export type descriptionPayload = {
   payload: descriptionAndId,
+};
+
+export type togglePayload = {
+  payload: toggle,
 };
