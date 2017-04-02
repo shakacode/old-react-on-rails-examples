@@ -27,7 +27,9 @@ const Todo = ({ id, completed, description, editTodo, toggleTodo, editTodoDescri
       />
       <input className="hidden-xs-up" type="submit" />
     </form>
-    <button onClick={() => toggleTodo(id)}>{completed ? 'revert to pending' : 'mark as completed'}</button>
+    <button onClick={() => toggleTodo({ id, completed: !completed })}>
+      {completed ? 'revert to pending' : 'mark as completed'}
+    </button>
   </div>
 );
 
