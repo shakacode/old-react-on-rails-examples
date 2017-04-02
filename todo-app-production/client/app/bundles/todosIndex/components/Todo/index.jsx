@@ -11,22 +11,24 @@ type Props = {
   editTodoDescription: Function,
 };
 
-const Todo = ({ id, onClick, completed, description, editTodo, editTodoDescription }: Props) => (
-  <form
-    onSubmit={event => {
-      event.preventDefault();
-      event.stopPropagation();
-      editTodo({ id, description: event.target.firstChild.value });
-    }}
-  >
-    <input
-      onClick={() => onClick(id)}
-      value={description}
-      style={completed ? css.completed : css.pending}
-      onChange={event => editTodoDescription({ id, description: event.target.value })}
-    />
-    <input className="hidden-xs-up" type="submit" />
-  </form>
+const Todo = ({ id, completed, description, editTodo, toggleTodo, editTodoDescription }: Props) => (
+  <div className="todo">
+    <form
+      onSubmit={event => {
+        event.preventDefault();
+        event.stopPropagation();
+        editTodo({ id, description: event.target.firstChild.value });
+      }}
+    >
+      <input
+        value={description}
+        className={completed ? css.completed : css.pending}
+        onChange={event => editTodoDescription({ id, description: event.target.value })}
+      />
+      <input className="hidden-xs-up" type="submit" />
+    </form>
+    <button onClick={() => toggleTodo(id)}>{completed ? 'revert to pending' : 'mark as completed'}</button>
+  </div>
 );
 
 export default Todo;

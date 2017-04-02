@@ -1,1 +1,8 @@
 // @flow
+.completed {
+  text-decoration: line-through;
+}
+
+.pending {
+  text-decoration: none;
+}
