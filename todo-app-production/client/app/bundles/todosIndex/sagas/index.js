@@ -7,11 +7,12 @@ import { normalizeObjectToMap } from 'app/libs/utils/normalizr';
 
 import {
   addTodo as addTodoActionType,
-  removeTodo as removeTodoActionType,
   editTodo as editTodoActionType,
+  removeTodo as removeTodoActionType,
+  toggleTodo as toggleTodoActionType,
 } from '../actionTypes/todos';
 import * as todosActions from '../actions/todos';
-import type { numberPayload, stringPayload, descriptionPayload } from '../types';
+import type { numberPayload, stringPayload, descriptionPayload, togglePayload } from '../types';
 
 export function* addTodo({ payload }: stringPayload): Generator<any, putEffect, any> {
   const response = yield call(api.addTodo, payload);
@@ -28,6 +29,11 @@ export function* removeTodo({ payload }: numberPayload): Generator<any, putEffec
   yield put(todosActions.removeTodoSuccess(response));
 }
 
+export function* toggleTodo({ payload }: togglePayload): Generator<any, putEffect, any> {
+  const response = yield call(api.toggleTodo, payload);
+  yield put(todosActions.toggleTodoSuccess(normalizeObjectToMap(response)));
+}
+
 function* addTodoSaga() {
   yield takeEvery(addTodoActionType, addTodo);
 }
@@ -40,8 +46,13 @@ function* removeTodoSaga() {
   yield takeEvery(removeTodoActionType, removeTodo);
 }
 
+function* toggleTodoSaga() {
+  yield takeEvery(toggleTodoActionType, toggleTodo);
+}
+
 export default function* root(): Generator<IOEffect, any, any> {
   yield fork(addTodoSaga);
   yield fork(editTodoSaga);
   yield fork(removeTodoSaga);
+  yield fork(toggleTodoSaga);
 }

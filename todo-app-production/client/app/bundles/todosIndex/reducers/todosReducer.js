@@ -8,7 +8,7 @@ import {
   editTodoSuccess,
   removeTodoSuccess,
   editTodoDescription,
-  toggleTodo,
+  toggleTodoSuccess,
 } from '../actionTypes/todos';
 
 // types
@@ -22,19 +22,14 @@ const mergeTodo = (state: State, { payload }: normalizedTodoPayload) => state.me
 const deleteTodo = (state: State, { payload }: numberPayload) => state.delete(payload);
 const editDescription = (state: State, { payload }: descriptionPayload) =>
   state.setIn([payload.id, 'description'], payload.description);
-const toggle = (state: State, { payload }: numberPayload) => {
-  const oldTodo: $$Todo = state.get(payload);
-  const newTodo: $$Todo = oldTodo.set('completed', !oldTodo.get('completed'));
-  return state.set(payload, newTodo);
-};
 
 // handlers
 const handlers = {
   [addTodoSuccess]: mergeTodo,
-  [removeTodoSuccess]: deleteTodo,
   [editTodoSuccess]: mergeTodo,
   [editTodoDescription]: editDescription,
-  [toggleTodo]: toggle,
+  [removeTodoSuccess]: deleteTodo,
+  [toggleTodoSuccess]: mergeTodo,
 };
 
 export default handleActions(handlers, todosInitialState);

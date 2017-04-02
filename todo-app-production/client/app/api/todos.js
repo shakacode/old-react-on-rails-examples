@@ -1,7 +1,7 @@
 // @flow
 import apiCall from 'app/libs/utils/api/apiCall';
 
-import type { descriptionAndId } from 'todosIndex/types';
+import type { descriptionAndId, toggle } from 'todosIndex/types';
 
 // /api/v1/guest_lists
 export const todosScope = (path: ?string) => `/todos${path || ''}`;
@@ -24,4 +24,11 @@ export const editTodo = (todo: descriptionAndId) => {
 export const removeTodo = (todoId: number) => {
   const url = todosScope(`/${todoId}`);
   return apiCall.delete({ url });
+};
+
+// /api/v1/todos
+export const toggleTodo = (todo: toggle) => {
+  const url = todosScope(`/${todo.id}`);
+  const todoParams = { todo: { completed: todo.completed } };
+  return apiCall.put({ url, data: todoParams });
 };

@@ -11,3 +11,4 @@ export const editTodoSuccess = buildTodosActionType('editTodoSuccess');
 export const removeTodo = buildTodosActionType('removeTodo');
 export const removeTodoSuccess = buildTodosActionType('removeTodoSuccess');
 export const toggleTodo = buildTodosActionType('toggleTodo');
+export const toggleTodoSuccess = buildTodosActionType('toggleTodoSuccess');

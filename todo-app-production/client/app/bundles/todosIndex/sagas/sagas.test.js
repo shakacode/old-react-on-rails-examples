@@ -67,3 +67,26 @@ describe('removeTodo Saga', () => {
     expect(nextGen.value).toEqual(put(todosActions.removeTodoSuccess(result)));
   });
 });
+
+describe('toggleTodo Saga', () => {
+  it('handles async responses', () => {
+    const id = 'todoId';
+    const payload = { id, complete: true };
+
+    const action = todosActions.toggleTodo(payload);
+    const generator = sagas.toggleTodo(action);
+
+    let nextGen = generator.next();
+    expect(nextGen.value).toEqual(call(api.toggleTodo, payload));
+
+    const result = {
+      id: 1,
+      description: 'todo',
+      completed: false,
+      created_at: 'earlier',
+      updated_at: 'also earlier',
+    };
+    nextGen = generator.next(result);
+    expect(nextGen.value).toEqual(put(todosActions.toggleTodoSuccess(normalizeObjectToMap(result))));
+  });
+});
