@@ -27,6 +27,8 @@ export default class TodoItem extends Component {
       this.props.completed ? 'check-box' : 'check-box-outline-blank';
     const color = this.props.completed ? '#C5C8C9' : '#000';
     const textDecorationLine = this.props.completed ? 'line-through' : 'none';
+    // TODO: Turn this into a swipeout style component - this is not supported
+    // natively in react-native
     return (
       <TouchableHighlight
         underlayColor={'#eee'}
