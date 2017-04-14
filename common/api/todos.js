@@ -1,5 +1,5 @@
 // @flow
-import apiCall from 'app/libs/utils/api/apiCall';
+import apiCall from '../libs/utils/api/apiCall';
 
 import type { descriptionAndId, toggle } from 'todosIndex/types';
 

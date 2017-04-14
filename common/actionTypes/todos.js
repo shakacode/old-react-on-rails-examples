@@ -1,5 +1,5 @@
 // @flow
-import { buildActionType } from 'app/libs/utils/redux';
+import { buildActionType } from '../libs/utils/redux';
 
 export const buildTodosActionType = buildActionType('todos');
 
@@ -12,3 +12,4 @@ export const removeTodo = buildTodosActionType('removeTodo');
 export const removeTodoSuccess = buildTodosActionType('removeTodoSuccess');
 export const toggleTodo = buildTodosActionType('toggleTodo');
 export const toggleTodoSuccess = buildTodosActionType('toggleTodoSuccess');
+export const setVisibilityFilter = buildTodosActionType('setVisibilityFilter');

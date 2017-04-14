@@ -1,8 +1,8 @@
 // @flow
 import _ from 'lodash/fp';
 
-import * as apiUtils from 'app/libs/utils/api';
-import { apiRoutes } from 'app/libs/routes/api';
+import * as apiUtils from '../api';
+import { apiRoutes } from '../../routes/api';
 
 import createAjaxRequestTracker from './ajaxRequestTracker';
 import ApiError from './ApiError';

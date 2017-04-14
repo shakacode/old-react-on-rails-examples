@@ -1,11 +1,13 @@
 // @flow
 import { call, put } from 'redux-saga/effects';
 
-import * as api from 'app/api/todos';
-import { normalizeObjectToMap } from 'app/libs/utils/normalizr';
+import * as api from '../api/todos';
+import { normalizeObjectToMap } from '../utils/normalizr';
 
 import * as sagas from './index';
 import * as todosActions from '../actions/todos';
+
+// TODO: Fix all the tests in common
 
 describe('addTodo Saga', () => {
   it('handles async responses', () => {

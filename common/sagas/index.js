@@ -2,8 +2,8 @@
 import { call, put, fork, takeEvery } from 'redux-saga/effects';
 import type { putEffect, IOEffect } from 'redux-saga/effects';
 
-import * as api from 'app/api/todos';
-import { normalizeObjectToMap } from 'app/libs/utils/normalizr';
+import * as api from '../api/todos';
+import { normalizeObjectToMap } from '../libs/utils/normalizr';
 
 import {
   addTodo as addTodoActionType,

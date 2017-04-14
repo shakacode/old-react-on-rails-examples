@@ -8,7 +8,7 @@ import {
   View,
   ScrollView,
 } from 'react-native';
-import { addTodo, setVisbilityFilter, toggleTodo } from '../actions';
+import { addTodo, setVisbilityFilter, toggleTodo } from 'ror-common/actions/todos';
 import styles from './AppContainerStyle';
 import TodoItem from '../components/TodoItem';
 import * as todoList from '../model/todoList';
@@ -31,26 +31,26 @@ class AppContainer extends Component {
   }
 
   onAddButton = () => {
-    if (this.state.text !== '') {
-      this.props.addTodo(this.state.text);
-      this.textInput.clear();
-      this.state.text = '';
-    }
+    // if (this.state.text !== '') {
+    //   this.props.addTodo(this.state.text);
+    //   this.textInput.clear();
+    //   this.state.text = '';
+    // }
   }
 
   onListButton = () => {
-    this.props.setVisbilityFilter(
-        todoList.getNextState(this.props.visbilityFilter));
+    // this.props.setVisbilityFilter(
+    //     todoList.getNextState(this.props.visbilityFilter));
   }
 
   onTodoClick = (todoId: number) => {
-    this.props.toggleTodo(todoId);
+    // this.props.toggleTodo(todoId);
   }
 
   props: PropsType
 
   render = () => {
-    const filterButtonLabel = todoList.getNextState(this.props.visbilityFilter);
+    // const filterButtonLabel = todoList.getNextState(this.props.visbilityFilter);
     return (
       <View style={styles.container}>
         <View flexDirection='column'>
@@ -90,8 +90,8 @@ class AppContainer extends Component {
 
 function mapStateToProps(state) {
   return {
-    visbilityFilter: state.visbilityFilter,
-    todos: todoList.getVisibleTodos(state.todos, state.visbilityFilter),
+    // visbilityFilter: state.visbilityFilter,
+    // todos: todoList.getVisibleTodos(state.todos, state.visbilityFilter),
   };
 }
 
