@@ -13,3 +13,5 @@ export const removeTodoSuccess = buildTodosActionType('removeTodoSuccess');
 export const toggleTodo = buildTodosActionType('toggleTodo');
 export const toggleTodoSuccess = buildTodosActionType('toggleTodoSuccess');
 export const setVisibilityFilter = buildTodosActionType('setVisibilityFilter');
+export const getTodos = buildTodosActionType('getTodos');
+export const getTodosSuccess = buildTodosActionType('getTodosSuccess');

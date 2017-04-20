@@ -13,3 +13,5 @@ export const removeTodoSuccess = createAction(todos.removeTodoSuccess);
 export const toggleTodo = createAction(todos.toggleTodo);
 export const toggleTodoSuccess = createAction(todos.toggleTodoSuccess);
 export const setVisibilityFilter = createAction(todos.setVisibilityFilter);
+export const getTodos = createAction(todos.getTodos);
+export const getTodosSuccess = createAction(todos.getTodosSuccess);

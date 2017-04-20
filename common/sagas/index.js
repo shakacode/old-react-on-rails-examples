@@ -10,6 +10,7 @@ import {
   editTodo as editTodoActionType,
   removeTodo as removeTodoActionType,
   toggleTodo as toggleTodoActionType,
+  getTodos as getTodosActionType,
 } from '../actionTypes/todos';
 import * as todosActions from '../actions/todos';
 import type { numberPayload, stringPayload, descriptionPayload, togglePayload } from '../types';
@@ -34,6 +35,11 @@ export function* toggleTodo({ payload }: togglePayload): Generator<any, putEffec
   yield put(todosActions.toggleTodoSuccess(normalizeObjectToMap(response)));
 }
 
+export function* getTodos({ payload }: getTodosPayload): Generator<any, putEffect, any> {
+  const response = yield call(api.getTodos, payload);
+  yield put(todosActions.getTodosSuccess(normalizeObjectToMap(response)));
+}
+
 function* addTodoSaga() {
   yield takeEvery(addTodoActionType, addTodo);
 }
@@ -50,9 +56,14 @@ function* toggleTodoSaga() {
   yield takeEvery(toggleTodoActionType, toggleTodo);
 }
 
+function* getTodoSaga() {
+  yield takeEvery(getTodosActionType, getTodos);
+}
+
 export default function* root(): Generator<IOEffect, any, any> {
   yield fork(addTodoSaga);
   yield fork(editTodoSaga);
   yield fork(removeTodoSaga);
   yield fork(toggleTodoSaga);
+  yield fork(getTodoSaga);
 }

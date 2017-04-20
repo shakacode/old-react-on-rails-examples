@@ -32,3 +32,9 @@ export const toggleTodo = (todo: toggle) => {
   const todoParams = { todo: { completed: todo.completed } };
   return apiCall.put({ url, data: todoParams });
 };
+
+// /api/v1/todos
+export const listTodos = () => {
+  const url = todosScope('/');
+  return apiCall.get({ url });
+}
