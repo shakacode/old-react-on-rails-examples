@@ -51,6 +51,7 @@ class AppContainer extends Component {
 
   render = () => {
     // const filterButtonLabel = todoList.getNextState(this.props.visbilityFilter);
+    const filterButtonLabel = 'TEMP';
     return (
       <View style={styles.container}>
         <View flexDirection='column'>
@@ -68,7 +69,7 @@ class AppContainer extends Component {
             />
           </View>
           <ScrollView style={styles.scrollSection}>
-            { this.props.todos.map(
+            { this.props.todos.valueSeq().map(
               (todo) =>
                 <TodoItem
                   {...todo}
@@ -91,7 +92,8 @@ class AppContainer extends Component {
 function mapStateToProps(state) {
   return {
     // visbilityFilter: state.visbilityFilter,
-    // todos: todoList.getVisibleTodos(state.todos, state.visbilityFilter),
+    //todos: todoList.getVisibleTodos(state.todos, state.visbilityFilter),
+    todos: state.todos,
   };
 }
 

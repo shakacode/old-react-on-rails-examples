@@ -11,7 +11,9 @@ import { Provider } from 'react-redux';
 import initializeStore from './app/store';
 import AppContainer from './app/containers/AppContainer';
 
-const store = initializeStore([]);
+const initialState = [];
+
+const store = initializeStore(initialState);
 
 const App = () => (
   <Provider store={store}>
