@@ -1,7 +1,7 @@
 // @flow
 import { OrderedSet as $$OrderedSet } from 'immutable';
 
-import { normalizeObjectToMap } from '../utils/normalizr';
+import { normalizeObjectToMap } from '../libs/utils/normalizr';
 
 import { normalizeTodo } from './index';
 

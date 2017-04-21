@@ -13,14 +13,14 @@ const NESTED_LIST_FIXTURE = fromJS({
 
 describe('utils/immutable', () => {
   describe('{ toJS }', () => {
-    it('does nothing if the object is not an Immutable', (): void => {
+    it('does nothing if the object is not an Immutable', () => {
       const obj = { foo: 'bar' };
       const actual = toJS(obj);
 
       expect(actual).toBe(obj);
     });
 
-    it('invokes `toJS` on the object if it is Immutable', (): void => {
+    it('invokes `toJS` on the object if it is Immutable', () => {
       const plainObj = { foo: 'bar' };
       const immutableObj = new $$Map(plainObj);
       const actual = toJS(immutableObj);

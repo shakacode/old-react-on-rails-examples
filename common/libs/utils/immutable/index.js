@@ -1,7 +1,7 @@
 import { Map as $$Map } from 'immutable';
 import _ from 'lodash/fp';
 
-import { toArray } from '../utils';
+import { toArray } from '../../utils';
 
 type Immutable = $$Map;
 type Path = Array<string | number>;

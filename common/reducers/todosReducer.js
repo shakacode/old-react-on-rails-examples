@@ -9,6 +9,7 @@ import {
   removeTodoSuccess,
   editTodoDescription,
   toggleTodoSuccess,
+  getTodosSuccess,
 } from '../actionTypes/todos';
 
 // types
@@ -30,6 +31,7 @@ const handlers = {
   [editTodoDescription]: editDescription,
   [removeTodoSuccess]: deleteTodo,
   [toggleTodoSuccess]: mergeTodo,
+  [getTodosSuccess]: mergeTodo,
 };
 
 export default handleActions(handlers, todosInitialState);

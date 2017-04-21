@@ -29,6 +29,10 @@ export type normalizedTodoPayload = {
   payload: $$Map<number, Todo>,
 };
 
+export type getTodosPayload = {
+  payload: $$Map<Todo>,
+}
+
 export type stringPayload = {
   payload: string,
 };

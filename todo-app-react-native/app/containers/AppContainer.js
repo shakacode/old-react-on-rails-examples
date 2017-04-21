@@ -2,13 +2,19 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import _ from 'lodash/fp';
 import {
   TextInput,
   Button,
   View,
   ScrollView,
 } from 'react-native';
-import { addTodo, setVisbilityFilter, toggleTodo } from 'ror-common/actions/todos';
+import {
+  addTodo,
+  setVisbilityFilter,
+  toggleTodo,
+  getTodos,
+} from 'ror-common/actions/todos';
 import styles from './AppContainerStyle';
 import TodoItem from '../components/TodoItem';
 import * as todoList from '../model/todoList';
@@ -19,6 +25,7 @@ type PropsType = {
   addTodo: Function,
   setVisbilityFilter: Function,
   toggleTodo: Function,
+  getTodos: Function,
 };
 
 class AppContainer extends Component {
@@ -28,6 +35,10 @@ class AppContainer extends Component {
       text: '',
     };
     this.textInput = null;
+  }
+
+  componentWillMount = () => {
+    this.props.getTodos();
   }
 
   onAddButton = () => {
@@ -69,14 +80,16 @@ class AppContainer extends Component {
             />
           </View>
           <ScrollView style={styles.scrollSection}>
-            { this.props.todos.valueSeq().map(
-              (todo) =>
+            { _.map(
+              todo => (
                 <TodoItem
                   {...todo}
                   onTodoClick={this.onTodoClick}
                   key={todo.id}
                 />
-              ) }
+              ),
+              this.props.todos)
+            }
           </ScrollView>
         </View>
         <Button
@@ -93,13 +106,13 @@ function mapStateToProps(state) {
   return {
     // visbilityFilter: state.visbilityFilter,
     //todos: todoList.getVisibleTodos(state.todos, state.visbilityFilter),
-    todos: state.todos,
+    todos: state.todos.toJS(),  // TODO: This seems sketchy...
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    { addTodo, setVisbilityFilter, toggleTodo }, dispatch);
+    { addTodo, setVisbilityFilter, toggleTodo, getTodos }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

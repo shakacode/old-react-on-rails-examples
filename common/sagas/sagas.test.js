@@ -2,7 +2,7 @@
 import { call, put } from 'redux-saga/effects';
 
 import * as api from '../api/todos';
-import { normalizeObjectToMap } from '../utils/normalizr';
+import { normalizeObjectToMap } from '../libs/utils/normalizr';
 
 import * as sagas from './index';
 import * as todosActions from '../actions/todos';
