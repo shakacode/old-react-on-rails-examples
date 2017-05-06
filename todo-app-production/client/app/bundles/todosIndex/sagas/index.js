@@ -23,7 +23,7 @@ export function* editTodo({ payload }: descriptionPayload): Generator<any, putEf
   const response = yield call(api.editTodo, payload);
   console.log(`response: ${JSON.stringify(response)}`);
   const norm = normalizeObjectToMap(response);
-  console.log(`normalized: ${norm}`);
+  console.log(`normalized: ${JSON.stringify(norm)}`);
   yield put(todosActions.editTodoSuccess(norm));
 }
 

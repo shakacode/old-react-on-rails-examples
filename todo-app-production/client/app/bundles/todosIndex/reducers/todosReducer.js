@@ -19,7 +19,7 @@ export const todosInitialState = $$Map();
 
 // helpers
 const mergeTodo = (state: State, { payload }: normalizedTodoPayload) =>
-  console.log(`payload: ${payload}`) || state.merge(payload);
+  console.log(`payload: ${JSON.stringify(payload)}`) || state.merge(payload);
 const deleteTodo = (state: State, { payload }: numberPayload) => state.delete(payload);
 const editDescription = (state: State, { payload }: descriptionPayload) =>
   state.setIn([payload.id, 'description'], payload.description);
