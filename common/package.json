@@ -1,0 +1,46 @@
+{
+  "name": "ror-common",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "flow": "flow",
+    "flow:all": "flow --show-all-errors",
+    "flow:up": "rm -rf flow-typed && flow-typed install",
+    "lint": "eslint --ext .js,.jsx .",
+    "test": "NODE_ENV=test jest .*\\.test\\.js",
+    "test:watch": "yarn run test -- --watch",
+    "up": "rm -rf node_modules && yarn",
+    "up:no-cache": "rm -rf node_modules && yarn cache clean && yarn"
+  },
+  "dependencies": {
+    "immutable": "^3.8.1",
+    "lodash": "^4.17.4",
+    "normalizr": "^3.2.2",
+    "qs": "^6.4.0",
+    "react": "^15.5.4",
+    "react-redux": "^5.0.3",
+    "redux": "^3.6.0",
+    "redux-actions": "^2.0.2",
+    "redux-saga": "^0.14.6",
+    "webpack": "^2.4.1"
+  },
+  "devDependencies": {
+    "eslint": "^3.17.1",
+    "eslint-config-shakacode": "^14.1.1",
+    "eslint-import-resolver-webpack": "^0.8.0",
+    "eslint-plugin-flowtype": "^2.30.3",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jest": "^19.0.1",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-lodash-fp": "^2.1.3",
+    "eslint-plugin-react": "^6.8.0",
+    "flow-bin": "^0.41.0",
+    "flow-typed": "2.0.0",
+    "jest": "^19.0.2",
+    "jest-junit": "^1.3.0"
+  },
+  "jest": {
+    "verbose": true,
+    "testResultsProcessor": "./node_modules/jest-junit"
+  }
+}

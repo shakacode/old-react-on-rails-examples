@@ -8,7 +8,7 @@
 # Modules
 
 1. [todo-app-production](./todo-app-production)
-2. [todo-app-react-native](./todo_app_react_native)
+2. [todo-app-react-native](./todo-app-react-native)
 
 # How Do I?
 

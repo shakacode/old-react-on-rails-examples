@@ -9,7 +9,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from './TodoItemStyle';
 
 type PropsType = {
-  text: string,
+  description: string,
   completed: bool,
   id: number,
   onTodoClick: Function,
@@ -57,7 +57,7 @@ export default class TodoItem extends Component {
               textDecorationLine: textDecorationLine
             }}
           >
-            {this.props.text}
+            {this.props.description}
           </Text>
         </View>
       </TouchableHighlight>

@@ -1,2 +1,7 @@
 .ruby-version
 .ruby-gemset
+yarn.lock
+node_modules
+junit.xml
+npm-debug.log
+yarn-error.log

@@ -2,13 +2,19 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import _ from 'lodash/fp';
 import {
   TextInput,
   Button,
   View,
   ScrollView,
 } from 'react-native';
-import { addTodo, setVisbilityFilter, toggleTodo } from '../actions';
+import {
+  addTodo,
+  setVisbilityFilter,
+  toggleTodo,
+  getTodos,
+} from 'ror-common/actions/todos';
 import styles from './AppContainerStyle';
 import TodoItem from '../components/TodoItem';
 import * as todoList from '../model/todoList';
@@ -19,6 +25,7 @@ type PropsType = {
   addTodo: Function,
   setVisbilityFilter: Function,
   toggleTodo: Function,
+  getTodos: Function,
 };
 
 class AppContainer extends Component {
@@ -30,27 +37,32 @@ class AppContainer extends Component {
     this.textInput = null;
   }
 
+  componentWillMount = () => {
+    this.props.getTodos();
+  }
+
   onAddButton = () => {
-    if (this.state.text !== '') {
-      this.props.addTodo(this.state.text);
-      this.textInput.clear();
-      this.state.text = '';
-    }
+    // if (this.state.text !== '') {
+    //   this.props.addTodo(this.state.text);
+    //   this.textInput.clear();
+    //   this.state.text = '';
+    // }
   }
 
   onListButton = () => {
-    this.props.setVisbilityFilter(
-        todoList.getNextState(this.props.visbilityFilter));
+    // this.props.setVisbilityFilter(
+    //     todoList.getNextState(this.props.visbilityFilter));
   }
 
   onTodoClick = (todoId: number) => {
-    this.props.toggleTodo(todoId);
+    // this.props.toggleTodo(todoId);
   }
 
   props: PropsType
 
   render = () => {
-    const filterButtonLabel = todoList.getNextState(this.props.visbilityFilter);
+    // const filterButtonLabel = todoList.getNextState(this.props.visbilityFilter);
+    const filterButtonLabel = 'TEMP';
     return (
       <View style={styles.container}>
         <View flexDirection='column'>
@@ -68,14 +80,16 @@ class AppContainer extends Component {
             />
           </View>
           <ScrollView style={styles.scrollSection}>
-            { this.props.todos.map(
-              (todo) =>
+            { _.map(
+              todo => (
                 <TodoItem
                   {...todo}
                   onTodoClick={this.onTodoClick}
                   key={todo.id}
                 />
-              ) }
+              ),
+              this.props.todos)
+            }
           </ScrollView>
         </View>
         <Button
@@ -90,14 +104,15 @@ class AppContainer extends Component {
 
 function mapStateToProps(state) {
   return {
-    visbilityFilter: state.visbilityFilter,
-    todos: todoList.getVisibleTodos(state.todos, state.visbilityFilter),
+    // visbilityFilter: state.visbilityFilter,
+    //todos: todoList.getVisibleTodos(state.todos, state.visbilityFilter),
+    todos: state.todos.toJS(),  // TODO: This seems sketchy...
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    { addTodo, setVisbilityFilter, toggleTodo }, dispatch);
+    { addTodo, setVisbilityFilter, toggleTodo, getTodos }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
