@@ -7,12 +7,13 @@ import type { MappedTodo } from '../../types';
 
 type Props = {
   todos: MappedTodo,
-  toggleTodo: Function,
   editTodo: Function,
+  removeTodo: Function,
+  toggleTodo: Function,
   editTodoDescription: Function,
 };
 
-const TodoList = ({ todos, toggleTodo, editTodo, editTodoDescription }: Props) => (
+const TodoList = ({ todos, editTodo, removeTodo, toggleTodo, editTodoDescription }: Props) => (
   <ul>
     {_.map(
       todo => (
@@ -20,6 +21,7 @@ const TodoList = ({ todos, toggleTodo, editTodo, editTodoDescription }: Props) =
           key={todo.id}
           {...todo}
           editTodo={editTodo}
+          removeTodo={removeTodo}
           toggleTodo={toggleTodo}
           editTodoDescription={editTodoDescription}
         />

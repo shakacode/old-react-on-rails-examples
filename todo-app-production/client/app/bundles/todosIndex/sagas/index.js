@@ -21,7 +21,10 @@ export function* addTodo({ payload }: stringPayload): Generator<any, putEffect, 
 
 export function* editTodo({ payload }: descriptionPayload): Generator<any, putEffect, any> {
   const response = yield call(api.editTodo, payload);
-  yield put(todosActions.editTodoSuccess(normalizeObjectToMap(response)));
+  console.log(`response: ${JSON.stringify(response)}`);
+  const norm = normalizeObjectToMap(response);
+  console.log(`normalized: ${JSON.stringify(norm)}`);
+  yield put(todosActions.editTodoSuccess(norm));
 }
 
 export function* removeTodo({ payload }: numberPayload): Generator<any, putEffect, any> {
