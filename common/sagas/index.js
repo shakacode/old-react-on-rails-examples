@@ -27,40 +27,51 @@ import type {
 //TODO: Add a logging hook here so that the native app and the React app
 // have a way to log out what happened if needed.
 
-export function* addTodo({ payload }: stringPayload): Generator<any, putEffect, any> {
-  try {
-    const response = yield call(api.addTodo, payload);
-    yield put(todosActions.addTodoSuccess(normalizeObjectToMap(response)));
-  } catch (e) {
-    yield put(todosActions.addTodoError());
+function* checkResponse(response, successAction, failAction, normalizer) {
+  if(response.result) {
+    if(normalizer) {
+      yield put(successAction(normalizer(response.result)));
+    } else {
+      yield put(successAction(response.result));
+    }
+  } else {
+    yield put(failAction(response.error));
   }
+}
+
+export function* addTodo({ payload }: stringPayload): Generator<any, putEffect, any> {
+  const response = yield call(api.addTodo, payload);
+  yield checkResponse(
+    response,
+    todosActions.addTodoSuccess,
+    todosActions.addTodoError,
+    normalizeObjectToMap);
 }
 
 export function* editTodo({ payload }: descriptionPayload): Generator<any, putEffect, any> {
-  try {
-    const response = yield call(api.editTodo, payload);
-    yield put(todosActions.editTodoSuccess(normalizeObjectToMap(response)));
-  } catch (e) {
-    yield put(todosActions.editTodoError());
-  }
+  const response = yield call(api.editTodo, payload);
+  yield checkResponse(
+    response,
+    todosActions.editTodoSuccess,
+    todosActions.editTodoError,
+    normalizeObjectToMap);
 }
 
 export function* removeTodo({ payload }: numberPayload): Generator<any, putEffect, any> {
-  try {
-    const response = yield call(api.removeTodo, payload);
-    yield put(todosActions.removeTodoSuccess(response));
-  } catch (e) {
-    yield put(todosActions.removeTodoError());
-  }
+  const response = yield call(api.removeTodo, payload);
+  yield checkResponse(
+    response,
+    todosActions.removeTodoSuccess,
+    todosActions.removeTodoError);
 }
 
 export function* toggleTodo({ payload }: togglePayload): Generator<any, putEffect, any> {
-  try {
-    const response = yield call(api.toggleTodo, payload);
-    yield put(todosActions.toggleTodoSuccess(normalizeObjectToMap(response)));
-  } catch (e) {
-    yield put(todosActions.toggleTodoError());
-  }
+  const response = yield call(api.toggleTodo, payload);
+  yield checkResponse(
+    response,
+    todosActions.toggleTodoSuccess,
+    todosActions.toggleTodoError,
+    normalizeObjectToMap);
 }
 
 // TODO: Clean up exception handling here - this can have bad side effects
@@ -69,13 +80,11 @@ export function* toggleTodo({ payload }: togglePayload): Generator<any, putEffec
 // object here, also use race() to deal with flaky cellular and browser data
 
 export function* getTodos(): Generator<any, putEffect, any> {
-  try {
-    const response = yield call(api.getTodos);
-    objectMap = normalizeArrayToMap(response);
-    yield put(todosActions.getTodosSuccess(objectMap));
-  } catch (e) {
-    yield put(todosActions.getTodosError());
-  }
+  const response = yield call(api.getTodos);
+  yield checkResponse(response,
+    todosActions.getTodosSuccess,
+    todosActions.getTodosError,
+    normalizeArrayToMap);
 }
 
 function* addTodoSaga() {
