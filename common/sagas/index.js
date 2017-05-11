@@ -1,5 +1,11 @@
 // @flow
-import { call, put, fork, takeEvery } from 'redux-saga/effects';
+import {
+  call,
+  put,
+  fork,
+  race,
+  takeEvery
+} from 'redux-saga/effects';
 import type { putEffect, IOEffect } from 'redux-saga/effects';
 
 import * as api from '../api/todos';
@@ -24,67 +30,83 @@ import type {
   getTodosPayload,
 } from '../types';
 
+const API_TIMEOUT = 1000;
+
 //TODO: Add a logging hook here so that the native app and the React app
 // have a way to log out what happened if needed.
 
-function* checkResponse(response, successAction, failAction, normalizer) {
-  if(response.result) {
-    if(normalizer) {
-      yield put(successAction(normalizer(response.result)));
+function* raceCallApi({apiCall, payload, successAction, failAction, normalizer}) {
+  const { response, timeout } = yield race({
+    response: payload ? call(apiCall, payload) : call(apiCall),
+    timeout: call(api.delay, API_TIMEOUT),
+  });
+
+  if(response) {
+    if(response.result) {
+      if(normalizer) {
+        yield put(successAction(normalizer(response.result)));
+      } else {
+        yield put(successAction(response.result));
+      }
     } else {
-      yield put(successAction(response.result));
+      yield put(failAction(response.error));
     }
   } else {
-    yield put(failAction(response.error));
+    yield put(failAction(timeout));
   }
 }
 
 export function* addTodo({ payload }: stringPayload): Generator<any, putEffect, any> {
-  const response = yield call(api.addTodo, payload);
-  yield checkResponse(
-    response,
-    todosActions.addTodoSuccess,
-    todosActions.addTodoError,
-    normalizeObjectToMap);
+  yield call(raceCallApi,
+    {
+      apiCall: api.addTodo,
+      payload,
+      successAction: todosActions.addTodoSuccess,
+      failAction: todosActions.addTodoError,
+      normalizer: normalizeObjectToMap
+    });
 }
 
 export function* editTodo({ payload }: descriptionPayload): Generator<any, putEffect, any> {
-  const response = yield call(api.editTodo, payload);
-  yield checkResponse(
-    response,
-    todosActions.editTodoSuccess,
-    todosActions.editTodoError,
-    normalizeObjectToMap);
+  yield call(raceCallApi,
+    {
+      apiCall: api.editTodo,
+      payload,
+      successAction: todosActions.editTodoSuccess,
+      failAction: todosActions.editTodoError,
+      normalizer: normalizeObjectToMap
+    });
 }
 
 export function* removeTodo({ payload }: numberPayload): Generator<any, putEffect, any> {
-  const response = yield call(api.removeTodo, payload);
-  yield checkResponse(
-    response,
-    todosActions.removeTodoSuccess,
-    todosActions.removeTodoError);
+  yield call(raceCallApi,
+    {
+      apiCall: api.removeTodo,
+      payload,
+      successAction: todosActions.removeTodoSuccess,
+      failAction: todosActions.removeTodoError
+    });
 }
 
 export function* toggleTodo({ payload }: togglePayload): Generator<any, putEffect, any> {
-  const response = yield call(api.toggleTodo, payload);
-  yield checkResponse(
-    response,
-    todosActions.toggleTodoSuccess,
-    todosActions.toggleTodoError,
-    normalizeObjectToMap);
+  yield call(raceCallApi,
+    {
+      apiCall: api.toggleTodo,
+      payload,
+      successAction: todosActions.toggleTodoSuccess,
+      failAction: todosActions.toggleTodoError,
+      normalizer: normalizeObjectToMap
+    });
 }
 
-// TODO: Clean up exception handling here - this can have bad side effects
-// with React, per: https://github.com/redux-saga/redux-saga/issues/521
-// Recommended to catch API exceptions in API and then return an error
-// object here, also use race() to deal with flaky cellular and browser data
-
 export function* getTodos(): Generator<any, putEffect, any> {
-  const response = yield call(api.getTodos);
-  yield checkResponse(response,
-    todosActions.getTodosSuccess,
-    todosActions.getTodosError,
-    normalizeArrayToMap);
+  yield call(raceCallApi,
+    {
+      apiCall: api.getTodos,
+      successAction: todosActions.getTodosSuccess,
+      failAction: todosActions.getTodosError,
+      normalizer: normalizeArrayToMap
+    });
 }
 
 function* addTodoSaga() {

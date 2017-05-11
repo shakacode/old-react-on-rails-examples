@@ -16,6 +16,12 @@ export const addRemoteEndpoint = async (remoteEndpoint: string) => {
   apiConfig.remoteEndpoint = remoteEndpoint;  //TODO: Check if the slash exists and remove it
 }
 
+export const delay = (time: number) => {
+  return new Promise(resolve => {
+    setTimeout(resolve, time);
+  });
+}
+
 // /api/v1/todos
 export const addTodo = async (description: string, completed: boolean = false) => {
   try {
