@@ -6,6 +6,7 @@ import {
   race,
   takeEvery
 } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
 import type { putEffect, IOEffect } from 'redux-saga/effects';
 
 import * as api from '../api/todos';
@@ -20,6 +21,7 @@ import {
   removeTodo as removeTodoActionType,
   toggleTodo as toggleTodoActionType,
   getTodos as getTodosActionType,
+  timeoutTodo as timeoutTodoType
 } from '../actionTypes/todos';
 import * as todosActions from '../actions/todos';
 import type {
@@ -30,15 +32,26 @@ import type {
   getTodosPayload,
 } from '../types';
 
-const API_TIMEOUT = 1000;
+
+// TODO: IMO this is a really long timeout but on my machine this is the min
+// timeout that guarantees the API always has a chance to complete!
+// This should be in the ENV settings also.
+
+const API_TIMEOUT = 5000;
 
 //TODO: Add a logging hook here so that the native app and the React app
 // have a way to log out what happened if needed.
 
-function* raceCallApi({apiCall, payload, successAction, failAction, normalizer}) {
+export function* raceCallApi({
+  apiCall,
+  payload,
+  successAction,
+  failAction,
+  normalizer
+}) {
   const { response, timeout } = yield race({
-    response: payload ? call(apiCall, payload) : call(apiCall),
-    timeout: call(api.delay, API_TIMEOUT),
+    response: call(apiCall, payload),
+    timeout: call(delay, API_TIMEOUT)
   });
 
   if(response) {
@@ -52,7 +65,7 @@ function* raceCallApi({apiCall, payload, successAction, failAction, normalizer})
       yield put(failAction(response.error));
     }
   } else {
-    yield put(failAction(timeout));
+    yield put(todosActions.timeoutTodo());
   }
 }
 

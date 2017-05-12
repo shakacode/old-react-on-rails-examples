@@ -16,9 +16,9 @@ export const addRemoteEndpoint = async (remoteEndpoint: string) => {
   apiConfig.remoteEndpoint = remoteEndpoint;  //TODO: Check if the slash exists and remove it
 }
 
-export const delay = (time: number) => {
+export const timeoutDelay = (time: number) => {
   return new Promise(resolve => {
-    setTimeout(resolve, time);
+    setTimeout(resolve(false), time);
   });
 }
 
