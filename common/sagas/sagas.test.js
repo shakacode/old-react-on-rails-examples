@@ -14,7 +14,7 @@ import * as todosActions from '../actions/todos';
 describe('raceCallApi Generator Function', () => {
   it('handles async responses', () => {
     const action = todosActions.getTodos();
-    fetch.mockResponse(JSON.stringify([{description: "add a todo"}]));
+    fetch.mockResponseOnce(JSON.stringify([{description: "add a todo"}]));
     const generator = sagas.raceCallApi({
       apiCall: api.getTodos,
       successAction: todosActions.getTodosSuccess,
@@ -30,6 +30,18 @@ describe('raceCallApi Generator Function', () => {
   });
 
   it('handles 400 errors', () => {
-    
+    const action = todosActions.getTodos();
+    fetch.mockResponseOnce(
+      JSON.stringify([{description: "Error."}]),
+      {status: 400});
+    const generator = sagas.raceCallApi({
+      apiCall: api.getTodos,
+      successAction: todosActions.getTodosSuccess,
+      failAction: todosActions.getTodosError,
+      normalizer: normalizeArrayToMap,
+    });
+
+    let nextGen = generator.next();
+    expect(nextGen.value).toEqual({timeout: true});
   });
 });

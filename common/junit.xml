@@ -1,6 +1,6 @@
 <testsuites name="jest tests">
-  <testsuite name="raceCallApi Generator Function" tests="1" errors="0" failures="1" skipped="0" timestamp="2017-05-12T08:48:57" time="0.785">
-    <testcase classname="raceCallApi Generator Function handles async responses" name="raceCallApi Generator Function handles async responses" time="0.012">
+  <testsuite name="raceCallApi Generator Function" tests="2" errors="0" failures="2" skipped="0" timestamp="2017-05-12T22:35:16" time="1.052">
+    <testcase classname="raceCallApi Generator Function handles async responses" name="raceCallApi Generator Function handles async responses" time="0.011">
       <failure message="Error: [2mexpect([22m[31mreceived[39m[2m).toEqual([22m[32mexpected[39m[2m)[22m
 
 Expected value to equal:
@@ -58,8 +58,113 @@ Difference:
     at process._tickCallback (internal/process/next_tick.js:109:7)">
       </failure>
     </testcase>
+    <testcase classname="raceCallApi Generator Function handles 400 errors" name="raceCallApi Generator Function handles 400 errors" time="0.003">
+      <failure message="Error: [2mexpect([22m[31mreceived[39m[2m).toEqual([22m[32mexpected[39m[2m)[22m
+
+Expected value to equal:
+  [32m{&quot;timeout&quot;: true}[39m
+Received:
+  [31m{&quot;@@redux-saga/IO&quot;: true, &quot;RACE&quot;: {&quot;response&quot;: {&quot;@@redux-saga/IO&quot;: true, &quot;CALL&quot;: {&quot;args&quot;: [undefined], &quot;context&quot;: null, &quot;fn&quot;: [Function getTodos]}}, &quot;timeout&quot;: {&quot;@@redux-saga/IO&quot;: true, &quot;CALL&quot;: {&quot;args&quot;: [5000], &quot;context&quot;: null, &quot;fn&quot;: [Function delay]}}}}[39m
+
+Difference:
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[2m Object {[22m
+[32m-  &quot;timeout&quot;: true,[39m
+[31m+  &quot;@@redux-saga/IO&quot;: true,[39m
+[31m+  &quot;RACE&quot;: Object {[39m
+[31m+    &quot;response&quot;: Object {[39m
+[31m+      &quot;@@redux-saga/IO&quot;: true,[39m
+[31m+      &quot;CALL&quot;: Object {[39m
+[31m+        &quot;args&quot;: Array [[39m
+[31m+          undefined,[39m
+[31m+        ],[39m
+[31m+        &quot;context&quot;: null,[39m
+[31m+        &quot;fn&quot;: [Function getTodos],[39m
+[31m+      },[39m
+[31m+    },[39m
+[31m+    &quot;timeout&quot;: Object {[39m
+[31m+      &quot;@@redux-saga/IO&quot;: true,[39m
+[31m+      &quot;CALL&quot;: Object {[39m
+[31m+        &quot;args&quot;: Array [[39m
+[31m+          5000,[39m
+[31m+        ],[39m
+[31m+        &quot;context&quot;: null,[39m
+[31m+        &quot;fn&quot;: [Function delay],[39m
+[31m+      },[39m
+[31m+    },[39m
+[31m+  },[39m
+[2m }[22m
+    at Object.&lt;anonymous&gt; (/Users/igorkrtolica/Development/react-on-rails-pro/common/sagas/sagas.test.js:45:27)
+    at Object.&lt;anonymous&gt; (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/build/jasmine-async.js:42:32)
+    at attemptAsync (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1984:24)
+    at QueueRunner.run (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1939:9)
+    at /Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1966:16
+    at /Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1909:9
+    at Object.fn (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/build/jasmine-async.js:68:11)
+    at attemptAsync (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1984:24)
+    at QueueRunner.run (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1939:9)
+    at QueueRunner.execute (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1927:10)
+    at Spec.queueRunnerFactory (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:716:35)
+    at Spec.execute (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:372:10)
+    at Object.fn (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:2584:37)
+    at attemptAsync (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1984:24)
+    at QueueRunner.run (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1939:9)
+    at /Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1966:16
+    at /Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1909:9
+    at complete (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:384:9)
+    at QueueRunner.clearStack (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:679:9)
+    at QueueRunner.run (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1949:12)
+    at /Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1966:16
+    at /Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1909:9
+    at attemptAsync (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1987:9)
+    at QueueRunner.run (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1939:9)
+    at /Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1966:16
+    at /Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1909:9
+    at Object.fn (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/build/jasmine-async.js:68:11)
+    at attemptAsync (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1984:24)
+    at QueueRunner.run (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1939:9)
+    at QueueRunner.execute (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1927:10)
+    at Spec.queueRunnerFactory (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:716:35)
+    at Spec.execute (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:372:10)
+    at Object.fn (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:2584:37)
+    at attemptAsync (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1984:24)
+    at QueueRunner.run (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1939:9)
+    at QueueRunner.execute (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1927:10)
+    at queueRunnerFactory (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:716:35)
+    at Object.fn (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:2569:13)
+    at attemptAsync (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1984:24)
+    at QueueRunner.run (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1939:9)
+    at QueueRunner.execute (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1927:10)
+    at queueRunnerFactory (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:716:35)
+    at TreeProcessor.execute (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:2431:7)
+    at Env.execute (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:778:17)
+    at jasmine2 (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-jasmine2/build/index.js:95:7)
+    at runTest (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-cli/build/runTest.js:53:10)
+    at promise.then (/Users/igorkrtolica/Development/react-on-rails-pro/common/node_modules/jest-cli/build/TestRunner.js:307:14)
+    at process._tickCallback (internal/process/next_tick.js:109:7)">
+      </failure>
+    </testcase>
   </testsuite>
-  <testsuite name="libs/utils/api" tests="4" errors="0" failures="0" skipped="0" timestamp="2017-05-12T08:48:58" time="0.097">
+  <testsuite name="utils/redux" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-05-12T22:35:17" time="0.084">
+    <testcase classname="utils/redux buildActionType creates an action type string" name="utils/redux buildActionType creates an action type string" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="addTodoSuccess" tests="5" errors="0" failures="0" skipped="0" timestamp="2017-05-12T22:35:17" time="0.117">
+    <testcase classname="addTodoSuccess adds todo to state" name="addTodoSuccess adds todo to state" time="0.006">
+    </testcase>
+    <testcase classname="editTodoDescription edits the description of selected Todo" name="editTodoDescription edits the description of selected Todo" time="0.001">
+    </testcase>
+    <testcase classname="editTodoSuccess merges edited todo into state" name="editTodoSuccess merges edited todo into state" time="0.008">
+    </testcase>
+    <testcase classname="removeTodoSuccess removes todo from state" name="removeTodoSuccess removes todo from state" time="0">
+    </testcase>
+    <testcase classname="toggleTodoSuccess merges toggled todo into state" name="toggleTodoSuccess merges toggled todo into state" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="libs/utils/api" tests="4" errors="0" failures="0" skipped="0" timestamp="2017-05-12T22:35:17" time="0.091">
     <testcase classname="libs/utils/api { buildUrl } combines a path and an object of key values into a url with a query" name="libs/utils/api { buildUrl } combines a path and an object of key values into a url with a query" time="0.002">
     </testcase>
     <testcase classname="libs/utils/api { buildUrl } removes keys that have null values" name="libs/utils/api { buildUrl } removes keys that have null values" time="0.001">
@@ -69,19 +174,7 @@ Difference:
     <testcase classname="libs/utils/api { parseRawParams } accepts remote URLs" name="libs/utils/api { parseRawParams } accepts remote URLs" time="0">
     </testcase>
   </testsuite>
-  <testsuite name="addTodoSuccess" tests="5" errors="0" failures="0" skipped="0" timestamp="2017-05-12T08:48:58" time="0.117">
-    <testcase classname="addTodoSuccess adds todo to state" name="addTodoSuccess adds todo to state" time="0.005">
-    </testcase>
-    <testcase classname="editTodoDescription edits the description of selected Todo" name="editTodoDescription edits the description of selected Todo" time="0.002">
-    </testcase>
-    <testcase classname="editTodoSuccess merges edited todo into state" name="editTodoSuccess merges edited todo into state" time="0">
-    </testcase>
-    <testcase classname="removeTodoSuccess removes todo from state" name="removeTodoSuccess removes todo from state" time="0.001">
-    </testcase>
-    <testcase classname="toggleTodoSuccess merges toggled todo into state" name="toggleTodoSuccess merges toggled todo into state" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="utils/immutable" tests="9" errors="0" failures="0" skipped="0" timestamp="2017-05-12T08:48:59" time="0.101">
+  <testsuite name="utils/immutable" tests="9" errors="0" failures="0" skipped="0" timestamp="2017-05-12T22:35:17" time="0.099">
     <testcase classname="utils/immutable { toJS } does nothing if the object is not an Immutable" name="utils/immutable { toJS } does nothing if the object is not an Immutable" time="0.001">
     </testcase>
     <testcase classname="utils/immutable { toJS } invokes `toJS` on the object if it is Immutable" name="utils/immutable { toJS } invokes `toJS` on the object if it is Immutable" time="0.001">
@@ -94,22 +187,18 @@ Difference:
     </testcase>
     <testcase classname="utils/immutable { pushIn } pushes an item to a $List nested in an immutable and returns the immutable" name="utils/immutable { pushIn } pushes an item to a $List nested in an immutable and returns the immutable" time="0.002">
     </testcase>
-    <testcase classname="utils/immutable { deleteIn } deletes item at the given index inside a nested $List and returns the immutable" name="utils/immutable { deleteIn } deletes item at the given index inside a nested $List and returns the immutable" time="0.001">
+    <testcase classname="utils/immutable { deleteIn } deletes item at the given index inside a nested $List and returns the immutable" name="utils/immutable { deleteIn } deletes item at the given index inside a nested $List and returns the immutable" time="0">
     </testcase>
-    <testcase classname="utils/immutable { rejectIn } removes items in nested $List for which predicate returns true" name="utils/immutable { rejectIn } removes items in nested $List for which predicate returns true" time="0.001">
+    <testcase classname="utils/immutable { rejectIn } removes items in nested $List for which predicate returns true" name="utils/immutable { rejectIn } removes items in nested $List for which predicate returns true" time="0.002">
     </testcase>
-    <testcase classname="utils/immutable { filterIn } removes items in nested $List for which predicate returns false" name="utils/immutable { filterIn } removes items in nested $List for which predicate returns false" time="0">
-    </testcase>
-  </testsuite>
-  <testsuite name="undefined" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-05-12T08:48:59" time="0.096">
-    <testcase classname=" normalizeTodos" name=" normalizeTodos" time="0.004">
+    <testcase classname="utils/immutable { filterIn } removes items in nested $List for which predicate returns false" name="utils/immutable { filterIn } removes items in nested $List for which predicate returns false" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="utils/redux" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-05-12T08:48:59" time="0.081">
-    <testcase classname="utils/redux buildActionType creates an action type string" name="utils/redux buildActionType creates an action type string" time="0.001">
+  <testsuite name="undefined" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-05-12T22:35:17" time="0.094">
+    <testcase classname=" normalizeTodos" name=" normalizeTodos" time="0.013">
     </testcase>
   </testsuite>
-  <testsuite name="libs/utils/normalizr" tests="3" errors="0" failures="0" skipped="0" timestamp="2017-05-12T08:48:59" time="0.08">
+  <testsuite name="libs/utils/normalizr" tests="3" errors="0" failures="0" skipped="0" timestamp="2017-05-12T22:35:18" time="0.193">
     <testcase classname="libs/utils/normalizr normalizeArray creates an object with numeric ids as the keys" name="libs/utils/normalizr normalizeArray creates an object with numeric ids as the keys" time="0.002">
     </testcase>
     <testcase classname="libs/utils/normalizr normalizeArrayToMap creates a map with numeric ids as the keys" name="libs/utils/normalizr normalizeArrayToMap creates a map with numeric ids as the keys" time="0.002">
