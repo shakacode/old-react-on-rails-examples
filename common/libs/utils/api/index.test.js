@@ -3,6 +3,7 @@ import {
   buildUrl,
   parseRawParams,
   buildReqUrl,
+  callApi
 } from './index';
 
 const todoParams = { todo: { description: 'this is a todo.' } };
@@ -54,6 +55,28 @@ describe('libs/utils/api', () => {
             description: 'this is a todo.'
           }}};
         expect(actual).toMatchObject(expected);
+    });
+  });
+
+  describe('callApi', () => {
+    it('handles 400 error with an exception', async () => {
+      const url = 'http://fakeurl';
+      fetch.mockResponseOnce(JSON.stringify([{description: "add a todo"}]), {status: 400});
+      try {
+        const resp = await callApi('GET', { url });
+      } catch (error) {
+        expect.anything();
+      }
+    });
+
+    it('handles 500 error with an exception', async () => {
+      const url = 'http://fakeurl';
+      fetch.mockResponseOnce(JSON.stringify([{description: "add a todo"}]), {status: 500});
+      try {
+        const resp = await callApi('GET', { url });
+      } catch (error) {
+        expect.anything();
+      }
     });
   });
 });
