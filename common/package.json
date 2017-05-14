@@ -48,7 +48,7 @@
     "automock": false,
     "testResultsProcessor": "./node_modules/jest-junit",
     "setupFiles": [
-      "./sagas/setupJest.js"
+      "./test/setupJest.js"
     ]
   }
 }
