@@ -1,7 +1,7 @@
 // @flow
 import _ from 'lodash/fp';
 
-import { createImmutableSelector } from '../utils/selectors';
+import { createImmutableSelector } from '../libs/utils/selectors';
 
 import type { State } from '../reducers';
 

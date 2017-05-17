@@ -2,7 +2,6 @@
 import {
   buildUrl,
   parseRawParams,
-  buildReqUrl,
 } from './index';
 
 const todoParams = { todo: { description: 'this is a todo.' } };
@@ -37,8 +36,8 @@ describe('libs/utils/api', () => {
         url: '/todos',
         data: {
           todo: {
-            description: 'this is a todo.'
-          }}};
+            description: 'this is a todo.',
+          } } };
       expect(actual).toMatchObject(expected);
     });
 
@@ -51,9 +50,9 @@ describe('libs/utils/api', () => {
         url: 'http://localhost:3000/api/v1/todos',
         data: {
           todo: {
-            description: 'this is a todo.'
-          }}};
-        expect(actual).toMatchObject(expected);
+            description: 'this is a todo.',
+          } } };
+      expect(actual).toMatchObject(expected);
     });
   });
 });

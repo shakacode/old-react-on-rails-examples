@@ -1,8 +1,8 @@
 // @flow
 import { call, put } from 'redux-saga/effects';
 
-import * as api from 'app/api/todos';
-import { normalizeObjectToMap } from 'app/libs/utils/normalizr';
+import * as api from 'common/api/todos';
+import { normalizeObjectToMap } from 'common/libs/utils/normalizr';
 
 import * as sagas from './index';
 import * as todosActions from '../actions/todos';

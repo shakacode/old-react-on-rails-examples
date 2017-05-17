@@ -1,5 +1,5 @@
 // @flow
-import { normalizeArrayToMap } from 'app/libs/utils/normalizr';
+import { normalizeArrayToMap } from 'common/libs/utils/normalizr';
 
 import { rootReducerInitialState } from '../reducers';
 import type { Todo } from '../types';

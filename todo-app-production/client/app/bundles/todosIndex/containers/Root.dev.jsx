@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-import DevTools from 'app/libs/utils/DevTools';
+import DevTools from 'todosIndex/DevTools';
 
 import AddTodoFormContainer from '../containers/AddTodoFormContainer';
 import NavLinks from '../components/NavLinks';

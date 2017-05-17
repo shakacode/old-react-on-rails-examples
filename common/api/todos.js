@@ -1,20 +1,17 @@
 // @flow
-import apiCall from '../libs/utils/api/apiCall';
-
 import type { descriptionAndId, toggle } from 'todosIndex/types';
+import apiCall from '../libs/utils/api/apiCall';
 
 // TODO: Add an environment variable management setup that allows env vars
 // to be used with both React and React Native
- 
+
 const apiConfig = { remoteEndpoint: 'http://localhost:3000' };
 
-export const todosScope = (path: ?string) => {
-  return `${apiConfig.remoteEndpoint}/api/v1/todos${path || ''}`;
-}
+export const todosScope = (path: ?string) => `${apiConfig.remoteEndpoint}/api/v1/todos${path || ''}`;
 
 export const addRemoteEndpoint = (remoteEndpoint: string) => {
-  apiConfig.remoteEndpoint = remoteEndpoint;  //TODO: Check if the slash exists and remove it
-}
+  apiConfig.remoteEndpoint = remoteEndpoint;  // TODO: Check if the slash exists and remove it
+};
 
 // /api/v1/todos
 export const addTodo = (description: string, completed: boolean = false) => {
@@ -47,4 +44,4 @@ export const toggleTodo = (todo: toggle) => {
 export const getTodos = () => {
   const url = todosScope('/');
   return apiCall.get({ url });
-}
+};

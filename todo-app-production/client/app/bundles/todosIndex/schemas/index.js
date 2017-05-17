@@ -1,7 +1,7 @@
 // @flow
 import { schema } from 'normalizr';
 
-import { normalize } from 'app/libs/utils/normalizr';
+import { normalize } from 'common/libs/utils/normalizr';
 import type { Todo } from '../types';
 
 const todoSchema = new schema.Entity('todos');

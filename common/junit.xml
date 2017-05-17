@@ -1,72 +1,70 @@
 <testsuites name="jest tests">
-  <testsuite name="libs/utils/api" tests="5" errors="0" failures="0" skipped="0" timestamp="2017-04-25T10:48:35" time="0.749">
-    <testcase classname="libs/utils/api { buildUrl } combines a path and an object of key values into a url with a query" name="libs/utils/api { buildUrl } combines a path and an object of key values into a url with a query" time="0.004">
+  <testsuite name="utils/immutable" tests="9" errors="0" failures="0" skipped="0" timestamp="2017-05-16T07:01:11" time="1.871">
+    <testcase classname="utils/immutable { toJS } does nothing if the object is not an Immutable" name="utils/immutable { toJS } does nothing if the object is not an Immutable" time="0.008">
     </testcase>
-    <testcase classname="libs/utils/api { buildUrl } removes keys that have null values" name="libs/utils/api { buildUrl } removes keys that have null values" time="0.001">
+    <testcase classname="utils/immutable { toJS } invokes `toJS` on the object if it is Immutable" name="utils/immutable { toJS } invokes `toJS` on the object if it is Immutable" time="0.003">
     </testcase>
-    <testcase classname="libs/utils/api { parseRawParams } accepts todo params" name="libs/utils/api { parseRawParams } accepts todo params" time="0.001">
+    <testcase classname="utils/immutable { clearIn } clears a $Set nested in an immutable and returns the immutable" name="utils/immutable { clearIn } clears a $Set nested in an immutable and returns the immutable" time="0.003">
     </testcase>
-    <testcase classname="libs/utils/api { parseRawParams } accepts remote URLs" name="libs/utils/api { parseRawParams } accepts remote URLs" time="0.001">
-    </testcase>
-    <testcase classname="libs/utils/api { buildReqUrl } accepts a full URL" name="libs/utils/api { buildReqUrl } accepts a full URL" time="0">
-    </testcase>
-  </testsuite>
-  <testsuite name="addTodo Saga" tests="4" errors="0" failures="0" skipped="0" timestamp="2017-04-25T10:48:36" time="0.178">
-    <testcase classname="addTodo Saga handles async responses" name="addTodo Saga handles async responses" time="0.007">
-    </testcase>
-    <testcase classname="editTodo Saga handles async responses" name="editTodo Saga handles async responses" time="0.002">
-    </testcase>
-    <testcase classname="removeTodo Saga handles async responses" name="removeTodo Saga handles async responses" time="0.001">
-    </testcase>
-    <testcase classname="toggleTodo Saga handles async responses" name="toggleTodo Saga handles async responses" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="addTodoSuccess" tests="5" errors="0" failures="0" skipped="0" timestamp="2017-04-25T10:48:36" time="0.114">
-    <testcase classname="addTodoSuccess adds todo to state" name="addTodoSuccess adds todo to state" time="0.003">
-    </testcase>
-    <testcase classname="editTodoDescription edits the description of selected Todo" name="editTodoDescription edits the description of selected Todo" time="0.002">
-    </testcase>
-    <testcase classname="editTodoSuccess merges edited todo into state" name="editTodoSuccess merges edited todo into state" time="0">
-    </testcase>
-    <testcase classname="removeTodoSuccess removes todo from state" name="removeTodoSuccess removes todo from state" time="0.001">
-    </testcase>
-    <testcase classname="toggleTodoSuccess merges toggled todo into state" name="toggleTodoSuccess merges toggled todo into state" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="undefined" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-04-25T10:48:36" time="0.093">
-    <testcase classname=" normalizeTodos" name=" normalizeTodos" time="0.006">
-    </testcase>
-  </testsuite>
-  <testsuite name="libs/utils/normalizr" tests="3" errors="0" failures="0" skipped="0" timestamp="2017-04-25T10:48:37" time="0.083">
-    <testcase classname="libs/utils/normalizr normalizeArray creates an object with numeric ids as the keys" name="libs/utils/normalizr normalizeArray creates an object with numeric ids as the keys" time="0.002">
-    </testcase>
-    <testcase classname="libs/utils/normalizr normalizeArrayToMap creates a map with numeric ids as the keys" name="libs/utils/normalizr normalizeArrayToMap creates a map with numeric ids as the keys" time="0.001">
-    </testcase>
-    <testcase classname="libs/utils/normalizr normalizeObjectToMap creates a map with numeric ids as the keys" name="libs/utils/normalizr normalizeObjectToMap creates a map with numeric ids as the keys" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="utils/immutable" tests="9" errors="0" failures="0" skipped="0" timestamp="2017-04-25T10:48:37" time="0.094">
-    <testcase classname="utils/immutable { toJS } does nothing if the object is not an Immutable" name="utils/immutable { toJS } does nothing if the object is not an Immutable" time="0.001">
-    </testcase>
-    <testcase classname="utils/immutable { toJS } invokes `toJS` on the object if it is Immutable" name="utils/immutable { toJS } invokes `toJS` on the object if it is Immutable" time="0.001">
-    </testcase>
-    <testcase classname="utils/immutable { clearIn } clears a $Set nested in an immutable and returns the immutable" name="utils/immutable { clearIn } clears a $Set nested in an immutable and returns the immutable" time="0.001">
-    </testcase>
-    <testcase classname="utils/immutable { subtractIn } subtracts an item from a $Set nested in an immutable and returns the immutable" name="utils/immutable { subtractIn } subtracts an item from a $Set nested in an immutable and returns the immutable" time="0.001">
+    <testcase classname="utils/immutable { subtractIn } subtracts an item from a $Set nested in an immutable and returns the immutable" name="utils/immutable { subtractIn } subtracts an item from a $Set nested in an immutable and returns the immutable" time="0.003">
     </testcase>
     <testcase classname="utils/immutable { subtractIn } subtracts many items from a $Set nested in an immutable and returns the immutable" name="utils/immutable { subtractIn } subtracts many items from a $Set nested in an immutable and returns the immutable" time="0.001">
     </testcase>
-    <testcase classname="utils/immutable { pushIn } pushes an item to a $List nested in an immutable and returns the immutable" name="utils/immutable { pushIn } pushes an item to a $List nested in an immutable and returns the immutable" time="0.001">
+    <testcase classname="utils/immutable { pushIn } pushes an item to a $List nested in an immutable and returns the immutable" name="utils/immutable { pushIn } pushes an item to a $List nested in an immutable and returns the immutable" time="0.003">
     </testcase>
     <testcase classname="utils/immutable { deleteIn } deletes item at the given index inside a nested $List and returns the immutable" name="utils/immutable { deleteIn } deletes item at the given index inside a nested $List and returns the immutable" time="0.001">
     </testcase>
-    <testcase classname="utils/immutable { rejectIn } removes items in nested $List for which predicate returns true" name="utils/immutable { rejectIn } removes items in nested $List for which predicate returns true" time="0.001">
+    <testcase classname="utils/immutable { rejectIn } removes items in nested $List for which predicate returns true" name="utils/immutable { rejectIn } removes items in nested $List for which predicate returns true" time="0.003">
     </testcase>
-    <testcase classname="utils/immutable { filterIn } removes items in nested $List for which predicate returns false" name="utils/immutable { filterIn } removes items in nested $List for which predicate returns false" time="0.001">
+    <testcase classname="utils/immutable { filterIn } removes items in nested $List for which predicate returns false" name="utils/immutable { filterIn } removes items in nested $List for which predicate returns false" time="0.003">
     </testcase>
   </testsuite>
-  <testsuite name="utils/redux" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-04-25T10:48:37" time="0.088">
-    <testcase classname="utils/redux buildActionType creates an action type string" name="utils/redux buildActionType creates an action type string" time="0.001">
+  <testsuite name="addTodoSuccess" tests="5" errors="0" failures="0" skipped="0" timestamp="2017-05-16T07:01:11" time="2.471">
+    <testcase classname="addTodoSuccess adds todo to state" name="addTodoSuccess adds todo to state" time="0.018">
+    </testcase>
+    <testcase classname="editTodoDescription edits the description of selected Todo" name="editTodoDescription edits the description of selected Todo" time="0.004">
+    </testcase>
+    <testcase classname="editTodoSuccess merges edited todo into state" name="editTodoSuccess merges edited todo into state" time="0.002">
+    </testcase>
+    <testcase classname="removeTodoSuccess removes todo from state" name="removeTodoSuccess removes todo from state" time="0.002">
+    </testcase>
+    <testcase classname="toggleTodoSuccess merges toggled todo into state" name="toggleTodoSuccess merges toggled todo into state" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="libs/utils/api" tests="4" errors="0" failures="0" skipped="0" timestamp="2017-05-16T07:01:13" time="0.477">
+    <testcase classname="libs/utils/api { buildUrl } combines a path and an object of key values into a url with a query" name="libs/utils/api { buildUrl } combines a path and an object of key values into a url with a query" time="0.006">
+    </testcase>
+    <testcase classname="libs/utils/api { buildUrl } removes keys that have null values" name="libs/utils/api { buildUrl } removes keys that have null values" time="0.002">
+    </testcase>
+    <testcase classname="libs/utils/api { parseRawParams } accepts todo params" name="libs/utils/api { parseRawParams } accepts todo params" time="0.002">
+    </testcase>
+    <testcase classname="libs/utils/api { parseRawParams } accepts remote URLs" name="libs/utils/api { parseRawParams } accepts remote URLs" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="libs/utils/normalizr" tests="3" errors="0" failures="0" skipped="0" timestamp="2017-05-16T07:01:14" time="0.283">
+    <testcase classname="libs/utils/normalizr normalizeArray creates an object with numeric ids as the keys" name="libs/utils/normalizr normalizeArray creates an object with numeric ids as the keys" time="0.005">
+    </testcase>
+    <testcase classname="libs/utils/normalizr normalizeArrayToMap creates a map with numeric ids as the keys" name="libs/utils/normalizr normalizeArrayToMap creates a map with numeric ids as the keys" time="0.006">
+    </testcase>
+    <testcase classname="libs/utils/normalizr normalizeObjectToMap creates a map with numeric ids as the keys" name="libs/utils/normalizr normalizeObjectToMap creates a map with numeric ids as the keys" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-05-16T07:01:14" time="0.348">
+    <testcase classname=" normalizeTodos" name=" normalizeTodos" time="0.011">
+    </testcase>
+  </testsuite>
+  <testsuite name="addTodo Saga" tests="4" errors="0" failures="0" skipped="0" timestamp="2017-05-16T07:01:11" time="3.133">
+    <testcase classname="addTodo Saga handles async responses" name="addTodo Saga handles async responses" time="0.034">
+    </testcase>
+    <testcase classname="editTodo Saga handles async responses" name="editTodo Saga handles async responses" time="0.003">
+    </testcase>
+    <testcase classname="removeTodo Saga handles async responses" name="removeTodo Saga handles async responses" time="0.002">
+    </testcase>
+    <testcase classname="toggleTodo Saga handles async responses" name="toggleTodo Saga handles async responses" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="utils/redux" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-05-16T07:01:14" time="0.192">
+    <testcase classname="utils/redux buildActionType creates an action type string" name="utils/redux buildActionType creates an action type string" time="0.002">
     </testcase>
   </testsuite>
 </testsuites>

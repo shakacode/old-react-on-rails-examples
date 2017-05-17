@@ -1,0 +1,33 @@
+---
+extends:
+  - eslint-config-shakacode
+  - plugin:flowtype/recommended
+  - plugin:lodash-fp/recommended
+  - plugin:jest/recommended
+
+plugins:
+  - flowtype
+  - lodash-fp
+  - jest
+
+settings:
+  import/resolver:
+    webpack:
+      config: webpack.config.babel.js
+
+env:
+  jest/globals: true
+  browser: true
+  jquery: true
+
+globals:
+  __DEBUG_SERVER_ERRORS__: true
+  __SERVER_ERRORS__: true
+
+rules:
+  max-len:
+      - error
+      - 120
+  no-duplicate-imports: 0 # This breaks flow type imports and it's handled by `import/no-duplicates`
+  import/prefer-default-export: 0
+  react/no-unused-prop-types: 0 # https://github.com/yannickcr/eslint-plugin-react/issues/933#issuecomment-258366811

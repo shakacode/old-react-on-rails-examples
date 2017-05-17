@@ -1,7 +1,7 @@
 // @flow
 import { OrderedSet as $$OrderedSet } from 'immutable';
 
-import { normalizeObjectToMap } from 'app/libs/utils/normalizr';
+import { normalizeObjectToMap } from 'common/libs/utils/normalizr';
 
 import { normalizeTodo } from './index';
 
@@ -21,5 +21,5 @@ test('normalizeTodos', () => {
     result: $$OrderedSet([1]),
   };
 
-  expect(actual).toEqual(expected);
+  expect(JSON.stringify(actual)).toEqual(JSON.stringify(expected));
 });

@@ -5,7 +5,7 @@ import type { putEffect, IOEffect } from 'redux-saga/effects';
 import * as api from '../api/todos';
 import {
   normalizeObjectToMap,
-  normalizeArrayToMap
+  normalizeArrayToMap,
 } from '../libs/utils/normalizr';
 
 import {
@@ -21,10 +21,9 @@ import type {
   stringPayload,
   descriptionPayload,
   togglePayload,
-  getTodosPayload,
 } from '../types';
 
-//TODO: Add a logging hook here so that the native app and the React app
+// TODO: Add a logging hook here so that the native app and the React app
 // have a way to log out what happened if needed.
 
 export function* addTodo({ payload }: stringPayload): Generator<any, putEffect, any> {
@@ -71,7 +70,7 @@ export function* toggleTodo({ payload }: togglePayload): Generator<any, putEffec
 export function* getTodos(): Generator<any, putEffect, any> {
   try {
     const response = yield call(api.getTodos);
-    objectMap = normalizeArrayToMap(response);
+    const objectMap = normalizeArrayToMap(response);
     yield put(todosActions.getTodosSuccess(objectMap));
   } catch (e) {
     yield put(todosActions.getTodosError());

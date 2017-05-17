@@ -1,5 +1,5 @@
 // @flow
-import { buildActionType } from 'app/libs/utils/redux';
+import { buildActionType } from 'common/libs/utils/redux';
 
 export const buildFormsActionType = buildActionType('forms');
 

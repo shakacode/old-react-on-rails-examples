@@ -2,8 +2,8 @@
 import { stringify } from 'qs';
 import _ from 'lodash/fp';
 
-import Environment from 'app/libs/constants/Environment';
-import * as env from 'app/libs/utils/env';
+import Environment from 'common/libs/constants/Environment';
+import * as env from 'common/libs/utils/env';
 
 type strictQuery = {|
   page?: ?number,

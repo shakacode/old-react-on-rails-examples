@@ -1,4 +1,4 @@
-import Environment from 'app/libs/constants/Environment';
+import Environment from 'common/libs/constants/Environment';
 
 const { NODE_ENV, RAILS_ENV, SERVER_RENDERING } = process.env;
 

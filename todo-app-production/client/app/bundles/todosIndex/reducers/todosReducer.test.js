@@ -1,7 +1,7 @@
 // @flow
 import { Map as $$Map } from 'immutable';
 
-import { normalizeObjectToMap } from 'app/libs/utils/normalizr';
+import { normalizeObjectToMap } from 'common/libs/utils/normalizr';
 
 import * as actions from '../actions/todos';
 import reducer, { todosInitialState } from './todosReducer';

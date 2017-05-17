@@ -1,3 +1,4 @@
+// @flow
 import { Map as $$Map } from 'immutable';
 import _ from 'lodash/fp';
 

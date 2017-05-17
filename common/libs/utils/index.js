@@ -1,4 +1,3 @@
-// @flow
-export function toArray(value: any) {
+export function toArray(value) {
   return Array.isArray(value) ? value : [value];
 }

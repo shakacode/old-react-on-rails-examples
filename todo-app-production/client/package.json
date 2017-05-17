@@ -57,6 +57,7 @@
     "babel-loader": "^6.4.0",
     "babel-polyfill": "^6.20.0",
     "babel-preset-es2015": "^6.18.0",
+    "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-2": "^6.22.0",
     "babel-register": "^6.18.0",
@@ -137,6 +138,7 @@
     "testResultsProcessor": "./node_modules/jest-junit",
     "moduleNameMapper": {
       "^app(.*)$": "<rootDir>/app$1",
+      "^common(.*)$": "<rootDir>/../../common$1",
       "^todosIndex(.*)$": "<rootDir>/app/bundles/todosIndex$1",
       "\\.(css|scss)$": "<rootDir>/app/libs/interfaces/CSSModule.js"
     }
