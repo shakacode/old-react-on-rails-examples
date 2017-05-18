@@ -11,6 +11,12 @@ type strictQuery = {|
   page?: ?number,
 |};
 
+type params = {
+  url: string,
+  method: MethodType,
+  data?: {},
+}
+
 const IS_BROWSER = !(window.callApi === undefined);
 
 function parseImmutableData(data: any) {
@@ -39,7 +45,7 @@ export function buildUrl(path: string, query: strictQuery) {
 
 export function getCsrfToken() {
   const isTest = env.get('RAILS_ENV') === Environment.TEST;
-  if (isTest) return null;
+  if (isTest) return '';
 
   const metas = document.querySelectorAll('meta');
   const token = _.find({ name: 'csrf-token' }, metas);
@@ -59,11 +65,11 @@ function buildReqBody(data: any) {
   return _.isPlainObject(reqBody) ? JSON.stringify(reqBody) : reqBody;
 }
 
-export function buildReqUrl(params: Request) {
+export function buildReqUrl(params: params) {
   return params.url;
 }
 
-export function buildReqParams(params: Request) {
+export function buildReqParams(params: params) {
   const reqParams = {};
 
   reqParams.method = params.method;

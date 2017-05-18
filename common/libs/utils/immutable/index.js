@@ -1,14 +1,14 @@
 // @flow
-import { Map as $$Map } from 'immutable';
+import { Map as $$Map, List as $$List } from 'immutable';
 import _ from 'lodash/fp';
 
 import { toArray } from '../../utils';
 
-type Immutable = $$Map;
+type Immutable = $$Map<any, any> | $$List<any>;
 type Path = Array<string | number>;
 
 // calls `toJS` if given object is immutable, returns the object unchanged otherwise
-export const toJS = (obj: {}) => (_.isFunction(_.get('toJS', obj)) ? obj.toJS() : obj);
+export const toJS = (obj: { toJS: Function} | Immutable) => (_.isFunction(_.get('toJS', obj)) ? obj.toJS() : obj);
 
 // adds an item to a nested immutable $$Set
 export const unionIn = _.curry(
