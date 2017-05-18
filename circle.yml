@@ -1,5 +1,5 @@
 general:
-  build_dir: todo-app-production
+  build_dir: todo-react
   artifacts:
     - log/test.log
     - tmp/capybara

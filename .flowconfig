@@ -2,14 +2,14 @@
 .*/bin/.*
 .*/node_modules/react-motion/.*
 .*/node_modules/react-base16-styling/__tests__/.*
-.*/todo-app-react-native/*.
+.*/todo-native/*.
 
 [include]
 
 [libs]
-todo-app-production/client/flow-typed/
-todo-app-production/client/node_modules/iflow-immutable/index.js.flow
-todo-app-production/client/node_modules/iflow-react-router/index.js.flow
+todo-react/client/flow-typed/
+todo-react/client/node_modules/iflow-immutable/index.js.flow
+todo-react/client/node_modules/iflow-react-router/index.js.flow
 
 [options]
 module.system=node
@@ -17,7 +17,9 @@ module.use_strict=true
 esproposal.class_static_fields=enable
 esproposal.class_instance_fields=enable
 
-module.name_mapper='.*\.s?css$' -> '<PROJECT_ROOT>/todo-app-production/client/app/libs/interfaces/CSSModule'
+module.name_mapper='.*\.s?css$' -> '<PROJECT_ROOT>/todo-react/client/app/libs/interfaces/CSSModule'
 module.name_mapper='^common\(.*\)$' -> '<PROJECT_ROOT>/common\1'
-module.name_mapper='^app\(.*\)$' -> '<PROJECT_ROOT>/todo-app-production/client/app\1'
-module.name_mapper='^todosIndex\(.*\)$' -> '<PROJECT_ROOT>/todo-app-production/client/app/bundles/todosIndex\1'
+module.name_mapper='^test\(.*\)$' -> '<PROJECT_ROOT>/todo-react/test\1'
+module.name_mapper='^root\(.*\)$' -> '<PROJECT_ROOT>/todo-react/client\1'
+module.name_mapper='^app\(.*\)$' -> '<PROJECT_ROOT>/todo-react/client/app\1'
+module.name_mapper='^todosIndex\(.*\)$' -> '<PROJECT_ROOT>/todo-react/client/app/bundles/todosIndex\1'
