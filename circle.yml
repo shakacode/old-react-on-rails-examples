@@ -1,8 +1,7 @@
 general:
-  build_dir: todo-react
   artifacts:
-    - log/test.log
-    - tmp/capybara
+    - todo-react/log/test.log
+    - todo-react/tmp/capybara
 
 machine:
   environment:
@@ -31,52 +30,77 @@ dependencies:
     - "~/.yarn"
     - "~/.cache/yarn"
   override:
-    - yarn
-    - bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
+    - yarn:
+        pwd: todo-react/client
+    - yarn:
+        pwd: common
+    - bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3:
+        pwd: todo-react
   post:
     - yarn run build:all:rspec:
-        pwd: client
+        pwd: todo-react/client
+
+database:
+  override:
+    - mkdir -p todo-react/config
+    - echo 'test:
+        database: circle_ruby_test
+        adapter: postgresql
+        encoding: unicode
+        pool: 5
+        username: ubuntu
+        host: localhost
+      ' > todo-react/config/database.yml
+    - bundle exec rake db:create db:schema:load --trace:
+        pwd: todo-react
+
 
 test:
+  override:
+    - bundle exec rspec --format RspecJunitFormatter --out /tmp/circle-junit.TYqO9m0/rspec/rspec.xml --format progress:
+        pwd: todo-react
   post:
     - $(yarn bin)/jest .*\\.test\\.js:
-        pwd: client
         parallel: true
         environment:
-          NODE_PATH: .:./app:./app/bundles
+          NODE_PATH: common:todo-react/client:todo-react/client/app:todo-react/client/app/bundles
           NODE_ENV: test
           JEST_JUNIT_OUTPUT: $CIRCLE_TEST_REPORTS/jest/junit.xml
     - $(yarn bin)/eslint --ext .js,.jsx:
-        pwd: client
         parallel: true
         files:
-          - 'app/**/*.js'
-          - 'app/**/*.jsx'
-          - 'webpack-helpers/**/*.js'
-          - 'server-rendering-entry.js'
-          - 'server.js'
-          - 'webpack.config.babel.js'
+          - 'todo-react/client/app/**/*.js'
+          - 'todo-react/client/app/**/*.jsx'
+          - 'todo-react/client/webpack-helpers/**/*.js'
+          - 'todo-react/client/server-rendering-entry.js'
+          - 'todo-react/client/server.js'
+          - 'todo-react/client/webpack.config.babel.js'
+          - 'common/**/*.js'
     - yarn run flow:
-        pwd: client
+        pwd: todo-react/client
+    - yarn run flow:
+        pwd: common
     - bundle exec rubocop:
         parallel: true
         # keep in sync with files in script/lint
         files:
-          - 'app/**/*.rb'
-          - 'config/**/*.rb'
-          - 'db/migrate/**/*.rb'
-          - 'db/seeders/**/*.rb'
-          - 'db/seeds.rb'
-          - 'lib/**/*.rb'
-          - 'lib/**/*.rake'
-          - 'spec/**/*.rb'
-          - 'config.ru'
-          - 'Gemfile'
-          - 'Rakefile'
+          - 'todo-react/app/**/*.rb'
+          - 'todo-react/config/**/*.rb'
+          - 'todo-react/db/migrate/**/*.rb'
+          - 'todo-react/db/seeders/**/*.rb'
+          - 'todo-react/db/seeds.rb'
+          - 'todo-react/lib/**/*.rb'
+          - 'todo-react/lib/**/*.rake'
+          - 'todo-react/spec/**/*.rb'
+          - 'todo-react/config.ru'
+          - 'todo-react/Gemfile'
+          - 'todo-react/Rakefile'
     - bundle exec scss-lint:
         parallel: true
         files:
-          - 'app/assets/styles/**/*.scss'
-          - 'client/app/**/*.scss'
-    - bundle exec brakeman
-    - bundle exec bundle-audit update && bundle exec bundle-audit
+          - 'todo-react/app/assets/styles/**/*.scss'
+          - 'todo-react/client/app/**/*.scss'
+    - bundle exec brakeman:
+        pwd: todo-react
+    - bundle exec bundle-audit update && bundle exec bundle-audit:
+        pwd: todo-react
