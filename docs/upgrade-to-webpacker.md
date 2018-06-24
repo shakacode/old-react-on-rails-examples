@@ -1,6 +1,6 @@
 # Upgrading to Webpacker with React on Rails
 
-# Upgrade webpack (v4) and it's all loaders
+## Upgrade webpack (v4) and it's all loaders (optional)
 
 Replace ExtractTextPlugin with MiniCssExtractPlugin
 
@@ -30,29 +30,30 @@ use: [
     },
 ```
 
-# Upgrade React on Rails to latest (11.0.7 at the moment)
+## Upgrade React on Rails to latest (11.0.8 at the moment)
 see the docs https://github.com/shakacode/react_on_rails/blob/master/docs/basics/upgrading-react-on-rails.md
 
-# Integrating Webpacker
+## Integrating Webpacker
 same docs https://github.com/shakacode/react_on_rails/blob/master/docs/basics/upgrading-react-on-rails.md#integrating-webpacker
 
-# Move assets from rails to be handled by the webpack/er
+## Move assets from rails to the webpack
 
 Suppose we have this structure of assets:
 ```
-assets
-   |__ scripts
-            |__main.js
-            |__facebook_sdk.js
-   |__ styles
-           |__
+/app/assets/javascripts/main.js
+/app/assets/javascripts/facebook_sdk.js
+/app/assets/stylesheets/views/layout.css
+/app/assets/stylesheets/views/faq.css
 ```
 
-## Global bundle for rails assets
-- Copy all assets from `app/assets` to `client/app/assets`
+It's better to move all these assets to the client folder to be sure that we do not process any assets through the rails.
+And it is even more convenient to store all the resources in one place.
+
+
+- Move all assets from `/app/assets` to `/client/app/assets/rails-assets`
 - Create `index.js` entry files for js and css assets:
 
-**js entry example (app/assets/scripts/index.js)**
+**js entry example (/client/app/assets/rails-assets/javascripts/index.js)**
 
 ```
 ...
@@ -61,24 +62,24 @@ import './facebook_sdk';
 ...
 ```
 
-**css entry example (index.scss)**
+**css entry example (/client/app/assets/rails-assets/stylesheets/index.css)**
 
 ```
 ...
-@import "views/layout";
-@import "views/faq";
+import "views/layout";
+import "views/faq";
 ...
 ```
 
 Then somewhere in the bundles' folder create `index.js` which will include these bundles
 
-(e.g. `app/bundles/global/index.js`)
+(e.g. `/client/app/bundles/rails-assets/index.js`)
 ```
 // styles
-import 'app/assets/styles/index.scss';
+import 'app/assets/rails-assets/stylesheets/index.css';
 
 // scripts
-import 'app/assets/scripts/index.js'
+import 'app/assets/rails-assets/javascripts/index.js'
 ```
 
 Then create an entry in the webpack config
@@ -86,13 +87,67 @@ Then create an entry in the webpack config
 ...
 entries: {
   ...
-  'rails-bundle': path.resolve(__dirname, 'app/bundles/global/index.js'),
+  'rails-assets': path.resolve(__dirname, 'app/bundles/rails-assets/index.js'),
   ...
 }
 ```
 
-# Import images from current directory and subdirectories
-index.js:
+## In case if we have many images in the rails assets and the directory with images contains subdirectories
+
+The problem is the saving full path to the images in `manifest.json` for rails images. The thing is that the ManifestPlugin uses only the file's name as the key. To solve that we can use name option in `url-loader` to add full path to the image name.
+
+For example:
+
+in rules:
+```
+const railsImagesPath = "client/app/assets/rails-assets/images";
+
+const isImageFromRailsAssets = function(path) {
+  return path.indexOf(railsImagesPath) !== -1;
+};
+
+
+// example args:
+// substring = client/app/assest/rails-assets/images
+// path      = /var/www/mysite.com/client/app/assets/rails-assets/images/subfolder/logo.png
+// returns    = index of -----------------------------------------------^
+const getStartSubstringIndex = function(path, substring) {
+  return path.lastIndexOf(substring) + substring.length + 1;
+};
+
+...
+
+test: /\.(jpe?g|png|gif|svg|ico)$/,
+use: [{
+   loader: 'url-loader',
+   options: {
+     publicPath: '/assets/',
+     name: function(file) {
+       if(isImageFromRailsAssets(file)) {
+
+         // returns relative path to the image in `rails-assets` images folder
+         // for example it may return: `/subfolder/logo.png`
+         const filePath = path.parse(file.substr(getStartSubstringIndex(file, railsImagesPath)));
+
+         // returns relative path to the image plus hashed name of image
+         // for example: `subfolder/logo-123.png`
+         return path.join(filePath.dir, '[name]-[hash].[ext]');
+       } else {
+         return '[name]-[hash].[ext]';
+       }
+     },
+     // We can't use limit in this case, because we need to generate all assets as files,
+     // not data urls
+     limit: 1,
+     publicPath: output.publicPath,
+     regExp: fileLoaderRegExp,
+   },
+}],
+```
+
+Also, if we have many images we can use this code snippet to import all images in subdirectories:
+
+**images entry (/client/app/assets/rails-assets/images/index.js)**
 ```
 function importAll(r) {
     return r.keys().map(r);
@@ -100,39 +155,3 @@ function importAll(r) {
 
 importAll(require.context('./', true, /\.(png|jpe?g|svg|gif|ico)$/));
 ```
-
-
-# If it needs to create symlinks assets to public folder
-i.e.
-
-
-
-```
-+  new ManifestPlugin({
-+    publicPath: output.publicPath,
-+    writeToFileEmit: true,
-+    map: function(options) {
-+      if(options.path.indexOf('public-saas-images') !== -1) {
-+        const source = path.join(path.resolve('..', 'public'), options.path);
-+        const target = path.join(path.resolve('..', 'public'), 'saas', options.name);
-+
-+        if(fs.existsSync(target)) {
-+          return options;
-+        }
-+
-+        const sourceFolderPath = path.join(path.resolve('..','public'), path.dirname(options.path));
-+        const targetFolderPath = path.join(path.resolve('..','public','saas'), path.dirname(options.name));
-+
-+        utils.mkdirP(sourceFolderPath);
-+        utils.mkdirP(targetFolderPath);
-+        
-+        fs.symlinkSync(target, source);
-+      }
-+      return options;
-+    }
-```
-
-Create index.js for css that will include all the css files same as in application.css
-Create index.js for js that will include all the js files same as in application.js
-Create entry in webpack config entry section
-Replace stylesheet_link_tag, javascript_link_tag with stylesheet_pack_tag, javascript_pack_tag
