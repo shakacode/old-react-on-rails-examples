@@ -149,9 +149,12 @@ Also, if we have many images we can use this code snippet to import all images i
 
 **images entry (/client/app/assets/rails-assets/images/index.js)**
 ```
+// Reference: https://webpack.js.org/guides/dependency-management/#context-module-api
 function importAll(r) {
     return r.keys().map(r);
 }
 
 importAll(require.context('./', true, /\.(png|jpe?g|svg|gif|ico)$/));
 ```
+
+References on `require.context`: [Webpack Docs](https://webpack.js.org/guides/dependency-management/#context-module-api) and [Webpack Wiki](https://github.com/webpack/docs/wiki/context)
