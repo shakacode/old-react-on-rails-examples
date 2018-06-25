@@ -1,5 +1,12 @@
 // @flow
-import { call, put, fork, takeEvery } from 'redux-saga/effects';
+import {
+  call,
+  put,
+  fork,
+  race,
+  takeEvery
+} from 'redux-saga/effects';
+import { delay } from 'redux-saga';
 import type { putEffect, IOEffect } from 'redux-saga/effects';
 
 import * as api from '../api/todos';
@@ -14,6 +21,7 @@ import {
   removeTodo as removeTodoActionType,
   toggleTodo as toggleTodoActionType,
   getTodos as getTodosActionType,
+  timeoutTodo as timeoutTodoType
 } from '../actionTypes/todos';
 import * as todosActions from '../actions/todos';
 import type {
@@ -24,58 +32,94 @@ import type {
   getTodosPayload,
 } from '../types';
 
+
+// TODO: IMO this is a really long timeout but on my machine this is the min
+// timeout that guarantees the API always has a chance to complete!
+// This should be in the ENV settings also.
+
+const API_TIMEOUT = 5000;
+
 //TODO: Add a logging hook here so that the native app and the React app
 // have a way to log out what happened if needed.
 
-export function* addTodo({ payload }: stringPayload): Generator<any, putEffect, any> {
-  try {
-    const response = yield call(api.addTodo, payload);
-    yield put(todosActions.addTodoSuccess(normalizeObjectToMap(response)));
-  } catch (e) {
-    yield put(todosActions.addTodoError());
+export function* raceCallApi({
+  apiCall,
+  payload,
+  successAction,
+  failAction,
+  normalizer
+}) {
+  const { response, timeout } = yield race({
+    response: call(apiCall, payload),
+    timeout: call(delay, API_TIMEOUT)
+  });
+
+  if(response) {
+    if(response.result) {
+      if(normalizer) {
+        yield put(successAction(normalizer(response.result)));
+      } else {
+        yield put(successAction(response.result));
+      }
+    } else {
+      yield put(failAction(response.error));
+    }
+  } else {
+    yield put(todosActions.timeoutTodo());
   }
+}
+
+export function* addTodo({ payload }: stringPayload): Generator<any, putEffect, any> {
+  yield call(raceCallApi,
+    {
+      apiCall: api.addTodo,
+      payload,
+      successAction: todosActions.addTodoSuccess,
+      failAction: todosActions.addTodoError,
+      normalizer: normalizeObjectToMap
+    });
 }
 
 export function* editTodo({ payload }: descriptionPayload): Generator<any, putEffect, any> {
-  try {
-    const response = yield call(api.editTodo, payload);
-    yield put(todosActions.editTodoSuccess(normalizeObjectToMap(response)));
-  } catch (e) {
-    yield put(todosActions.editTodoError());
-  }
+  yield call(raceCallApi,
+    {
+      apiCall: api.editTodo,
+      payload,
+      successAction: todosActions.editTodoSuccess,
+      failAction: todosActions.editTodoError,
+      normalizer: normalizeObjectToMap
+    });
 }
 
 export function* removeTodo({ payload }: numberPayload): Generator<any, putEffect, any> {
-  try {
-    const response = yield call(api.removeTodo, payload);
-    yield put(todosActions.removeTodoSuccess(response));
-  } catch (e) {
-    yield put(todosActions.removeTodoError());
-  }
+  yield call(raceCallApi,
+    {
+      apiCall: api.removeTodo,
+      payload,
+      successAction: todosActions.removeTodoSuccess,
+      failAction: todosActions.removeTodoError
+    });
 }
 
 export function* toggleTodo({ payload }: togglePayload): Generator<any, putEffect, any> {
-  try {
-    const response = yield call(api.toggleTodo, payload);
-    yield put(todosActions.toggleTodoSuccess(normalizeObjectToMap(response)));
-  } catch (e) {
-    yield put(todosActions.toggleTodoError());
-  }
+  yield call(raceCallApi,
+    {
+      apiCall: api.toggleTodo,
+      payload,
+      successAction: todosActions.toggleTodoSuccess,
+      failAction: todosActions.toggleTodoError,
+      normalizer: normalizeObjectToMap
+    });
 }
 
-// TODO: Clean up exception handling here - this can have bad side effects
-// with React, per: https://github.com/redux-saga/redux-saga/issues/521
-// Recommended to catch API exceptions in API and then return an error
-// object here, also use race() to deal with flaky cellular and browser data
-
 export function* getTodos(): Generator<any, putEffect, any> {
-  try {
-    const response = yield call(api.getTodos);
-    objectMap = normalizeArrayToMap(response);
-    yield put(todosActions.getTodosSuccess(objectMap));
-  } catch (e) {
-    yield put(todosActions.getTodosError());
-  }
+  yield call(raceCallApi,
+    {
+      apiCall: api.getTodos,
+      successAction: todosActions.getTodosSuccess,
+      failAction: todosActions.getTodosError,
+      normalizer: normalizeArrayToMap
+    });
 }
 
 function* addTodoSaga() {

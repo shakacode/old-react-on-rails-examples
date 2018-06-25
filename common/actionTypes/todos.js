@@ -20,3 +20,4 @@ export const setVisibilityFilter = buildTodosActionType('setVisibilityFilter');
 export const getTodos = buildTodosActionType('getTodos');
 export const getTodosSuccess = buildTodosActionType('getTodosSuccess');
 export const getTodosError = buildTodosActionType('getTodosError');
+export const timeoutTodo = buildTodosActionType('timeoutTodo');

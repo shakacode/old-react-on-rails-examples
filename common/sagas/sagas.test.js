@@ -1,94 +1,52 @@
 // @flow
-import { call, put } from 'redux-saga/effects';
+import { call, put, race } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
 
 import * as api from '../api/todos';
-import { normalizeObjectToMap } from '../libs/utils/normalizr';
+import {
+  normalizeObjectToMap,
+  normalizeArrayToMap,
+ } from '../libs/utils/normalizr';
 
 import * as sagas from './index';
 import * as todosActions from '../actions/todos';
 
-// TODO: Fix all the tests in common
-
-describe('addTodo Saga', () => {
+describe('raceCallApi Generator Function', () => {
   it('handles async responses', () => {
-    const description = 'todo description';
-
-    const action = todosActions.addTodo(description);
-    const generator = sagas.addTodo(action);
+    const action = todosActions.getTodos();
+    fetch.mockResponseOnce(JSON.stringify([{description: "add a todo"}]));
+    const generator = sagas.raceCallApi({
+      apiCall: api.getTodos,
+      successAction: todosActions.getTodosSuccess,
+      failAction: todosActions.getTodosError,
+      normalizer: normalizeArrayToMap,
+    });
 
     let nextGen = generator.next();
-    expect(nextGen.value).toEqual(call(api.addTodo, description));
-
-    const result = {
-      id: 1,
-      description: 'todo',
-      completed: false,
-      created_at: 'earlier',
-      updated_at: 'also earlier',
-    };
-    nextGen = generator.next(result);
-    expect(nextGen.value).toEqual(put(todosActions.addTodoSuccess(normalizeObjectToMap(result))));
+    expect(nextGen.value).toEqual(race({
+      response: call(api.getTodos, undefined),
+      timeout: call(delay, 5000),
+    }));
   });
-});
 
-describe('editTodo Saga', () => {
-  it('handles async responses', () => {
-    const description = 'todo description';
-    const id = 'todoId';
-    const payload = { description, id };
-
-    const action = todosActions.editTodo(payload);
-    const generator = sagas.editTodo(action);
-
-    let nextGen = generator.next();
-    expect(nextGen.value).toEqual(call(api.editTodo, payload));
-
-    const result = {
-      id: 1,
-      description: 'todo',
-      completed: false,
-      created_at: 'earlier',
-      updated_at: 'also earlier',
+  // TODO: Right now the timeout delay is hard coded to 5 sec but this needs
+  // to be thought out a little more
+  it('handles timed out responses (over 6000 ms)', () => {
+    const action = todosActions.getTodos();
+    const delay = () => { return new Promise((resolve) => {
+        setTimeout(() => resolve({url: '/delayed', delay: 500}), 6000);
+      })
     };
-    nextGen = generator.next(result);
-    expect(nextGen.value).toEqual(put(todosActions.editTodoSuccess(normalizeObjectToMap(result))));
-  });
-});
-
-describe('removeTodo Saga', () => {
-  it('handles async responses', () => {
-    const payload = '1';
-    const action = todosActions.removeTodo(payload);
-    const generator = sagas.removeTodo(action);
+    fetch.mockResponseOnce(JSON.stringify([{description: "add a todo"}]), delay);
+    const generator = sagas.raceCallApi({
+      apiCall: api.getTodos,
+      successAction: todosActions.getTodosSuccess,
+      failAction: todosActions.getTodosError,
+      normalizer: normalizeArrayToMap,
+    });
 
     let nextGen = generator.next();
-    expect(nextGen.value).toEqual(call(api.removeTodo, payload));
-
-    const result = 'data';
-    nextGen = generator.next(result);
-    expect(nextGen.value).toEqual(put(todosActions.removeTodoSuccess(result)));
-  });
-});
-
-describe('toggleTodo Saga', () => {
-  it('handles async responses', () => {
-    const id = 'todoId';
-    const payload = { id, complete: true };
-
-    const action = todosActions.toggleTodo(payload);
-    const generator = sagas.toggleTodo(action);
-
-    let nextGen = generator.next();
-    expect(nextGen.value).toEqual(call(api.toggleTodo, payload));
-
-    const result = {
-      id: 1,
-      description: 'todo',
-      completed: false,
-      created_at: 'earlier',
-      updated_at: 'also earlier',
-    };
-    nextGen = generator.next(result);
-    expect(nextGen.value).toEqual(put(todosActions.toggleTodoSuccess(normalizeObjectToMap(result))));
+    let nextGen1 = generator.next(nextGen.value);
+    expect(nextGen1.value).toEqual(put(todosActions.timeoutTodo()));
   });
 });

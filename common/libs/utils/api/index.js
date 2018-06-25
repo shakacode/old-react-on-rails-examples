@@ -83,13 +83,13 @@ function parseImmutableData(data: any) {
 
 function checkResponseStatus(response: Response) {
   if (response.ok) return response;
-
-  return response.json().then(errData => {
-    const isBadCsrfToken = response.status === 401 && errData.message === 'Bad Authenticity Token';
-    if (isBadCsrfToken && IS_BROWSER) window.location.reload();
-    const error = new ApiError(response.statusText, errData, response.status);
-    throw error;
-  });
+  return response.json()
+    .then(errData => {
+      const isBadCsrfToken = response.status === 401 && errData.message === 'Bad Authenticity Token';
+      if (isBadCsrfToken && IS_BROWSER) window.location.reload();
+      const error = new ApiError(response.statusText, errData, response.status);
+      throw error;
+    });
 }
 
 function parseResponse(response: Response) {

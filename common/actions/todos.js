@@ -20,3 +20,4 @@ export const setVisibilityFilter = createAction(todos.setVisibilityFilter);
 export const getTodos = createAction(todos.getTodos);
 export const getTodosSuccess = createAction(todos.getTodosSuccess);
 export const getTodosError = createAction(todos.getTodosError);
+export const timeoutTodo = createAction(todos.timeoutTodo);
