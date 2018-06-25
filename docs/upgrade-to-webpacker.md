@@ -30,7 +30,7 @@ use: [
     },
 ```
 
-## Upgrade React on Rails to latest (11.0.8 at the moment)
+## Upgrade React on Rails to latest, at least > 11.0.8
 see the docs https://github.com/shakacode/react_on_rails/blob/master/docs/basics/upgrading-react-on-rails.md
 
 ## Integrating Webpacker
